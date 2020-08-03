@@ -1,0 +1,17 @@
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\BL.dll
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\BL.pdb
+E:\Rut\final project\classroom\classRoomServer\BL\obj\Debug\BL.csprojAssemblyReference.cache
+E:\Rut\final project\classroom\classRoomServer\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+E:\Rut\final project\classroom\classRoomServer\BL\obj\Debug\BL.dll
+E:\Rut\final project\classroom\classRoomServer\BL\obj\Debug\BL.pdb
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DTO.dll
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DTO.pdb
+E:\Rut\final project\classroom\classRoomServer\BL\obj\Debug\BL.csproj.CopyComplete
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\BL.dll.config
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DAL.dll
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.dll
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.SqlServer.dll
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DAL.pdb
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DAL.dll.config
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.xml
+E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.SqlServer.xml

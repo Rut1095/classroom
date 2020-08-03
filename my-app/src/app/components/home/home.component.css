@@ -1,0 +1,53 @@
+
+a
+{
+    text-align:center;
+    color: blue;
+    margin: 50px;
+font-size: 30px
+}
+/*
+button
+{
+    text-align:center;
+    background-color: darkgray; 
+    padding:15px;
+    border-color: crimson; 
+    border-width: 5px;
+}*/
+h1{
+    color:crimson;
+    font-size: 70px;
+font-family: Bodoni MT Black;
+}
+#back1{
+    border-top-width: 40px;
+    border-top-style: double;
+    color: crimson;
+}
+#back2{
+    border-top-width: 40px;
+    border-top-style: double;
+    color: blue;
+}
+div
+{
+    text-align: center;
+}
+
+/*
+input
+{
+    height: 30px;
+    width: 220px;
+    border-color: crimson;
+    text-anchor: middle;
+    color: blue;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 21px;
+    
+}
+
+
+
+*/

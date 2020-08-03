@@ -1,0 +1,42 @@
+
+  <ul> 
+
+    <div mat-raised-button *ngFor="let les of lessons"> <br>
+     <!-- <button >
+        {{les.Name}}
+    </button>-->
+    <a mat-list-item [routerLink]="['lesson', les.Id]">{{les.Name}}</a>
+  </div>
+  
+ </ul>
+
+
+ 
+ <!--<mat-drawer-container >
+    <mat-drawer #drawer mode="over" >
+     <p>Drawer content</p>
+     <p>
+       <button mat-icon-button>
+        <mat-icon>clear</mat-icon>
+       </button>
+     </p>
+   </mat-drawer>
+ <mat-drawer-content fxLayout="row" fxLayoutAlign="start center">
+ 
+   <p>
+     <button mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </p>
+  </mat-drawer-content>
+ </mat-drawer-container>
+
+<p style="color: blue;">lessons list </p>
+
+<ul> 
+
+    <li mat-raised-button *ngFor="let les of lessons"> <br><button >
+        {{les.Name}}
+    </button></li>
+ </ul> -->
+

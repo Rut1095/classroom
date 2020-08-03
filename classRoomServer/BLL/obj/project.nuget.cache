@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "dDiNWx5VUS+U4R7ilOnA9NjyvbSklK6ZztsqpnYTF/bpXLZQH/ymmPWL6UWMAlwmr5z8XFDzLnTxAhsVStEqig==",
+  "success": false,
+  "projectFilePath": "E:\\Rut\\final project\\classroom\\classRoomServer\\BLL\\BLL.csproj",
+  "expectedPackageFiles": [],
+  "logs": [
+    {
+      "code": "NU1102",
+      "level": "Error",
+      "message": "Unable to find package NETStandard.Library with version (>= 2.0.3)\r\n  - Found 1 version(s) in Microsoft Visual Studio Offline Packages [ Nearest version: 1.6.0 ]",
+      "libraryId": "NETStandard.Library",
+      "targetGraphs": [
+        ".NETStandard,Version=v2.0"
+      ]
+    }
+  ]
+}

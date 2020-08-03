@@ -1,0 +1,24 @@
+
+<!-- <div class="wrap-screen" *ngFor="let screen of participates">
+<-- <app-view-user></app-view-user> 
+<app-view-user></app-view-user>
+
+</div>-->
+    
+
+
+<mat-sidenav-container>
+
+    <mat-sidenav-content >
+        <div style="height: 88vh">
+           <router-outlet></router-outlet>
+           
+        </div>
+    </mat-sidenav-content>
+    <mat-sidenav #sidenav   mode="side" opened  class="example-sidenav  side-nav-style">
+       <!--<a mat-list-item [routerLink]="'/classroom'">בדיקה</a>
+        <section style="width: 100px;"></section>--> 
+        <app-lessonslist>
+        </app-lessonslist>
+    </mat-sidenav>
+</mat-sidenav-container>

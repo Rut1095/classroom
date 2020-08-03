@@ -1,0 +1,11 @@
+element.style , div ,td {
+    background-color: cadetblue;
+    margin: 1vh;
+    width: 15vw;
+    height: 10vh;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    margin-left: 15vw;
+}
+

@@ -1,0 +1,11 @@
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\DTO.dll
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\DTO.pdb
+E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.dll
+E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.pdb
+E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\DAL.dll
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\EntityFramework.dll
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\DAL.pdb
+E:\Rut\final project\classroom\classRoomServer\DTO\bin\Debug\DAL.dll.config
+E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.csproj.CopyComplete

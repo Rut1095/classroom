@@ -1,0 +1,25 @@
+wrap-screen{
+ display: inline-block;
+}
+app-lessonslist{
+
+    border-radius: 12px;
+    border-style: solid;
+    float: right;
+    display: block;
+    border-width:10px ;
+    margin: 50px;
+
+
+}
+
+app-lesson{
+    background-color: green;
+}
+
+body{
+    direction: rtl;
+    /* scroll-behavior: unset; */
+    margin: 0; max-height: 100%; overflow: hidden;
+    
+}
