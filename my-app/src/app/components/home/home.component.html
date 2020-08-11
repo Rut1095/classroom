@@ -5,7 +5,7 @@
 <div>   
    <h1> classroom </h1> 
    <br><br><br> 
-<!-- </div>
+<!--  </div>
  <input type="text" [(ngModel)]="user.UserName"> <a>הכנס את שמך</a>
 </div><div> -->
   <mat-form-field appearance="outline" >
@@ -13,12 +13,12 @@
     <input matInput [(ngModel)]="user.UserName" >
   </mat-form-field>  <br><br><br>
   <!-- <input type="password" [(ngModel)]="user.Password"><a>הכנס סיסמא</a>  -->
-  <mat-form-field appearance="outline" >
+   <mat-form-field appearance="outline" >
     <mat-label>הכנס סיסמא</mat-label>
     <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button>
+    </button> 
   </mat-form-field><br><br><br>
 <button mat-fab style="margin: 45px; ">
   <i class="material-icons" (click)="logIn()">keyboard_backspace</i>
@@ -27,11 +27,11 @@
   <i class="material-icons"  (click)="logIn()">account_circle</i>
 </button>
 
-<label>חדש במערכת לחץ כאן</label>
+<label>חדש במערכת לחץ כאן</label> 
  
-  <!--a routerLink="/register" routerLinkActive="active">new students</a-->
-</div>
-<!--<app-show-camera></app-show-camera>-->
+  <!-- <a routerLink="/register" routerLinkActive="active">new students</a> -->
+ <!-- </div> 
+<app-show-camera></app-show-camera> -->
 
 <!-- //pink-bluegrey.css purple-green.css indigo-pink.css -->
 
