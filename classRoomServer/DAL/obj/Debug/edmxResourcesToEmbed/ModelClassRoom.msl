@@ -12,6 +12,7 @@
     <EntitySetMapping Name="ClassLessons">
       <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ClassLessons">
         <MappingFragment StoreEntitySet="ClassLessons">
+          <ScalarProperty Name="lesseonIsActive" ColumnName="lesseonIsActive" />
           <ScalarProperty Name="lessonId" ColumnName="lessonId" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="classId" ColumnName="classId" />
@@ -45,6 +46,16 @@
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="idLesson" ColumnName="idLesson" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ActiveUser">
+      <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ActiveUser">
+        <MappingFragment StoreEntitySet="ActiveUser">
+          <ScalarProperty Name="sessionId" ColumnName="sessionId" />
+          <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
+          <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

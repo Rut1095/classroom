@@ -1,5 +1,18 @@
-/* You can add global styles to this file, and also import other style files */
+You can add global styles to this file, and also import other style files
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 /* @import '@angular/material/prebuilt-themes/pink-bluegrey.css'; */
+.bg
+{
+    position: relative;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position:center;   
+    background-size: cover;
+/* background-image: url(assets/schoolImage.jpg); */
+background-image: url(assets/back.jpg);
+/* background-image: url(assets/blackboard.jpg); */
+
+
+}

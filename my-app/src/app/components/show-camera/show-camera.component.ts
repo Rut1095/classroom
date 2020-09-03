@@ -11,13 +11,16 @@ export class ShowCameraComponent implements OnInit {
   constructor(private renderer: Renderer2) { }
   startCamera() {
     if (!!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia)) {
-      navigator.mediaDevices.getUserMedia(this.constraints).then(this.attachVideo.bind(this)).catch(this.handleError);
+     
+    navigator.mediaDevices.getUserMedia(this.constraints).then(this.attachVideo.bind(this)).catch(this.handleError);
     } else {
       alert('Sorry, camera not available.');
     }
   }
   constraints = {
+    audio: true,
     video: {
+      // deviceId:"03d26cfcb381fdebc0cf9caaa6c7e28e93f3a58ee86affb4075ee87b30425468",
       facingMode: "environment",
       width: { ideal: 4096 },
       height: { ideal: 2160 }

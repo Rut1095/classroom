@@ -1,5 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="DigitlClassRoomUpdateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActiveUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="ClassLessonId" Type="int" />
+    <Property Name="ConnectTime" Type="time" Precision="7" />
+    <Property Name="sessionId" Type="nvarchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Classes">
     <Key>
       <PropertyRef Name="Id" />
@@ -14,6 +23,7 @@
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="classId" Type="int" Nullable="false" />
     <Property Name="lessonId" Type="int" Nullable="false" />
+    <Property Name="lesseonIsActive" Type="bit" Nullable="false" />
   </EntityType>
   <EntityType Name="lessons">
     <Key>
@@ -43,6 +53,7 @@
     <Property Name="idLesson" Type="int" />
   </EntityType>
   <EntityContainer Name="DigitlClassRoomUpdateModelStoreContainer">
+    <EntitySet Name="ActiveUser" EntityType="Self.ActiveUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClassLessons" EntityType="Self.ClassLessons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="lessons" EntityType="Self.lessons" Schema="dbo" store:Type="Tables" />

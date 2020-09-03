@@ -10,6 +10,7 @@
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.lessons" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Users" Width="1.5" PointX="2.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.UsersLessons" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ActiveUser" Width="1.5" PointX="4.625" PointY="3.25" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

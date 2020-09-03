@@ -2,7 +2,7 @@
 a
 {
     text-align:center;
-    color: blue;
+    color: white;
     margin: 50px;
 font-size: 30px
 }
@@ -19,16 +19,20 @@ h1{
     color:crimson;
     font-size: 70px;
 font-family: Bodoni MT Black;
+top: 40px;
 }
 #back1{
     border-top-width: 40px;
     border-top-style: double;
-    color: crimson;
+    /* color: crimson; */    color: white;
+
 }
 #back2{
     border-top-width: 40px;
     border-top-style: double;
-    color: blue;
+    /* color: blue; */
+    color: white;
+
 }
 div
 {
@@ -46,8 +50,26 @@ input
     font-family: 'Times New Roman', Times, serif;
     font-size: 21px;
     
+}*/
+
+body{
+    color: whitesmoke;
 }
+mat-form-field mat-label input{
+    color: cornsilk;
+    border-color: cornsilk;
+    
+}
+.form{
+border-color:cornsilk;
+border-width: 12px;
+background-color:transparent;
+border-style: solid;
+width: 450px;
+text-align: center;
+margin-left: 30%;
+border-radius: 12px;
+border: spacing 12px; ;
 
-
-
-*/
+}
+  

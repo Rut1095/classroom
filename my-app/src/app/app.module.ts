@@ -22,6 +22,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 // import { FormControl, Validators } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
+import { UserCameraComponent } from './components/user-camera/user-camera.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {MatSelectModule} from '@angular/material/select';
     ViewClassComponent,
     ViewUserComponent,
     LessonslistComponent,
-    LessonComponent
+    LessonComponent,
+    UserCameraComponent
   ],
   imports: [
     BrowserModule,

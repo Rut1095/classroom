@@ -30,5 +30,6 @@ namespace DAL
         public virtual DbSet<lessons> lessons { get; set; }
         public virtual DbSet<Users> Users { get; set; }
         public virtual DbSet<UsersLessons> UsersLessons { get; set; }
+        public virtual DbSet<ActiveUser> ActiveUser { get; set; }
     }
 }

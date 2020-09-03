@@ -1,4 +1,4 @@
-element.style , div ,td {
+/* element.style , div ,td {
     background-color: cadetblue;
     margin: 1vh;
     width: 15vw;
@@ -7,5 +7,19 @@ element.style , div ,td {
     border-style: solid;
     text-align: center;
     margin-left: 15vw;
-}
+} */
+body {
+    background-color: lightgrey;
+    float: right;
+    width: 500px;
+    height: 500px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+  }
 
+button{
+    margin: 8px;
+
+}

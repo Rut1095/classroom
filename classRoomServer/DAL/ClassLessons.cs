@@ -17,5 +17,6 @@ namespace DAL
         public int Id { get; set; }
         public int classId { get; set; }
         public int lessonId { get; set; }
+        public bool lesseonIsActive { get; set; }
     }
 }

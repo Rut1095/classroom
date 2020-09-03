@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ActiveUser = DTO.ActiveUser;
 
 namespace BL
 {
@@ -35,27 +36,118 @@ namespace BL
 
                 db.SaveChanges();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return false;
             }
             return true;
         }
 
-        public static List<User> GetUsers()
+        public static List<ActiveUser> UpdateActiveUser(DTO.ActiveUser user)
         {
-            List<User> users = new List<User>();
-            try
+            using (DigitlClassRoomUpdateEntities db1 = new DigitlClassRoomUpdateEntities())
             {
-                foreach (var user in db.Users)
+                try
                 {
-                    users.Add(new User(user));
+                    //var userA = db1.ActiveUser.FirstOrDefault(p => p.sessionId == user.sessionId && p.UserId == user.UserId);
+                    //userA.ConnectTime = user.ConnectTime;
+                    //db1.SaveChanges();
+                    return GetUsersOfLesson(user.ClassLessonId);
                 }
-                return users;
+                catch
+                {
+                    return null;
+                }
             }
-            catch
+        }
+
+        public static ActiveUser SetActiveUser(int classId, int lessonId, int userId, String sessionId)
+        {
+            using (DigitlClassRoomUpdateEntities db1 = new DigitlClassRoomUpdateEntities())
             {
-                return new List<User>();
+                try
+                {
+                    var classlesson = db.ClassLessons.FirstOrDefault(l => l.classId == classId && l.lessonId == lessonId && l.lesseonIsActive == true);
+                    if (classlesson != null)
+                    {
+                        var userActiveDB = db1.ActiveUser.FirstOrDefault(a => a.UserId == userId);
+                        if (userActiveDB != null)
+                        {
+                            //if the user found in -another- class and lesson then do nothing
+                            if (userActiveDB.ClassLessonId != classlesson.Id)
+                            {
+                                userActiveDB.ClassLessonId = classlesson.Id;
+                                userActiveDB.ConnectTime = DateTime.Now.TimeOfDay;
+                            }
+                            userActiveDB.sessionId = sessionId;
+                            db1.SaveChanges();
+                            return ActiveUser.ConvertToDTO(userActiveDB);
+                            
+
+                        }
+
+                        //when the user dont found in classlesson table then add ActiveUser
+                        ActiveUser u = new ActiveUser();
+                        u.ClassLessonId = classlesson.Id;
+                        u.UserId = userId;
+                        u.ConnectTime = DateTime.Now.TimeOfDay;
+                        //u.sessionId=
+                        DAL.ActiveUser activeUser = DTO.ActiveUser.ConvertToDAL(u);
+                        db1.ActiveUser.Add(activeUser);
+                        db1.SaveChanges();
+                        //user.sessionId=
+                        return u;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                catch
+                {
+                    return null;
+                }
+            }
+        }
+
+        ////public static bool SetActiveUser(DTO.User user)
+        ////{
+        ////    try
+        ////    {
+
+        ////        db.ActiveUser.Add(user.convertToDAL());
+
+        ////        db.SaveChanges();
+        ////    }
+        ////    catch (Exception eex)
+        ////    {
+        ////        return false;
+        ////    }
+        ////    return true;
+        ////}
+
+        public static List<ActiveUser> GetUsersOfLesson(int? classLessonId)
+        {
+            using (DigitlClassRoomUpdateEntities db1 = new DigitlClassRoomUpdateEntities())
+            {
+                List<User> users = new List<User>();
+                try
+                {
+                    var activeUsers = db1.ActiveUser.Where(p => p.ClassLessonId == classLessonId).ToList();
+                    List<DTO.ActiveUser> actives = new List<DTO.ActiveUser>();
+
+                    foreach (var item in activeUsers)
+                    {
+                        DTO.ActiveUser a = ActiveUser.ConvertToDTO(item);
+                        a.NameUser = db1.Users.FirstOrDefault(p => p.Id == item.UserId).name;
+                        actives.Add(a);
+                    }
+                    return actives;
+                }
+                catch
+                {
+                    return null;
+                }
             }
         }
     }

@@ -25,16 +25,34 @@ namespace Api.Controllers
         [HttpPost]
         public bool Register(User user)
         {
-
             return BL.UsersLogic.Register(user);
         }
-
-        [Route("all")]
+        [Route("activeUser/{ClassId}/{LessonId}/{UserId}/{sessionId}")]
         [HttpGet]
-        public List<User> GetAllUsers()
+        public ActiveUser SetActiveUser(int ClassId,int LessonId,int UserId,string sessionId)
         {
-            return BL.UsersLogic.GetUsers();
+            return BL.UsersLogic.SetActiveUser(ClassId,LessonId,UserId, sessionId);
         }
+
+        //[Route("ActiveUser")]
+        //[HttpPost]
+        //public ActiveUser SetActiveUser(ActiveUser user)
+        //{
+        //    return BL.UsersLogic.SetActiveUser(user);
+        //}
+        [Route("UpdateActiveUser")]
+        [HttpPost]
+        public List<ActiveUser> UpdateActiveUser(ActiveUser user)
+        {
+            return BL.UsersLogic.UpdateActiveUser(user);
+        }
+        //[Route("all/{ClassLessonId}")]
+        //[HttpGet]
+        //public List<User> GetAllUsers(int ClassLessonId)
+        //{
+        //    if()
+        //    return BL.UsersLogic.GetUsers(ClassLessonId);
+        //}
 
     }
     

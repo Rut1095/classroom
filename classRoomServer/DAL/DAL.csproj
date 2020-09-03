@@ -65,6 +65,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveUser.cs">
+      <DependentUpon>ModelClassRoom.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Classes.cs">
       <DependentUpon>ModelClassRoom.tt</DependentUpon>

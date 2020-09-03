@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../modals/user.modal';
+import { ActiveUser } from '../modals/ActiveUser';
 
 
 @Injectable({
@@ -20,5 +21,12 @@ export class UsersService {
 
   getAll(){
     return this.http.get<User[]>(this.basicUrl+"all")
+  }
+  setUserActive(classId,LessonId,UserId,sessionId){
+    return this.http.get<ActiveUser>(`${this.basicUrl}ActiveUser/${classId}/${LessonId}/${UserId}/${sessionId}`)
+
+  }
+  UpdateActiveUser(user:ActiveUser){
+    return this.http.post<ActiveUser[]>(this.basicUrl+"UpdateActiveUser",user);
   }
 }

@@ -1,34 +1,47 @@
-
 <div >
   <div id="back1"></div><br>
   <div id="back2"></div>
 <div>   
+  <br>
    <h1> classroom </h1> 
    <br><br><br> 
 <!--  </div>
  <input type="text" [(ngModel)]="user.UserName"> <a>הכנס את שמך</a>
 </div><div> -->
+ <div class="form">
   <mat-form-field appearance="outline" >
-    <mat-label>הכנס שמך</mat-label>
+    <mat-label style="color: cornsilk;">הכנס שמך</mat-label>
     <input matInput [(ngModel)]="user.UserName" >
   </mat-form-field>  <br><br><br>
   <!-- <input type="password" [(ngModel)]="user.Password"><a>הכנס סיסמא</a>  -->
    <mat-form-field appearance="outline" >
-    <mat-label>הכנס סיסמא</mat-label>
+    <mat-label style="color: cornsilk;">הכנס סיסמא</mat-label>
     <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button> 
-  </mat-form-field><br><br><br>
-<button mat-fab style="margin: 45px; ">
-  <i class="material-icons" (click)="logIn()">keyboard_backspace</i>
+  </mat-form-field>
+  <br><br><br>
+<button mat-fab style="margin: 45px; " >
+  <i class="material-icons"  (click)="logIn()">keyboard_backspace</i>
 </button>
-<button mat-fab  style="margin: 45px;" routerLink="/register" routerLinkActive="active">
+<button mat-fab  style="margin: 45px; color: warn" routerLink="/register" routerLinkActive="active">
   <i class="material-icons"  (click)="logIn()">account_circle</i>
 </button>
 
-<label>חדש במערכת לחץ כאן</label> 
+<label>חדש במערכת לחץ כאן</label></div>
+<br> 
+<br>
+<br>
+<br>
+<br>
+<br>
+<br><br><br><br>
+
  
+ 
+
+
   <!-- <a routerLink="/register" routerLinkActive="active">new students</a> -->
  <!-- </div> 
 <app-show-camera></app-show-camera> -->

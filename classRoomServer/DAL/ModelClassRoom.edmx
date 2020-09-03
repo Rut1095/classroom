@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="DigitlClassRoomUpdateModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="ActiveUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="ClassLessonId" Type="int" />
+          <Property Name="ConnectTime" Type="time" Precision="7" />
+          <Property Name="sessionId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Classes">
           <Key>
             <PropertyRef Name="Id" />
@@ -19,6 +28,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="classId" Type="int" Nullable="false" />
           <Property Name="lessonId" Type="int" Nullable="false" />
+          <Property Name="lesseonIsActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="lessons">
           <Key>
@@ -48,6 +58,7 @@
           <Property Name="idLesson" Type="int" />
         </EntityType>
         <EntityContainer Name="DigitlClassRoomUpdateModelStoreContainer">
+          <EntitySet Name="ActiveUser" EntityType="Self.ActiveUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClassLessons" EntityType="Self.ClassLessons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lessons" EntityType="Self.lessons" Schema="dbo" store:Type="Tables" />
@@ -72,6 +83,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="classId" Type="Int32" Nullable="false" />
           <Property Name="lessonId" Type="Int32" Nullable="false" />
+          <Property Name="lesseonIsActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="lessons">
           <Key>
@@ -106,7 +118,17 @@
           <EntitySet Name="lessons" EntityType="Self.lessons" />
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UsersLessons" EntityType="Self.UsersLessons" />
+          <EntitySet Name="ActiveUser" EntityType="DigitlClassRoomUpdateModel.ActiveUser" />
         </EntityContainer>
+        <EntityType Name="ActiveUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="ClassLessonId" Type="Int32" />
+          <Property Name="ConnectTime" Type="Time" Precision="7" />
+          <Property Name="sessionId" Type="String" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -124,6 +146,7 @@
           <EntitySetMapping Name="ClassLessons">
             <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ClassLessons">
               <MappingFragment StoreEntitySet="ClassLessons">
+                <ScalarProperty Name="lesseonIsActive" ColumnName="lesseonIsActive" />
                 <ScalarProperty Name="lessonId" ColumnName="lessonId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="classId" ColumnName="classId" />
@@ -157,6 +180,16 @@
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="idUser" ColumnName="idUser" />
                 <ScalarProperty Name="idLesson" ColumnName="idLesson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ActiveUser">
+            <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ActiveUser">
+              <MappingFragment StoreEntitySet="ActiveUser">
+                <ScalarProperty Name="sessionId" ColumnName="sessionId" />
+                <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
+                <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

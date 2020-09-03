@@ -1,8 +1,18 @@
+<!-- logo -->
+<p>קלאס<mat-icon>local_library</mat-icon></p>
+
 <body scroll="no">
     <p>lesson works! {{id}}</p>
-<div dir="rtl"  style="background-color: rgb(0, 139, 86);float:right;width: 30vw;
-height: 15vh;">techer</div>
-<br>
-<div  dir="rtl" *ngFor="let aUser of activeUsers" >{{aUser.UserName}}</div>
-</body>
 
+<button  mat-flat-button dir="rtl"  
+style="background-color: rgb(0, 139, 86);float:right;width: 36vw;height: 15vh;"
+>מורה<mat-icon>laptop_chromebook</mat-icon></button>
+
+<br><br>
+
+<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers"><mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}}</button>
+
+<!-- <div  dir="rtl" *ngFor="let aUser of activeUsers" >{{aUser.UserName}}</div> -->
+</body>
+<br>
+    <button  mat-raised-button color="primary"(click)="setUserActiveInLesson()" style="float: right;">כניסה לשיעור<mat-icon>input</mat-icon></button>

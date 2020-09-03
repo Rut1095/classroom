@@ -23,12 +23,12 @@ namespace Api.Controllers
             return BL.LessonsLogic.GetLessonsByClassId(classId);
         }
         
-        /*
+        
         [Route("all")]
         [HttpGet]
         public List<Lesson> GetLessonsAll()
         {
             return BL.LessonsLogic.GetLessons();
-        }*/
+        }
     }
 }

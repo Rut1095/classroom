@@ -17,8 +17,11 @@ export class ViewClassComponent implements OnInit {
 lessonId:number=1
   participates:User[]=[new User(),new User()]
   constructor(private usersService:UsersService) { }
-
+get innerHeight(){
+    return window.innerHeight;
+}
   ngOnInit(): void {
+}
     // this.usersService.getUserInCurrentLesson(this.lessonId).subscribe(res=>{
     //   console.log(res)
     //   if(res){
@@ -28,4 +31,3 @@ lessonId:number=1
     //   console.log(err)
     // }) 
   }
-}

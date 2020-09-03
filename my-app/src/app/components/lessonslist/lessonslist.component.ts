@@ -18,9 +18,15 @@ export class LessonslistComponent implements OnInit
    { }
 
   lessons:Array<Lesson> ;
+  lessonList:Array<Lesson> ;
+value:any;
   user: User;
-
-  ngOnInit(): void {
+  updateActiveUser()
+  {
+    
+  }
+  ngOnInit(): void 
+  {
 
     
     this.user = JSON.parse( localStorage.getItem("userDetails"));
@@ -37,6 +43,21 @@ export class LessonslistComponent implements OnInit
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
+
+    this.lessonsService.get().subscribe(res=>{
+      console.log(res)
+      this.lessonList = res;
+    },err=>{
+      console.log(err)
+    });
+    // this.lessonsService.get().subscribe(res=>{
+    //   console.log(res)
+    //   this.lessonList = res;
+    //   console.log(this.lessonList);
+    // },err=>{
+    //   console.log(err)
+    //   alert("שגיאה בקריאה לשירות");
+    // });
 
   }
 

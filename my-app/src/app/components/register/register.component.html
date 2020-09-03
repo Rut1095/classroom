@@ -1,8 +1,8 @@
 
-<div>
+<!-- <div>
     <div id="back1"></div><br>
   <div id="back2"></div>
-</div> 
+</div>  -->
 <div>
 <br><br>
     <!-- <p>הנך משתמש חדש במערכת , אנא הכנס את שמך</p> -->
@@ -58,7 +58,7 @@
       <mat-label>בחר כיתה</mat-label>
       <mat-select  [(ngModel)]="user.ClassId">
         <!-- <mat-option value="כיתה ב"> ב </mat-option> -->
-        <mat-option [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+        <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
 
       </mat-select>
     </mat-form-field>
