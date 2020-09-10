@@ -12,6 +12,7 @@
     <EntitySetMapping Name="ClassLessons">
       <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ClassLessons">
         <MappingFragment StoreEntitySet="ClassLessons">
+          <ScalarProperty Name="teacherId" ColumnName="teacherId" />
           <ScalarProperty Name="lesseonIsActive" ColumnName="lesseonIsActive" />
           <ScalarProperty Name="lessonId" ColumnName="lessonId" />
           <ScalarProperty Name="Id" ColumnName="Id" />

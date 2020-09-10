@@ -17,6 +17,7 @@ export class LessonComponent implements OnInit {
   sessionId: String;
   peer;
   peerid;
+  user1: User;
 
   constructor(private route: ActivatedRoute,
     private usersService: UsersService,
@@ -94,5 +95,12 @@ export class LessonComponent implements OnInit {
       alert("שגיאה בקריאה לשירות");
     });
   }
-
+  //availble for teacher only to open new lesson
+  //to send teacherId
+  //update active lesson
+  //check if teacher not exist lesson is not active
+  startNewLesson()
+  {
+    alert("new lesson srarted now");
+  }
 }

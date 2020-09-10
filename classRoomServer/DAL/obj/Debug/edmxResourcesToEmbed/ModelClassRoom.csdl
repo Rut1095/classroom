@@ -15,6 +15,7 @@
     <Property Name="classId" Type="Int32" Nullable="false" />
     <Property Name="lessonId" Type="Int32" Nullable="false" />
     <Property Name="lesseonIsActive" Type="Boolean" Nullable="false" />
+    <Property Name="teacherId" Type="Int32" Nullable="false" />
   </EntityType>
   <EntityType Name="lessons">
     <Key>
@@ -58,6 +59,6 @@
     <Property Name="UserId" Type="Int32" Nullable="false" />
     <Property Name="ClassLessonId" Type="Int32" />
     <Property Name="ConnectTime" Type="Time" Precision="7" />
-    <Property Name="sessionId" Type="String" />
+    <Property Name="sessionId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
   </EntityType>
 </Schema>

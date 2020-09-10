@@ -24,6 +24,7 @@
     <Property Name="classId" Type="int" Nullable="false" />
     <Property Name="lessonId" Type="int" Nullable="false" />
     <Property Name="lesseonIsActive" Type="bit" Nullable="false" />
+    <Property Name="teacherId" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="lessons">
     <Key>
