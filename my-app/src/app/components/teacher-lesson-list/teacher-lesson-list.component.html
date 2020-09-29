@@ -1,0 +1,44 @@
+<p>teacher-lesson-list works!</p>
+
+<ul class="heroes"> 
+    <li *ngFor="let les of lessons">
+      <a routerLink="/classroom/lesson/{{les.Id}}">
+        <span class="badge">{{les.id}}</span> 
+        <span class="herme">{{les.Name}}</span>
+        
+      </a>
+     
+    <button class="delete" title="delete hero"
+    >x</button>
+    </li>
+
+
+   <!-- add lesson only to teacher -->
+
+<button mat-mini-fab color="warn" *ngIf="user.Type==1" (click)="showAddLesson()">
+  <mat-icon >add</mat-icon>
+</button> 
+<br>
+<!-- ngIf="Pressed==1" -->
+  <mat-form-field appearance="fill" >
+      <mat-label >add lesson</mat-label>
+      <mat-select (selectionChange)="selectedLesson($event)">
+        <mat-option *ngFor="let less of lessonList" [value]="less.Id">
+          {{less.Name}}
+        </mat-option>
+        <input type="text" placeholder="אחר">
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>בחר כיתה</mat-label>
+      <mat-select  (selectionChange)="selectedClass($event)">
+        <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="addClassLesson()">אישור</button>
+
+
+  
+  
