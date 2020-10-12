@@ -1,0 +1,28 @@
+ >
+<p>chat works!</p>
+<div id="chat" style="overflow-y: auto; width:20vw;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <header>chat</header>
+      <mat-list class="list" *ngFor="let messege of messageArr">
+  
+        <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"  >
+     
+          <p> <b >{{ messege.name }}</b> <br> {{messege.message}}</p>
+           
+         </mat-list-item>
+       
+        <mat-list-item *ngIf="messege.id!=thisSend" class="other-message item" >
+        
+          <p> <b >{{ messege.name }}</b> <br>{{messege.message}}</p>
+       
+        </mat-list-item>
+     
+      </mat-list>
+     
+      <textarea  placeholder="write your message"  [(ngModel)]="newMsg" class="message-input"></textarea>
+     
+      <button class="button" mat-raised-button  (click)="newMsg != ''?sendMessage():''" >
+      
+        <mat-icon class="iconSend">input</mat-icon>
+    
+      </button>
+</div>

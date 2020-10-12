@@ -28,7 +28,9 @@ export class HomeComponent implements OnInit {
        this.router.navigate(['/register'])
       }else{
         localStorage.setItem("userDetails", JSON.stringify( res));
+    
         this.router.navigate(['/classroom'])
+        
       }
     },err=>{
       console.log(err)

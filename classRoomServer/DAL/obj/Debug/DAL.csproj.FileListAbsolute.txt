@@ -6,3 +6,11 @@ E:\Rut\final project\classroom\classRoomServer\DAL\obj\Debug\DAL.pdb
 E:\Rut\final project\classroom\classRoomServer\DAL\bin\Debug\DAL.dll.config
 E:\Rut\final project\classroom\classRoomServer\DAL\obj\Debug\DAL.csproj.CopyComplete
 E:\Rut\final project\classroom\classRoomServer\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\projects\classroom\classRoomServer\DAL\bin\Debug\DAL.dll.config
+E:\projects\classroom\classRoomServer\DAL\bin\Debug\DAL.dll
+E:\projects\classroom\classRoomServer\DAL\bin\Debug\DAL.pdb
+E:\projects\classroom\classRoomServer\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+E:\projects\classroom\classRoomServer\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+E:\projects\classroom\classRoomServer\DAL\obj\Debug\DAL.csproj.CopyComplete
+E:\projects\classroom\classRoomServer\DAL\obj\Debug\DAL.dll
+E:\projects\classroom\classRoomServer\DAL\obj\Debug\DAL.pdb

@@ -1,7 +1,7 @@
 wrap-screen{
  display: inline-block;
 }
-app-lessonslist{
+app-lessonslist , app-teacher-lesson-list{
 
     border-radius: 12px;
     border-style: solid;

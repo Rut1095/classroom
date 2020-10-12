@@ -17,12 +17,14 @@ import { MatButtonModule } from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatListModule} from '@angular/material/list';
-import { LessonComponent } from './lesson/lesson.component';
+import { LessonComponent } from './components/lesson/lesson.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 // import { FormControl, Validators } from '@angular/forms';
 import {MatSelectModule} from '@angular/material/select';
 import { UserCameraComponent } from './components/user-camera/user-camera.component';
+import { TeacherLessonListComponent } from './components/teacher-lesson-list/teacher-lesson-list.component';
+import { ChatComponent } from './components/chat/chat.component';
 // @import {}  from '~@angular/material/core/theming/all-theme
 
 @NgModule({
@@ -36,7 +38,9 @@ import { UserCameraComponent } from './components/user-camera/user-camera.compon
     ViewUserComponent,
     LessonslistComponent,
     LessonComponent,
-    UserCameraComponent
+    UserCameraComponent,
+    TeacherLessonListComponent,
+    ChatComponent
   ],
   imports: [
     BrowserModule,

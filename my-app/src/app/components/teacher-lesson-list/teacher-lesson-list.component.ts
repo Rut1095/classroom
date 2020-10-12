@@ -17,6 +17,7 @@ import { classLessons } from 'src/app/modals/classLessons.modal';
 
 export class TeacherLessonListComponent implements OnInit {
 
+  click1:boolean=false;
 
 
   constructor(private lessonsService: LessonsService,
@@ -27,7 +28,7 @@ export class TeacherLessonListComponent implements OnInit {
   lessonList: Array<Lesson>;
   user: User;
   classesList: Array<classes>;
-  Pressed: Number = 0;
+  // Pressed: Number = 0;
   selectionClass: any;
   selectionLesson: any;
   lesson:classLessons= new classLessons();
@@ -53,6 +54,15 @@ className:string[]=['','כיתה א'];
       alert("שגיאה בקריאה לשירות");
     });
 
+    this.lessonsService.getLessonsByTeacherId(this.user.Id).subscribe(res => {
+      console.log(res)
+      this.lessons = res;
+    }, err => {
+      console.log(err)
+      alert("שגיאה בקריאה לשירות");
+    });
+
+
     this.lessonsService.get().subscribe(res => {
       console.log(res)
       this.lessonList = res;
@@ -73,6 +83,7 @@ className:string[]=['','כיתה א'];
 
   }
   showAddLesson() {
+    this.click1=true;
 
   }
   selectedLesson(event) {
@@ -99,7 +110,10 @@ className:string[]=['','כיתה א'];
     this.lessonsService.AddLessonClassTeacher(this.lesson).subscribe(
       res=>{
         console.log(res);
+         if(res)
+      alert("שיעור"+this.lesson.lessonId+" חדש נוסף לכיתה"+this.lesson.classId)
       }
+     
     )
   }
 }

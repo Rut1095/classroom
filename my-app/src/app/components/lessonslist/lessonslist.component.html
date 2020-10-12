@@ -10,78 +10,34 @@
     <button class="delete" title="delete hero"
     >x</button>
     </li>
-<!--
-    <div *ngFor="let les of lessons"> <br>
-    
-    <button mat-raised-button><a mat-list-item [routerLink]="['lesson', les.Id]" onclick="updateActiveUser()"
-     style="width: 150px;">{{les.Name}}</a>    </button>
 
-  </div>-->
-  
- </ul>
- <!-- add lesson only to teacher -->
 
- <button mat-mini-fab color="warn" >
+   <!-- add lesson only to teacher 
+
+<button mat-mini-fab color="warn" *ngIf="user.Type==1" (click)="showAddLesson()">
   <mat-icon >add</mat-icon>
-</button>
+</button> 
+<br>
+ ngIf="Pressed==1" 
+  <mat-form-field appearance="fill" >
+      <mat-label >add lesson</mat-label>
+      <mat-select (selectionChange)="selectedLesson($event)">
+        <mat-option *ngFor="let less of lessonList" [value]="less.Id">
+          {{less.Name}}
+        </mat-option>
+        <input type="text" placeholder="אחר">
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" >
+      <mat-label>בחר כיתה</mat-label>
+      <mat-select  (selectionChange)="selectedClass($event)">
+        <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="addClassLesson()">אישור</button> -->
 
 
-    <!-- <div *ngFor="let les of lessons"> <br>
-    
-    <button mat-raised-button><a mat-list-item [routerLink]="['lesson', les.Id]" onclick="updateActiveUser()"
-     style="width: 150px;">{{les.Name}}</a>    </button>
-
-  </div>  -->
-  <mat-form-field appearance="fill">
-    <mat-label >add lesson</mat-label>
-    <mat-select>
-      
-      <mat-option *ngFor="let less of lessonList" [value]="less.value">
-        {{less.Name}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
   
-  <!-- <mat-form-field appearance="fill" >
-    <mat-label>בחר כיתה</mat-label>
-    <mat-select  [(ngModel)]="lessonList.Id">
-      <mat-option allow-free-text="true" [value]="lessonList.Id" *ngFor="let less of lessonList">כיתה {{less.Name}}</mat-option>
-
-    </mat-select>
-  </mat-form-field> -->
-
-  <!-- </mat-select>
-</mat-form-field> --> 
-
- <!-- <button >
-        {{les.Name}}
-    </button>-->
- 
- <!--<mat-drawer-container >
-    <mat-drawer #drawer mode="over" >
-     <p>Drawer content</p>
-     <p>
-       <button mat-icon-button>
-        <mat-icon>clear</mat-icon>
-       </button>
-     </p>
-   </mat-drawer>
- <mat-drawer-content fxLayout="row" fxLayoutAlign="start center">
- 
-   <p>
-     <button mat-icon-button>
-      <mat-icon>menu</mat-icon>
-    </button>
-  </p>
-  </mat-drawer-content>
- </mat-drawer-container>
-
-<p style="color: blue;">lessons list </p>
-
-<ul> 
-
-    <li mat-raised-button *ngFor="let les of lessons"> <br><button >
-        {{les.Name}}
-    </button></li>
- </ul> -->
-
+  

@@ -1,0 +1,87 @@
+<!-- logo -->
+<p>קלאס<mat-icon>local_library</mat-icon></p>
+
+<body scroll="no">
+    <p>lesson works! {{id}}</p>
+
+<button  mat-flat-button dir="rtl"  
+style="background-color: rgb(0, 139, 86);float:right;width: 36vw;height: 15vh;"
+>מורה<mat-icon>laptop_chromebook</mat-icon></button>
+
+<br><br>
+
+<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers"><mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}}</button>
+
+<!-- <div  dir="rtl" *ngFor="let aUser of activeUsers" >{{aUser.UserName}}</div> -->
+</body>
+<br>
+    <button  mat-raised-button color="primary"(click)="setUserActiveInLesson()" style="float: right;">כניסה לשיעור<mat-icon>input</mat-icon></button>
+    <button mat-raised-button color="primary" (click)="startNewLesson()" style="float: right;">שיעור חדש <mat-icon>input</mat-icon></button>
+  
+  <br><br>
+<!--   
+
+<div id="chat">
+  <header>chat</header>
+    <mat-list class="list" *ngFor="let messege of messageArr">
+
+      <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"  >
+   
+        <p> <b >{{ messege.name }}</b> <br> {{messege.message}}</p>
+      </mat-list-item>
+      <mat-list-item *ngIf="messege.id!=thisSend" class="other-message item" >
+      
+        <p> <b >{{ messege.name }}</b> <br>{{messege.message}}</p>
+      </mat-list-item>
+    </mat-list>
+    <textarea  placeholder="write your message"  [(ngModel)]="newMsg" class="message-input"></textarea>
+    <button class="button" mat-raised-button  (click)="newMsg != ''?sendMessage():''" ><mat-icon class="iconSend">input</mat-icon></button>
+  </div> -->
+
+    <!-- <ion-avatar (click)="newMsg != ''?sendMessage():''"  slot="end" [class.full]="newMsg != ''"> 
+      <ion-icon id="send" [class.emptyIcon]="newMsg == ''" [class.fullIcon]="newMsg != ''" name="send-sharp" ></ion-icon>
+    </ion-avatar>  -->
+    <!-- <input type="text"  [(ngModel)]="mymessage">
+    <br>
+
+    <button  mat-raised-button color="primary" (click)="sendMessage()" ><mat-icon>input</mat-icon>
+    </button> -->
+   
+    <!-- <mat-list *ngFor="let messege of messageArr">
+
+    <mat-list-item *ngIf="messege.id==thisSend" [innerHTML]="messagesStr" style="height: 7px; width: 10px; color: aqua;"></mat-list-item>
+    <mat-list-item *ngIf="messege.id!=thisSend" [innerHTML]="messagesStr" style="height: 7px; width: 10px; color: black;"></mat-list-item>
+  </mat-list> -->
+
+  
+  
+
+<!-- <p  aria-placeholder="msg" style="height: 7px; width: 10px; color: aqua;"></p> -->
+
+
+
+  <!-- add lesson only to teacher -->
+
+<!-- <button mat-mini-fab color="warn" >
+    <mat-icon >add</mat-icon>
+  </button> 
+  <br>
+
+    <mat-form-field appearance="fill">
+        <mat-label >add lesson</mat-label>
+        <mat-select>
+          <mat-option *ngFor="let less of lessonList" [value]="less.Name">
+            {{less.Name}}
+          </mat-option>
+          <input type="text" placeholder="אחר">
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" >
+        <mat-label>בחר כיתה</mat-label>
+        <mat-select  >
+          <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+  
+        </mat-select>
+      </mat-form-field> -->
+      <app-chat ></app-chat>

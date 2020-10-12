@@ -18,7 +18,11 @@
     <mat-sidenav #sidenav   mode="side" opened  class="example-sidenav  side-nav-style">
        <!--<a mat-list-item [routerLink]="'/classroom'">בדיקה</a>
         <section style="width: 100px;"></section>--> 
-        <app-lessonslist>
-        </app-lessonslist>
-    </mat-sidenav>
+        
+         <app-lessonslist *ngIf="this.user.Type==0"></app-lessonslist>
+
+         <app-teacher-lesson-list  *ngIf="this.user.Type==1"></app-teacher-lesson-list>   
+
+
+     </mat-sidenav>
 </mat-sidenav-container>

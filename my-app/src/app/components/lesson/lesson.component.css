@@ -1,0 +1,108 @@
+/* element.style , div ,td {
+    background-color: cadetblue;
+    margin: 1vh;
+    width: 15vw;
+    height: 10vh;
+    border-color: black;
+    border-style: solid;
+    text-align: center;
+    margin-left: 15vw;
+} */
+body {
+    background-color: lightgrey;
+    float: right;
+    width: 500px;
+    height: 500px;
+    border: 15px solid green;
+    padding: 50px;
+    margin: 20px;
+    text-align: center;
+  }
+
+button{
+    margin: 8px;
+
+}
+.list{
+    height: max-content;
+}
+.item{
+   
+    /* padding: 10px; */
+    border-radius: 10px;
+    margin-bottom: 2px;
+    white-space: pre-wrap; 
+    font-size: small;
+    /* text-align: start; */
+    box-shadow:  1px 1px 2px #595252;
+    position: relative;
+    width: 90%;
+    height: max-content;
+    word-break: break-all;
+    
+}
+.continu{
+    margin-top: -2px;
+}
+.mat-list-base .mat-list-item{
+    height: max-content;
+}
+span{
+    white-space: break-spaces;
+}
+.my-message{
+  
+    background-color: #bfbdb6;
+    border-top-right-radius: 0px;
+    background-color:green ;
+    color: white;
+    /* right: 0;  */
+     margin-left: 8vw;
+}
+.other-message{
+     
+    background-color: white;
+  
+    border-top-left-radius: 0px;
+  
+}
+#chat{
+    width: 10vw;
+    height: 48vh;
+  position: absolute;
+    bottom: 0;
+}
+.message-input{
+    padding-top: 1vh;
+    padding-left: 1vw;
+    position: fixed;
+    bottom: 1vh;
+    border-radius: 1vw;
+
+}
+#chat header{
+    background-color: green;
+    color: white;
+    font-weight: bold;
+    width: 180%;
+    text-align: center;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+}
+.button{
+    position: fixed;
+    bottom: 2px;
+    /* border-radius: 1vw; */
+    background: green;
+    /* box-shadow: 0px 0px 4px black; */
+    /* left: 34vw; */
+    z-index: 1;
+    margin-left: 13vw;
+    padding-top: 0.4vh;
+    padding-bottom: 0.3vh;
+    margin-bottom: 0.7vh;
+}
+.iconSend{
+    font-size: 1.5vw;
+    color: white;
+}

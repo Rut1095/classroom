@@ -15,3 +15,20 @@ E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DAL.pdb
 E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\DAL.dll.config
 E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.xml
 E:\Rut\final project\classroom\classRoomServer\BL\bin\Debug\EntityFramework.SqlServer.xml
+E:\projects\classroom\classRoomServer\BL\bin\Debug\BL.dll.config
+E:\projects\classroom\classRoomServer\BL\bin\Debug\BL.dll
+E:\projects\classroom\classRoomServer\BL\bin\Debug\BL.pdb
+E:\projects\classroom\classRoomServer\BL\bin\Debug\DAL.dll
+E:\projects\classroom\classRoomServer\BL\bin\Debug\DTO.dll
+E:\projects\classroom\classRoomServer\BL\bin\Debug\EntityFramework.dll
+E:\projects\classroom\classRoomServer\BL\bin\Debug\EntityFramework.SqlServer.dll
+E:\projects\classroom\classRoomServer\BL\bin\Debug\DAL.pdb
+E:\projects\classroom\classRoomServer\BL\bin\Debug\DAL.dll.config
+E:\projects\classroom\classRoomServer\BL\bin\Debug\DTO.pdb
+E:\projects\classroom\classRoomServer\BL\bin\Debug\EntityFramework.xml
+E:\projects\classroom\classRoomServer\BL\bin\Debug\EntityFramework.SqlServer.xml
+E:\projects\classroom\classRoomServer\BL\obj\Debug\BL.csprojAssemblyReference.cache
+E:\projects\classroom\classRoomServer\BL\obj\Debug\BL.csproj.CoreCompileInputs.cache
+E:\projects\classroom\classRoomServer\BL\obj\Debug\BL.csproj.CopyComplete
+E:\projects\classroom\classRoomServer\BL\obj\Debug\BL.dll
+E:\projects\classroom\classRoomServer\BL\obj\Debug\BL.pdb

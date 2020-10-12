@@ -30,5 +30,19 @@ namespace Api.Controllers
         {
             return BL.LessonsLogic.GetLessons();
         }
+        [Route("AddLessonClassTeacher")]
+        [HttpPost]
+        public DTO.ClassLessons AddLessonClassTeache(DTO.ClassLessons lessons )
+        {
+            return BL.LessonsLogic.AddNewLessonTeacherClass(lessons);
+        }
+
+
+        [Route("teacher/{TeacherId}")]
+        [HttpGet]
+        public List<Lesson> GetTeacherLessons(int TeacherId)
+        {
+            return BL.LessonsLogic.GetLessonsByTeacherId(TeacherId);
+        }
     }
 }

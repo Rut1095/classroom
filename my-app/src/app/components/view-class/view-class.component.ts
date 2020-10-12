@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/modals/user.modal';
 import { UsersService } from 'src/app/services/users.service';
+
 // import {lessonslist} from './../lessonslist/lessonslist.component';
 
 
@@ -13,6 +14,7 @@ import { UsersService } from 'src/app/services/users.service';
 
 export class ViewClassComponent implements OnInit {
 //  user1:User=new User()
+user:User;
 
 lessonId:number=1
   participates:User[]=[new User(),new User()]
@@ -21,6 +23,9 @@ get innerHeight(){
     return window.innerHeight;
 }
   ngOnInit(): void {
+
+    this.user = JSON.parse(localStorage.getItem("userDetails"));
+
 }
     // this.usersService.getUserInCurrentLesson(this.lessonId).subscribe(res=>{
     //   console.log(res)

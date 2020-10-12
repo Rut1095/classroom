@@ -5,8 +5,9 @@ import { RegisterComponent } from './components/register/register.component';
 import { ViewClassComponent } from './components/view-class/view-class.component';
 import { HomeComponent } from './components/home/home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
-import { LessonComponent } from './lesson/lesson.component';
+import { LessonComponent } from './components/lesson/lesson.component';
 import { LessonslistComponent } from './components/lessonslist/lessonslist.component';
+
 
 
 const routes: Routes = [   

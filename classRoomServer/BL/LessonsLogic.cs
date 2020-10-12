@@ -11,13 +11,17 @@ namespace BL
     public static class LessonsLogic
     {
 
-        static DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities();
+        //static DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities();
         public static bool AddNewLesson(Lesson lesson)
         {
             try
             {
-                db.lessons.Add(lesson.convertToDAL());
-                db.SaveChanges();
+                using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+                {
+
+                    db.lessons.Add(lesson.convertToDAL());
+                    db.SaveChanges();
+                }
             }
             catch
             {
@@ -31,15 +35,19 @@ namespace BL
             List<Lesson> lessons = new List<Lesson>();
             try
             {
-                foreach (var les in db.lessons)
+                using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
                 {
-                    lessons.Add(new Lesson(les));
+
+                    foreach (var les in db.lessons)
+                    {
+                        lessons.Add(new Lesson(les));
+                    }
                 }
                 return lessons;
             }
             catch
             {
-                return new List<Lesson>(); 
+                return new List<Lesson>();
             }
         }
 
@@ -48,32 +56,89 @@ namespace BL
             List<Lesson> lessons = new List<Lesson>();
             try
             {
-                var lessonsinClasses = 
-                    db.ClassLessons.Where(p => p.classId ==classId);
-                // p.name == user.UserName && p.password == user.Password);
-
-                // var lessonsinClasses = (from ls in db.lessons
-                //                         join ls_cl in db.lessons);
-
-                foreach (var classLesson in lessonsinClasses)
+                using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
                 {
-                    int lessonId = classLesson.lessonId;
+                    var lessonsinClasses =
+                 db.ClassLessons.Where(p => p.classId == classId);
+                    // p.name == user.UserName && p.password == user.Password);
 
-                    foreach (var les in db.lessons)
+                    // var lessonsinClasses = (from ls in db.lessons
+                    //                         join ls_cl in db.lessons);
+
+                    foreach (var classLesson in lessonsinClasses)
                     {
-                        if (lessonId == les.Id)
+                        int lessonId = classLesson.lessonId;
+
+                        foreach (var les in db.lessons)
                         {
-                            lessons.Add(new Lesson(les));
-                            break;
+                            if (lessonId == les.Id)
+                            {
+                                lessons.Add(new Lesson(les));
+                                break;
+                            }
                         }
                     }
-                } 
 
-                return lessons;
+                    return lessons;
+                }
+             
             }
             catch
             {
                 return new List<Lesson>();
+            }
+        }
+        public static DTO.ClassLessons AddNewLessonTeacherClass(DTO.ClassLessons lessons)
+        {
+            using (DAL.DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+            {
+                DAL.ClassLessons l = DTO.ClassLessons.convertToDAL(lessons);
+
+                //foreach (var less in db.ClassLessons)
+                //{
+                //    if (l.lessonId == lessons.Id && l.classId == lessons.classId)
+                //    {
+                //        return lessons;
+                //    }
+
+                //}
+                db.ClassLessons.Add(l);
+                db.SaveChanges();
+                lessons.Id = l.Id;
+                return lessons;
+            }
+        }
+        public static List<DTO.Lesson> GetLessonsByTeacherId(int Id)
+        {
+            List<Lesson> lessons = new List<Lesson>();
+            {
+                try
+                {
+
+                    using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+                    {
+                        var lessonsinClasses = db.ClassLessons.Where(p => p.teacherId == Id);
+                        foreach (var classLesson in lessonsinClasses)
+                        {
+                            int lessonId = classLesson.lessonId;
+
+                            foreach (var les in db.lessons)
+                            {
+                                if (lessonId == les.Id)
+                                {
+                                    lessons.Add(new Lesson(les));
+                                    break;
+                                }
+                            }
+                        }
+                        return lessons;
+                    }
+
+                }
+                catch
+                {
+                    return new List<Lesson>();
+                }
             }
         }
     }
