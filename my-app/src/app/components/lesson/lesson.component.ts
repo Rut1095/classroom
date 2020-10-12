@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -21,6 +21,7 @@ import { from } from 'rxjs';
 })
 export class LessonComponent implements OnInit {
 
+  @ViewChild('myvideo', { read: ElementRef, static:true}) myvideo: ElementRef;  
   @Input() id: String;
   user: User;
   sessionId: String;
@@ -115,6 +116,25 @@ export class LessonComponent implements OnInit {
         this.messagesStr += this.mymessage + "\n";
       });
     });
+
+    //wait for video call of another user and then answer the video call
+    var getUserMedia = navigator.getUserMedia ;
+    var myvideo = this.myvideo.nativeElement;
+
+    this.peer.on('call', function(call) {
+          getUserMedia({video: true, audio: true}, function(stream) {
+              call.answer(stream); // Answer the call with an A/V stream.
+              call.on('stream', function(remoteStream) {
+                // Show stream in some video/canvas element.
+                myvideo.srcObject = remoteStream;
+                myvideo.play();
+
+              });
+          }, function(err) {
+            console.log('Failed to get local stream' ,err);
+          });
+    });
+
     
 
   }
@@ -137,7 +157,7 @@ export class LessonComponent implements OnInit {
           let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
           this.usersService.UpdateActiveUser(userA).subscribe(res => {
             this.activeUsers = res;
-      
+            this.videoconnect();
             console.log(res);
           }, err => {
             console.log(err)
@@ -161,12 +181,42 @@ export class LessonComponent implements OnInit {
     this.usersService.UpdateActiveUser(userA).subscribe(res => {
       this.activeUsers = res;
 
+
       console.log(res);
     }, err => {
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
   }
+
+  videoconnect() : void{
+    var getUserMedia = navigator.getUserMedia ;
+    var localpeer = this.peer;
+    var curruserid = this.user.Id;
+    var video = this.myvideo.nativeElement;
+    var myactiveusers = this.activeUsers;
+
+    getUserMedia({video: true, audio: true}, function(stream) {
+
+      myactiveusers.forEach(element => {
+           if(curruserid != element.UserId) {
+                var call = localpeer.call(element.sessionId, stream);
+                call.on('stream', function(remoteStream) {
+
+                  video.srcObject = remoteStream;
+                  video.play();
+                  // Show stream in some video/canvas element.
+                });
+           }
+      });
+
+       
+    }, function(err) {
+      console.log('Failed to get local stream' ,err);
+    });
+
+  }
+
   //availble for teacher only to open new lesson
   //to send teacherId
   //update active lesson
