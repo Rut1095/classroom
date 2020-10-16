@@ -11,6 +11,8 @@ import { UsersService } from './../../services/users.service';
 import { LessonsService } from './../../services/lessons.service'
 import { classService }  from './../../services/classes.service';
 import { from } from 'rxjs';
+import { classLessons } from 'src/app/modals/classLessons.modal';
+import { DatapeerService } from 'src/app/services/datapeer.service';
 
 
 @Component({
@@ -21,7 +23,7 @@ import { from } from 'rxjs';
 })
 export class LessonComponent implements OnInit {
 
-  @ViewChild('myvideo', { read: ElementRef, static:true}) myvideo: ElementRef;  
+  //@ViewChild('myvideo', { read: ElementRef, static:true}) myvideo: ElementRef;  
   @Input() id: String;
   user: User;
   sessionId: String;
@@ -30,46 +32,28 @@ export class LessonComponent implements OnInit {
   user1: User;
   lessonList:Array<Lesson> ;
   classesList:Array<classes> ;
+  activeUsers: Array<ActiveUser>;
   time;
-  // mymessage: String;
-  // messagesStr: String = "";
-  // messageArr:any[]=[
-  //   {
-  //     id:"123456789",
-  //     name:"ruity",
-  //     message:"svdsga",
-
-  //   },
-  //   {
-  //     id:"123456784",
-  //     name:"hodaya",
-  //     message:"svansafQG",
-
-  //   },
-  //   {
-  //     id:"123456789",
-  //     name:"ruity",
-  //     message:"ksfcwanwvowJFPAOFKQOFJVQI3",
-
-  //   }
-  // ];
-  // thisSend:string="123456789";
-  // newMsg:string= '';
+  clsLes:classLessons;
+  isOn:boolean  =false;
 
   constructor(private route: ActivatedRoute,
     private usersService: UsersService,
     private router: Router,
     private lessonsService: LessonsService
-    ,private classService:classService
+    ,private classService:classService,
+    private datapeerService: DatapeerService
   ) { }
-
-  activeUsers: Array<ActiveUser>;//
 
   ngOnInit(): void
    {
-    this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id')));
+    this.user = JSON.parse(localStorage.getItem("userDetails"));
+//alert( localStorage.getItem("userPeerId"));
 
-    this.peer = new Peer(); //default - internet
+    this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id')));
+    
+    this.peer = this.datapeerService.getPeer();//new Peer( localStorage.getItem("userPeerId")); //default - internet
+    
     /*this.peer = new Peer('', {
       host: 'localhost',
       port: 9000,
@@ -96,15 +80,17 @@ export class LessonComponent implements OnInit {
       alert("שגיאה בקריאה לשירות");
     });
 
-    setTimeout(() => {
+
+    //setTimeout(() => {
       
       this.sessionId = this.peer.id;
       if(this.sessionId == null){
         this.sessionId="EMPTY";
       }
-    }, 4 * 1000); // 4 seconds
-    //  this.getAllActiveUsersInLesson();  
-    
+      alert(this.sessionId);
+
+
+      //chat
     this.peer.on('connection', function(conn) {
       //console.log(conn);
 
@@ -117,23 +103,9 @@ export class LessonComponent implements OnInit {
       });
     });
 
-    //wait for video call of another user and then answer the video call
-    var getUserMedia = navigator.getUserMedia ;
-    var myvideo = this.myvideo.nativeElement;
-
-    this.peer.on('call', function(call) {
-          getUserMedia({video: true, audio: true}, function(stream) {
-              call.answer(stream); // Answer the call with an A/V stream.
-              call.on('stream', function(remoteStream) {
-                // Show stream in some video/canvas element.
-                myvideo.srcObject = remoteStream;
-                myvideo.play();
-
-              });
-          }, function(err) {
-            console.log('Failed to get local stream' ,err);
-          });
-    });
+    //}, 15 * 1000); // 4 seconds
+    //  this.getAllActiveUsersInLesson();  
+    
 
     
 
@@ -155,15 +127,17 @@ export class LessonComponent implements OnInit {
         console.log(res)
         this.time = setInterval(()=>{
           let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
-          this.usersService.UpdateActiveUser(userA).subscribe(res => {
-            this.activeUsers = res;
-            this.videoconnect();
-            console.log(res);
+          this.usersService.GetActivesUsers(userA).subscribe(res => {
+              this.activeUsers = res;
+              this.datapeerService.setActiveUsers(this.activeUsers);
+              // this.videoconnect();
+              this.isOn = true;
+              console.log(res);
           }, err => {
             console.log(err)
             alert("שגיאה בקריאה לשירות");
           });
-        },10000);
+        },10 * 1000);
         // this.router.navigate(['/register'])
       } else {
         alert("אירעה שגיאה אין שיעור זמין");
@@ -176,6 +150,7 @@ export class LessonComponent implements OnInit {
   }
 
   //set all athoer users that active
+  /*
   getAllActiveUsersInLesson(): void {
     let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
     this.usersService.UpdateActiveUser(userA).subscribe(res => {
@@ -187,43 +162,30 @@ export class LessonComponent implements OnInit {
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
-  }
-
-  videoconnect() : void{
-    var getUserMedia = navigator.getUserMedia ;
-    var localpeer = this.peer;
-    var curruserid = this.user.Id;
-    var video = this.myvideo.nativeElement;
-    var myactiveusers = this.activeUsers;
-
-    getUserMedia({video: true, audio: true}, function(stream) {
-
-      myactiveusers.forEach(element => {
-           if(curruserid != element.UserId) {
-                var call = localpeer.call(element.sessionId, stream);
-                call.on('stream', function(remoteStream) {
-
-                  video.srcObject = remoteStream;
-                  video.play();
-                  // Show stream in some video/canvas element.
-                });
-           }
-      });
-
-       
-    }, function(err) {
-      console.log('Failed to get local stream' ,err);
-    });
-
+  }*/
+ connectpeervideo():void{
+    alert("x0");
   }
 
   //availble for teacher only to open new lesson
   //to send teacherId
   //update active lesson
   //check if teacher not exist lesson is not active
-  startNewLesson()
+  startNewLesson(id:String)
   {
-    alert("new lesson srarted now");
+    this.usersService.SetLessonIsActive(id).subscribe(res => {
+      alert("new lesson srarted now");
+      // this.jin=res;
+    }, err => {
+      console.log(err)
+      alert("שגיאה בקריאה לשירות");
+    }); 
+       this.setUserActiveInLesson();
+
+    }
+
+
+
   }
 
   // sendMessage():void{
@@ -250,4 +212,4 @@ export class LessonComponent implements OnInit {
     //   }
   //  });
   // }  
-}
+// }

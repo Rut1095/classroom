@@ -15,7 +15,9 @@ import { classes } from '../modals/classes.modal';
     get(){
       return this.http.get<classes[]>(this.basicUrl+"all")
     }
-    
+    GetclassesByTeacherId(teacherId){
+      return this.http.get<classes[]>(this.basicUrl+teacherId)
+    }
     
   }
  

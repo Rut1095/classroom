@@ -23,14 +23,15 @@ export class HomeComponent implements OnInit {
     this.usersService.login(this.user).subscribe(res=>{
       console.log(res)
       if(!res){
-        //alert(res);
-       
-       this.router.navigate(['/register'])
+       this.router.navigate(['/register']);
       }else{
-        localStorage.setItem("userDetails", JSON.stringify( res));
-    
-        this.router.navigate(['/classroom'])
+        alert("s");
         
+        localStorage.setItem("userDetails", JSON.stringify( res));
+       
+      
+        
+        this.router.navigate(['/classroom']);
       }
     },err=>{
       console.log(err)

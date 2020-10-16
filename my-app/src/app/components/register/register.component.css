@@ -5,6 +5,18 @@ a
     margin: 50px;
 font-size: 30px
 }
+.form{
+    border-color:cornsilk;
+    border-width: 12px;
+    background-color:transparent;
+    border-style: solid;
+    width: 450px;
+    text-align: center;
+    margin-left: 30%;
+    border-radius: 12px;
+    border: spacing 12px; ;
+    opacity:initial ;
+}
 button
 {
     text-align:center;

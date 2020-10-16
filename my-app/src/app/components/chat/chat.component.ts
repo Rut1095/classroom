@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/modals/user.modal';
 
 @Component({
   selector: 'app-chat',
@@ -27,19 +28,23 @@ export class ChatComponent implements OnInit {
       name:"ruity",
       message:"ksfcwanwvowJFPAOFKQOFJVQI3",
 
-    }
+    }   
   ];
   thisSend:string="123456789";
   newMsg:string= '';
+  user: User;
 
   constructor() { }
 
   ngOnInit(): void {
   }
   sendMessage():void{
+
+    this.user = JSON.parse(localStorage.getItem("userDetails"));
+    
     // this.mymessage += "שלום";
        //this.messagesStr += this.mymessage + "\n";
-       this.messageArr.push({id:this.thisSend,name:"rut",message:this.newMsg});
+       this.messageArr.push({id:this.thisSend,name:this.user.UserName,message:this.newMsg});
        this.newMsg="";
        //if(this.activeUsers == null) return;
      

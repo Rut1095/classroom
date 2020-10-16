@@ -28,10 +28,13 @@ export class TeacherLessonListComponent implements OnInit {
   lessonList: Array<Lesson>;
   user: User;
   classesList: Array<classes>;
+  classess : Array<classes>;
+  classId : number;
   // Pressed: Number = 0;
   selectionClass: any;
   selectionLesson: any;
   lesson:classLessons= new classLessons();
+  x:number;
 className:string[]=['','כיתה א'];
   updateActiveUser() {
 
@@ -46,22 +49,25 @@ className:string[]=['','כיתה א'];
       return;
     }
 
-    this.lessonsService.getLessonsByClass(this.user.ClassId).subscribe(res => {
+   
+
+    // this.lessonsService.getLessonsByTeacherId(this.user.Id).subscribe(res => {
+    //   console.log(res)
+    //   this.lessons = res;
+    // }, err => {
+    //   console.log(err)
+    //   alert("שגיאה בקריאה לשירות");
+    // });
+    
+
+    this.classService.GetclassesByTeacherId(this.user.Id).subscribe(res => {
+      console.log(this.user.Id)
       console.log(res)
-      this.lessons = res;
+      this.classess = res;
     }, err => {
       console.log(err)
-      alert("שגיאה בקריאה לשירות");
+      alert("2שגיאה בקריאה לשירות" );
     });
-
-    this.lessonsService.getLessonsByTeacherId(this.user.Id).subscribe(res => {
-      console.log(res)
-      this.lessons = res;
-    }, err => {
-      console.log(err)
-      alert("שגיאה בקריאה לשירות");
-    });
-
 
     this.lessonsService.get().subscribe(res => {
       console.log(res)
@@ -116,4 +122,14 @@ className:string[]=['','כיתה א'];
      
     )
   }
+  getLessonsByClass(classId){
+     this.lessonsService.getLessonsByClass(classId).subscribe(res => {
+    console.log(res)
+    this.lessons = res;
+  }, err => {
+    console.log(err)
+    alert("3שגיאה בקריאה לשירות");
+  });
+  }
+ 
 }

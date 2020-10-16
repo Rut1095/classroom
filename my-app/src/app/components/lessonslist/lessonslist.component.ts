@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/modals/user.modal';
 import { classes } from 'src/app/modals/classes.modal';
 import { classLessons } from 'src/app/modals/classLessons.modal';
+import { DatapeerService } from 'src/app/services/datapeer.service';
 
 @Component({
   selector: 'app-lessonslist',
@@ -19,7 +20,8 @@ export class LessonslistComponent implements OnInit {
 
   constructor(private lessonsService: LessonsService,
     private classService: classService,
-    private router: Router) { }
+    private router: Router,
+    private datapeerService: DatapeerService) { }
 
   lessons: Array<Lesson>;
   lessonList: Array<Lesson>;
@@ -29,12 +31,27 @@ export class LessonslistComponent implements OnInit {
   selectionClass: any;
   selectionLesson: any;
   lesson:classLessons= new classLessons();
-className:string[]=['','כיתה א'];
+  className:string[]=['','כיתה א'];
+
+  peer;
   updateActiveUser() {
 
   }
   ngOnInit(): void {
 
+
+    this.peer = new Peer();
+    var peerId = "";
+    setTimeout(() => {
+  
+      peerId = this.peer.id;
+      console.log(peerId);
+      alert(peerId);
+
+      this.datapeerService.setPeer(this.peer);
+      //localStorage.setItem("userPeerId", peerId);
+
+    }, 8 * 1000);
 
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 

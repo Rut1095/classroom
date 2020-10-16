@@ -2,18 +2,19 @@
 <!-- <div>
     <div id="back1"></div><br>
   <div id="back2"></div>
-</div>  -->
-<div>
-<br><br>
+</div>  --><br><br>
+<div class="form">
+<br>
     <!-- <p>הנך משתמש חדש במערכת , אנא הכנס את שמך</p> -->
     <br>
-    <mat-form-field appearance="fill">
-     
+
+    <mat-form-field appearance="outline">
       <input matInput [(ngModel)]="user.UserName"> <mat-label>הכנס את שמך</mat-label>
     </mat-form-field>
     <!-- <input type="text" ><a>הכנס את שמך</a> -->
-    <br><br><br>
-</div>
+  
+    <br>
+
 <div> 
   <mat-form-field appearance="outline" >
     <mat-label>הכנס סיסמא</mat-label>
@@ -22,9 +23,9 @@
     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
   </mat-form-field>
-  <br><br><br>
+  <br>
 
-  <mat-form-field appearance="fill" >
+  <mat-form-field appearance="outline" >
     <mat-label>אשר סיסמא</mat-label>
     <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
@@ -32,29 +33,29 @@
     </button>
   </mat-form-field>
    
-     <br><br><br>
+     <br>
 
      <!-- <input matInput type="email"  placeholder="pat@example.com"  required >
      <a>הכנס כתובת מיל</a> <br><br><br>
      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error> -->
-     <mat-form-field appearance="fill">
+     <mat-form-field appearance="outline">
       <mat-label>הכנס כתובת מיל</mat-label>
       <input matInput placeholder="anonymous@example.com" [formControl]="email" [(ngModel)]="user.Email"required>
       <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
     </mat-form-field>
-<br><br><br>
+<br>
 
-<mat-form-field appearance="fill">
+<mat-form-field appearance="outline">
   <mat-label>סוג משתמש</mat-label>
   <mat-select [(ngModel)]="user.Type" >
     <mat-option value="0">  תלמיד </mat-option>        
     <mat-option value="1">  מורה  </mat-option> 
   </mat-select>
 </mat-form-field>
-<br><br><br>
+<br>
 
     <!-- <a>Class</a><input type="text" [(ngModel)]="user.ClassId">  -->
-    <mat-form-field appearance="fill" *ngIf="user.Type==0">
+    <mat-form-field appearance="outline" *ngIf="user.Type==0">
       <mat-label>בחר כיתה</mat-label>
       <mat-select  [(ngModel)]="user.ClassId">
         <!-- <mat-option value="כיתה ב"> ב </mat-option> -->
@@ -82,11 +83,13 @@
      <a >enter manager password</a><input type="password">
 </div>-->
   <!-- <button  (click)="register()"><a>הרשמה</a></button> -->
-  <br><br>
+  <br>
   <button  mat-fab style="margin: 45px;" routerLink="/register" routerLinkActive="active">
     <i class="material-icons" (click)="register()">account_circle</i>
   </button>
-</div>
+</div></div>
+<br><br>
+
 
 
   

@@ -26,7 +26,11 @@ export class UsersService {
     return this.http.get<ActiveUser>(`${this.basicUrl}ActiveUser/${classId}/${LessonId}/${UserId}/${sessionId}`)
 
   }
-  UpdateActiveUser(user:ActiveUser){
-    return this.http.post<ActiveUser[]>(this.basicUrl+"UpdateActiveUser",user);
+  GetActivesUsers(user:ActiveUser){
+    return this.http.post<ActiveUser[]>(this.basicUrl+"GetActivesUsers",user);
+  }
+  SetLessonIsActive(id:String)
+  {
+   return this.http.post(this.basicUrl+"SetlessonIsActive",id);
   }
 }

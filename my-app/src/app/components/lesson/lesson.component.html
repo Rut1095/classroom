@@ -1,7 +1,23 @@
 <!-- logo -->
 <p>קלאס<mat-icon>local_library</mat-icon></p>
 
-<video #myvideo class="vid" autoplay></video>
+<!--
+<mat-list class="list" *ngFor="let activeuser of activeUsers">
+  
+  <mat-list-item  >
+
+    <p> <b >{{ activeuser.sessionId }}</b> 
+   
+    <video  class="vid" autoplay (load)="connectpeervideo(activeuserId)" ></video>
+         
+   </mat-list-item>
+
+</mat-list>
+--> 
+<!-- <mat-spinner ></mat-spinner> -->
+
+<!-- <video #myvideo class="vid" autoplay ></video> -->
+<app-user-camera *ngIf="isOn==true"></app-user-camera>
 <body scroll="no">
     <p>lesson works! {{id}}</p>
 <!--
@@ -9,19 +25,26 @@
 style="background-color: rgb(0, 139, 86);float:right;width: 36vw;height: 15vh;"
 >מורה<mat-icon>laptop_chromebook</mat-icon></button>
 
+for(useractive)
+
 <br><br>
 -->
 
 
-<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers"><mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}}</button>
+
+<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers">
+  <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}</button>
 
 <!-- <div  dir="rtl" *ngFor="let aUser of activeUsers" >{{aUser.UserName}}</div> -->
 </body>
 <br>
-    <button  mat-raised-button color="primary"(click)="setUserActiveInLesson()" style="float: right;">כניסה לשיעור<mat-icon>input</mat-icon></button>
-    <button mat-raised-button color="primary" (click)="startNewLesson()" style="float: right;">שיעור חדש <mat-icon>input</mat-icon></button>
+    <button  mat-raised-button color="primary"*ngIf="user.Type==0" (click)="setUserActiveInLesson()" style="float: right;">כניסה לשיעור<mat-icon>input</mat-icon></button>
+    <button mat-raised-button color="primary" *ngIf="user.Type==1" (click)="startNewLesson(id) " style="float: right;" >שיעור חדש <mat-icon>input</mat-icon></button>
   
   <br><br>
+
+  <button mat-button ><mat-icon (click)="isOn= true">chat</mat-icon></button>
+  <app-chat *ngIf="isOn==true" ></app-chat>
 
 <!--   
 
@@ -88,4 +111,4 @@ style="background-color: rgb(0, 139, 86);float:right;width: 36vw;height: 15vh;"
   
         </mat-select>
       </mat-form-field> -->
-      <app-chat ></app-chat>
+      

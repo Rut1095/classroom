@@ -22,6 +22,11 @@
 
 <!-- <button mat-raised-button (click)="addClassLesson()" *ngIf="lesson.lessonId && lesson.classId">library_add_check</button> -->
 
+<li *ngFor="let cl of classess">
+    <!-- <span class="badge">{{cl.id}}</span>  -->
+    <button style="width: 100px;height: 20px;" (click)="getLessonsByClass(cl.Id)"><span class="herme" >{{cl.Name}}</span></button>
+    </li>
+
 
 <br>
 <!-- ngIf="Pressed==1" -->
