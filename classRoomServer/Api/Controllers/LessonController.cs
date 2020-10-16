@@ -38,11 +38,11 @@ namespace Api.Controllers
         }
 
 
-        [Route("teacher/{TeacherId}")]
-        [HttpGet]
-        public List<Lesson> GetTeacherLessons(int TeacherId)
-        {
-            return BL.LessonsLogic.GetLessonsByTeacherId(TeacherId);
-        }
+        //[Route("teacher/{TeacherId}")]
+        //[HttpGet]
+        //public List<Lesson> GetTeacherLessons(int TeacherId)
+        //{
+        //    return BL.LessonsLogic.GetLessonsByTeacherId(TeacherId);
+        //}
     }
 }

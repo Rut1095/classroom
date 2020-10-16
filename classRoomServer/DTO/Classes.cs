@@ -18,11 +18,13 @@
             this.Name = classesDal.name;
         }
 
-
-        //public DAL.lessons convertToDAL()
-        //{
-        //   return new DAL.Classes() { Id = Id, name = Name };
-        //}
+        public static DTO.Classes convertToDTO(DAL.Classes classes)
+        {
+            return new DTO.Classes() { 
+                Id = classes.Id, 
+                Name = classes.name
+            };
+        }
 
     }
 }

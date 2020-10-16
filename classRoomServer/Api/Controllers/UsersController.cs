@@ -40,11 +40,11 @@ namespace Api.Controllers
         //{
         //    return BL.UsersLogic.SetActiveUser(user);
         //}
-        [Route("UpdateActiveUser")]
+        [Route("GetActivesUsers")]
         [HttpPost]
-        public List<ActiveUser> UpdateActiveUser(ActiveUser user)
+        public List<ActiveUser> GetActivesUsers(ActiveUser user)
         {
-            return BL.UsersLogic.UpdateActiveUser(user);
+            return BL.UsersLogic.GetActivesUsers(user);
         }
         //[Route("all/{ClassLessonId}")]
         //[HttpGet]
@@ -53,6 +53,14 @@ namespace Api.Controllers
         //    if()
         //    return BL.UsersLogic.GetUsers(ClassLessonId);
         //}
+
+        [Route("{id}")]
+        [HttpPost]
+        public void SetlessonIsActive(string id)
+
+        {
+             BL.UsersLogic.StartNewLesson(id);
+        }
 
     }
     

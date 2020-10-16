@@ -108,38 +108,41 @@ namespace BL
                 return lessons;
             }
         }
-        public static List<DTO.Lesson> GetLessonsByTeacherId(int Id)
-        {
-            List<Lesson> lessons = new List<Lesson>();
-            {
-                try
-                {
+        //public static List<DTO.Lesson> GetLessonsByTeacherId(int Id)
+        //{
+        //    List<lessons> lessons = new List<lessons>();
+        //    {
+        //        try
+        //        {
 
-                    using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
-                    {
-                        var lessonsinClasses = db.ClassLessons.Where(p => p.teacherId == Id);
-                        foreach (var classLesson in lessonsinClasses)
-                        {
-                            int lessonId = classLesson.lessonId;
+        //            using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+        //            {
 
-                            foreach (var les in db.lessons)
-                            {
-                                if (lessonId == les.Id)
-                                {
-                                    lessons.Add(new Lesson(les));
-                                    break;
-                                }
-                            }
-                        }
-                        return lessons;
-                    }
 
-                }
-                catch
-                {
-                    return new List<Lesson>();
-                }
-            }
-        }
+
+        //                var lessonsinClasses = db.ClassLessons.Where(p => p.teacherId == Id);
+        //                foreach (var classLesson in lessonsinClasses)
+        //                {
+        //                    int lessonId = classLesson.lessonId;
+
+        //                    foreach (var les in db.lessons)
+        //                    {
+        //                        if (lessonId == les.Id)
+        //                        {
+        //                            lessons.Add(new Lesson(les));
+        //                            break;
+        //                        }
+        //                    }
+        //                }
+        //                return lessons;
+        //            }
+
+        //        }
+        //        catch
+        //        {
+        //            return new List<Lesson>();
+        //        }
+        //    }
+        //}
     }
 }

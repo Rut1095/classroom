@@ -30,5 +30,12 @@ namespace Api.Controllers
         {
             return BL.ClassLogic.Getclasses();
         }
+
+        [Route("{teacherId}")]
+        [HttpGet]
+        public List<DTO.Classes> getclassesByTeacherId(int teacherId)
+        {
+            return BL.ClassLogic.GetclassesByTeacherId(teacherId);
+        }
     }
 }
