@@ -26,6 +26,12 @@ import { UserCameraComponent } from './components/user-camera/user-camera.compon
 import { TeacherLessonListComponent } from './components/teacher-lesson-list/teacher-lesson-list.component';
 import { ChatComponent } from './components/chat/chat.component';
 // @import {}  from '~@angular/material/core/theming/all-theme
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatCardModule} from '@angular/material/card';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
+// import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+
 
 @NgModule({
   declarations: [
@@ -56,7 +62,11 @@ import { ChatComponent } from './components/chat/chat.component';
     MatListModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatCardModule,
+    MatProgressSpinnerModule
+    // MatProgressSpinnerModule
     // FormControl,
     // Validators
   ],

@@ -3,4 +3,41 @@
  <div class="p-1">
     <video #myvideo class="vid" autoplay></video>
 </div> -->
-<video #myvideo class="vid" autoplay ></video>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8 wrap_video container">
+            <video #myvideo class="vid" autoplay [srcObject]="ActiveUserScreen.cameraStream" *ngIf="ActiveUserScreen != undefined"></video>
+          
+            <button mat-fab disabled (click)="hideOrShowCamera()" >
+                <mat-icon  (click)="camOn=false"  *ngIf="camOn==true">videocam</mat-icon>
+                <mat-icon  (click)="camOn=true"   *ngIf="camOn==false">videocam_off</mat-icon>
+            </button>
+              
+            <button mat-fab disabled (click)="hideOrShowMicrophone()">  
+                <mat-icon  (click)="vlmOn=false"  *ngIf="vlmOn==true">volume_up</mat-icon>
+                <mat-icon  (click)="vlmOn=true"   *ngIf="vlmOn==false"> volume_off</mat-icon>
+            </button>
+
+                <mat-label class="myIconButton" style="background-color: burlywood;" *ngIf="ActiveUserScreen != undefined">{{ActiveUserScreen.activeUser.NameUser}}</mat-label>
+
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-md-3 wrap_video" *ngFor="let csa of cameraStreamArray">
+<!-- <mat-icon style="z-index: 10;">videocam</mat-icon> -->
+            <video #myvideo class="vid" autoplay *ngIf="camOn==true"  [srcObject]="csa.cameraStream" (click)="setActiveScreen(csa.cameraStream)" ></video>
+           <div style="background-color: blue;width: 150px;height: 150px;" class="vid" *ngIf="camOn==false " ></div>
+            <br>
+            <mat-label>{{csa.activeUser.NameUser}}</mat-label>
+            <!-- style="border: 1px solid green;float: right;height: 240px;width: 240px;"
+        <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}-->
+        </div>
+    </div>
+
+
+<button mat-fab disabled (click)="exitLesson()"><mat-icon>close</mat-icon></button>
+</div>
+<br>
+<!-- <button mat-fab disabled> <mat-icon>close</mat-icon> <button> -->
+

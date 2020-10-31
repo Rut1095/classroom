@@ -1,7 +1,13 @@
  
-<!-- <p>chat works!</p> -->
-<div id="chat" style="overflow-y: auto; width:20vw;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <header>chat</header>
+<!-- <p>chat works!</p>*ngIf="lessIsActive==true;" -->
+<div class="divChatButton">
+<button class="chatButton" mat-mini-fab color="primary" (click)="chatClick=true" *ngIf="chatClick==false">
+  <mat-icon class="chatIcon">chat</mat-icon>
+</button></div>
+<!-- <mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon> -->
+
+<div *ngIf="chatClick==true;" id="chat" style="overflow-y: auto; width:20vw;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+    <header  style="cursor: pointer;" (click)="chatClick=false"><mat-icon style="float: left;cursor: pointer; ">chat</mat-icon>chat</header>
       <mat-list class="list" *ngFor="let messege of messageArr">
   
         <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"  >

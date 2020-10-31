@@ -16,16 +16,12 @@ import { classService } from 'src/app/services/classes.service';
 })
 export class RegisterComponent implements OnInit {
   user: User = new User()
-  // calsses:classes=new classes()‏
-  // classes: classes[]=[];
-//    {Id: 11, Name: 'Dr Nice' },
-//    { Id: 12, Name: 'Narco' },
-//    { Id: 13, Name: 'Bombasto' }
-//  
+ 
 classesList:Array<classes> ;
 
 
  email = new FormControl('', [Validators.required, Validators.email]);
+ confirmPassword:string;
  selected ;
  hide = true;
   constructor(private usersService: UsersService,private classService:classService, private router:Router
@@ -68,5 +64,13 @@ getErrorMessage() {
         return 'הכנס ערך';
       }  return this.email.hasError('email') ? 'כתובת לא חוקית' : '';
     }
+    getErrorMessage_confirmPass() {
+      if (this.confirmPassword == " ") 
+        return 'הכנס ערך';
+    
+      if(this.confirmPassword != this.user.Password)
+       return  'הסיסמא אינה זהה';
 
+       return ' ';
+    }
 }

@@ -3,8 +3,8 @@
     // display: flex;
     // justify-content: center;
 } */
-
-.heroes {
+/* ---------------- */
+/* .heroes {
     margin: 0 0 2em 0;
     list-style-type: none;
     padding: 0;
@@ -63,7 +63,7 @@ button {
     border-radius: 4px;
     cursor: pointer;
     cursor: hand;
-    font-family: Arial;
+  
   }
   
   button:hover {
@@ -80,4 +80,39 @@ button {
   
   .herme{
 position: absolute;
+  } */
+
+/* ---------------- */
+
+
+  .wrap_classes{
+    margin-top: 40px;
   }
+  .clName{
+    text-align: right;
+    margin-bottom: 10px;
+  }
+  .clName a{
+    text-decoration: none;
+  }
+  ::ng-deep .mat-card{
+    box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 3px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) !important;
+  }
+  ::ng-deep .mat-expansion-panel, .mat-expansion-panel-header,.mat-panel-description,.mat-card{
+    font-family: 'Assistant' !important;
+    font-size: 16px;
+  }
+  .clName:hover{
+    background-color:darksalmon;
+  }
+  .userName{
+    text-align: right;
+}
+::ng-deep .head{
+  text-align: center;
+  text-decoration-color: darkviolet;
+
+
+}
+  
+  

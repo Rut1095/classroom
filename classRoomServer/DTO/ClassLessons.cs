@@ -32,7 +32,8 @@ namespace DTO
                 Id = l.Id,
                 classId = l.classId,
                 lessonId = l.lessonId,
-                lesseonIsActive = l.lesseonIsActive
+                lesseonIsActive = l.lesseonIsActive,
+                teacherId=l.teacherId
             };
         }
     }

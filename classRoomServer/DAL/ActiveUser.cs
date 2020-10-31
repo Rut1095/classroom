@@ -18,5 +18,8 @@ namespace DAL
         public Nullable<int> ClassLessonId { get; set; }
         public Nullable<System.TimeSpan> ConnectTime { get; set; }
         public string sessionId { get; set; }
+        public Nullable<System.DateTime> LastConnectDateTime { get; set; }
+        public Nullable<bool> showCamera { get; set; }
+        public Nullable<bool> showMicrophone { get; set; }
     }
 }

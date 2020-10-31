@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, OnChanges, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 
@@ -21,7 +21,7 @@ import { DatapeerService } from 'src/app/services/datapeer.service';
   templateUrl: './lesson.component.html',
   styleUrls: ['./lesson.component.css']
 })
-export class LessonComponent implements OnInit {
+export class LessonComponent implements OnInit ,OnChanges {
 
   //@ViewChild('myvideo', { read: ElementRef, static:true}) myvideo: ElementRef;  
   @Input() id: String;
@@ -36,6 +36,10 @@ export class LessonComponent implements OnInit {
   time;
   clsLes:classLessons;
   isOn:boolean  =false;
+  lessIsActive:boolean=false;
+  chatClick:boolean=false;
+  currentLesson:string;
+  peerIsActive:boolean  =false;
 
   constructor(private route: ActivatedRoute,
     private usersService: UsersService,
@@ -44,15 +48,26 @@ export class LessonComponent implements OnInit {
     ,private classService:classService,
     private datapeerService: DatapeerService
   ) { }
-
+ 
   ngOnInit(): void
    {
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 //alert( localStorage.getItem("userPeerId"));
+    if(this.datapeerService.getPeer() == undefined){
+      //activate event that wait for camere
+      if(this.datapeerService.subsVarEventEmitter == undefined){
+        this.datapeerService.subsVarEventEmitter = this.datapeerService.invokeLessonCompnentInitPeer.subscribe((name:string) =>{
+          this.OnInitPeer();
+        });
+      }
+    }else{
+      this.OnInitPeer();
+    }
+ 
 
     this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id')));
-    
-    this.peer = this.datapeerService.getPeer();//new Peer( localStorage.getItem("userPeerId")); //default - internet
+ 
+    //this.peer = this.datapeerService.getPeer();//new Peer( localStorage.getItem("userPeerId")); //default - internet
     
     /*this.peer = new Peer('', {
       host: 'localhost',
@@ -61,13 +76,6 @@ export class LessonComponent implements OnInit {
     });*/
 
     //lessons list
-
-    this.lessonsService.get().subscribe(res=>{
-      console.log(res)
-      this.lessonList = res;
-    },err=>{
-      console.log(err)
-    });
 
    //classes list
 
@@ -82,27 +90,6 @@ export class LessonComponent implements OnInit {
 
 
     //setTimeout(() => {
-      
-      this.sessionId = this.peer.id;
-      if(this.sessionId == null){
-        this.sessionId="EMPTY";
-      }
-      alert(this.sessionId);
-
-
-      //chat
-    this.peer.on('connection', function(conn) {
-      //console.log(conn);
-
-      conn.on('data', function(data){
-        // Will print 'hi!'
-        //console.log(data);
-        console.log('hi!');
-        console.log(data);
-        this.messagesStr += this.mymessage + "\n";
-      });
-    });
-
     //}, 15 * 1000); // 4 seconds
     //  this.getAllActiveUsersInLesson();  
     
@@ -113,31 +100,81 @@ export class LessonComponent implements OnInit {
 
   getLessons(_id: String): void {
     this.id = _id;
+
+    if(this.lessonList==undefined){
+      
+        this.lessonsService.get().subscribe(res=>{
+          console.log(res)
+          this.lessonList = res;
+          this.getLessonName(_id);
+        },err=>{
+          console.log(err)
+        });
+
+    }else{
+      this.getLessonName(_id);
+    }
+
   }
+
+  
+  //wait the peer to init id
+  OnInitPeer():void{
+    
+      this.peer = this.datapeerService.getPeer();
+          
+      this.sessionId = this.peer.id;
+
+      if(this.sessionId == null){
+        this.sessionId="EMPTY";
+      }else this.peerIsActive = true;
+      
+      //alert(this.sessionId);
+
+
+
+  
+  }
+
+  getLessonName(_id:String){
+    
+    var currentLesId= parseInt(_id.toString(),10);
+    this.lessonList.forEach(element => {
+      if(currentLesId == element.Id)
+        this.currentLesson=element.Name;
+      
+    });
+  }
+
  
   //set i am active
   setUserActiveInLesson(): void {
+    this.lessIsActive = true;
+
+    if(this.peer == undefined){
+      alert("בעייה בטעינת מצלמה - נסה להמתין או לטעון את הדף מחדש");
+      return;
+    }
+
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 
+   // alert("setuserActive sessionId: " + this.sessionId);
+    
+   // alert("setuserActive sessionId: " + this.peer.id);
     this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
 
       if (res) {
         localStorage.setItem("activeUser", JSON.stringify(res));
-        alert(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId);
+        //alert(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId);
+        console.log(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId);
+        this.classService.getClassLesson(res.ClassLessonId).subscribe((res:classLessons)=>{
+          this.clsLes=res;
+          this.datapeerService.setClassLessonActive(res);
+        });
+        this.lessIsActive = true;
+
         console.log(res)
-        this.time = setInterval(()=>{
-          let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
-          this.usersService.GetActivesUsers(userA).subscribe(res => {
-              this.activeUsers = res;
-              this.datapeerService.setActiveUsers(this.activeUsers);
-              // this.videoconnect();
-              this.isOn = true;
-              console.log(res);
-          }, err => {
-            console.log(err)
-            alert("שגיאה בקריאה לשירות");
-          });
-        },10 * 1000);
+        this.getActiveUsersAll10Seconds();
         // this.router.navigate(['/register'])
       } else {
         alert("אירעה שגיאה אין שיעור זמין");
@@ -147,8 +184,48 @@ export class LessonComponent implements OnInit {
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
+    
   }
 
+  getActiveUsersAll10Seconds():void{
+    //do first
+    this.getActiveUsersAll();
+    //run all 10 seconds
+    this.time = setInterval(()=>{
+      this.getActiveUsersAll();
+    },10 * 1000);
+  }
+
+  getActiveUsersAll():boolean{
+    let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
+    this.usersService.GetActivesUsers(userA).subscribe(res => {
+      if(this.activeUsers == undefined)
+            console.log(res);
+        this.activeUsers = res;
+        this.datapeerService.setActiveUsers(this.activeUsers);
+        
+          this.isOn = true;
+        // this.videoconnect();
+    }, err => {
+      console.log(err)
+      alert("שגיאה בקריאה לשירות");
+      return false;
+    });
+
+    //update last time this user active
+    this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
+    }, err => {
+      console.log(err)
+      alert("שגיאה בקריאה לשירות");
+    });
+    
+    return true;
+  }
+
+
+  ngOnChanges(changes: SimpleChanges): void{
+    console.log('change');
+  }
   //set all athoer users that active
   /*
   getAllActiveUsersInLesson(): void {

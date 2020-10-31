@@ -1,11 +1,13 @@
-﻿namespace DTO
+﻿using System.Collections.Generic;
+
+namespace DTO
 {
     public class Classes
     {
         public int Id { get; set; }
         public string Name { get; set; }
         //public int NumberUsers { get; set; }
-
+        public List<Lesson> Lessons { get; set; } = new List<Lesson>();
         public Classes()
         {
 

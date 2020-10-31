@@ -1,8 +1,26 @@
 <!-- logo -->
 <p>קלאס<mat-icon>local_library</mat-icon></p>
+<h1 style="text-align: center;">שיעור {{currentLesson}}</h1>
 
+<app-user-camera *ngIf="isOn==true"></app-user-camera>
+  
+
+<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers" >
+  <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}</button>
+  
+  <!-- <mat-spinner></mat-spinner> -->
+  <br>
+    <button  mat-raised-button color="primary" (click)="setUserActiveInLesson()" style="margin: 50px 250px;
+    height: 150px;width: 450px;background: darkgreen;" 
+    >כניסה לשיעור<mat-icon>input</mat-icon></button>
+    <!-- <button mat-raised-button color="primary"disabled *ngIf="user.Type==1" (click)="startNewLesson(id) " style="float: right;" >שיעור חדש <mat-icon>input</mat-icon></button> -->
+  
+  <br><br>
+
+  <!-- <mat-icon *ngIf="lessIsActive==true;" style="cursor: pointer;" (click)="chatClick=true">chat</mat-icon>*ngIf="chatClick==true" -->
+  <app-chat  *ngIf="isOn==true"></app-chat>
 <!--
-<mat-list class="list" *ngFor="let activeuser of activeUsers">
+<mat-list class="list" *ngFor="let activeuser of activeUsers">*ngIf="user.Type==0"
   
   <mat-list-item  >
 
@@ -17,9 +35,7 @@
 <!-- <mat-spinner ></mat-spinner> -->
 
 <!-- <video #myvideo class="vid" autoplay ></video> -->
-<app-user-camera *ngIf="isOn==true"></app-user-camera>
-<body scroll="no">
-    <p>lesson works! {{id}}</p>
+<!-- <body scroll="no"> -->
 <!--
 <button  mat-flat-button dir="rtl"  
 style="background-color: rgb(0, 139, 86);float:right;width: 36vw;height: 15vh;"
@@ -32,22 +48,17 @@ for(useractive)
 
 
 
-<button mat-flat-button color="warn" *ngFor="let aUser of activeUsers">
-  <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}</button>
+
 
 <!-- <div  dir="rtl" *ngFor="let aUser of activeUsers" >{{aUser.UserName}}</div> -->
-</body>
-<br>
-    <button  mat-raised-button color="primary"*ngIf="user.Type==0" (click)="setUserActiveInLesson()" style="float: right;">כניסה לשיעור<mat-icon>input</mat-icon></button>
-    <button mat-raised-button color="primary" *ngIf="user.Type==1" (click)="startNewLesson(id) " style="float: right;" >שיעור חדש <mat-icon>input</mat-icon></button>
-  
-  <br><br>
+<!-- </body> -->
 
-  <button mat-button ><mat-icon (click)="isOn= true">chat</mat-icon></button>
-  <app-chat *ngIf="isOn==true" ></app-chat>
 
 <!--   
 
+  <button mat-button (click)="isOn==true"><mat-icon >chat</mat-icon></button>
+
+  
 <div id="chat">
   <header>chat</header>
     <mat-list class="list" *ngFor="let messege of messageArr">

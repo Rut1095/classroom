@@ -1,37 +1,35 @@
-
-<!-- <div>
-    <div id="back1"></div><br>
-  <div id="back2"></div>
-</div>  --><br><br>
+<br><br>
 <div class="form">
 <br>
     <!-- <p>הנך משתמש חדש במערכת , אנא הכנס את שמך</p> -->
     <br>
 
     <mat-form-field appearance="outline">
-      <input matInput [(ngModel)]="user.UserName"> <mat-label>הכנס את שמך</mat-label>
+      <mat-label>הכנס את שמך</mat-label>
+      <input matInput [(ngModel)]="user.UserName" style="text-align: end;"> 
     </mat-form-field>
-    <!-- <input type="text" ><a>הכנס את שמך</a> -->
   
     <br>
 
 <div> 
   <mat-form-field appearance="outline" >
     <mat-label>הכנס סיסמא</mat-label>
-    <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
+    <input matInput [(ngModel)]="user.Password" minlength="4" maxlength="12" [type]="hide ? 'password' : 'text'">
     <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
+
   </mat-form-field>
   <br>
-
+<!-- 
   <mat-form-field appearance="outline" >
     <mat-label>אשר סיסמא</mat-label>
-    <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+    <input matInput [(ngModel)]="confirmPassword"  [formControl]="confirmPassword" [type]="hide ? 'password' : 'text'">
+    <button mat-icon-button matSuffix (click)="hide = !hide"  [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
     <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
     </button>
-  </mat-form-field>
+    <mat-error >{{getErrorMessage_confirmPass() }}</mat-error>
+  </mat-form-field> -->
    
      <br>
 
@@ -59,7 +57,7 @@
       <mat-label>בחר כיתה</mat-label>
       <mat-select  [(ngModel)]="user.ClassId">
         <!-- <mat-option value="כיתה ב"> ב </mat-option> -->
-        <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+        <mat-option class="classesMatOption" [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
 
       </mat-select>
     </mat-form-field>

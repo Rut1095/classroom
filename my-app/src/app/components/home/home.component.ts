@@ -25,7 +25,7 @@ export class HomeComponent implements OnInit {
       if(!res){
        this.router.navigate(['/register']);
       }else{
-        alert("s");
+        // alert("s");
         
         localStorage.setItem("userDetails", JSON.stringify( res));
        

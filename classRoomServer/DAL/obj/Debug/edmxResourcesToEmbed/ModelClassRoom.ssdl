@@ -8,6 +8,9 @@
     <Property Name="ClassLessonId" Type="int" />
     <Property Name="ConnectTime" Type="time" Precision="7" />
     <Property Name="sessionId" Type="nvarchar" MaxLength="50" />
+    <Property Name="LastConnectDateTime" Type="datetime" />
+    <Property Name="showCamera" Type="bit" />
+    <Property Name="showMicrophone" Type="bit" />
   </EntityType>
   <EntityType Name="Classes">
     <Key>

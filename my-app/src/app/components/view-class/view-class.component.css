@@ -3,13 +3,11 @@ wrap-screen{
 }
 app-lessonslist , app-teacher-lesson-list{
 
-    border-radius: 12px;
-    border-style: solid;
     float: right;
     display: block;
     border-width:10px ;
-    margin: 50px;
-    width: 140px;
+    margin: 20px;
+    width: 250px;
 
 
 
@@ -22,7 +20,6 @@ app-lesson{
     height: 100%;
 } */
 body{
-    direction: rtl;
     /* scroll-behavior: unset; */
     margin: 0; max-height: 100%; overflow: hidden;
     

@@ -90,3 +90,18 @@ chat{
     margin: 50px;
     width: 140px;
 }
+::ng-deep chatButton{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+
+/* max-width: 2px; */
+}
+.divChatButton{
+    
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+}

@@ -12,7 +12,6 @@ E:\Rut\final project\classroom\classRoomServer\DTO\obj\Debug\DTO.csproj.CopyComp
 E:\projects\classroom\classRoomServer\DTO\bin\Debug\DTO.dll
 E:\projects\classroom\classRoomServer\DTO\bin\Debug\DTO.pdb
 E:\projects\classroom\classRoomServer\DTO\bin\Debug\DAL.dll
-E:\projects\classroom\classRoomServer\DTO\bin\Debug\EntityFramework.dll
 E:\projects\classroom\classRoomServer\DTO\bin\Debug\DAL.pdb
 E:\projects\classroom\classRoomServer\DTO\bin\Debug\DAL.dll.config
 E:\projects\classroom\classRoomServer\DTO\obj\Debug\DTO.csprojAssemblyReference.cache
@@ -20,3 +19,4 @@ E:\projects\classroom\classRoomServer\DTO\obj\Debug\DTO.csproj.CoreCompileInputs
 E:\projects\classroom\classRoomServer\DTO\obj\Debug\DTO.csproj.CopyComplete
 E:\projects\classroom\classRoomServer\DTO\obj\Debug\DTO.dll
 E:\projects\classroom\classRoomServer\DTO\obj\Debug\DTO.pdb
+E:\projects\classroom\classRoomServer\DTO\bin\Debug\EntityFramework.dll

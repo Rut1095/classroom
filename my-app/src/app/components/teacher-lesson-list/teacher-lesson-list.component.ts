@@ -36,6 +36,9 @@ export class TeacherLessonListComponent implements OnInit {
   lesson:classLessons= new classLessons();
   x:number;
 className:string[]=['','כיתה א'];
+newLesson:string;
+other:boolean=false;
+
   updateActiveUser() {
 
   }

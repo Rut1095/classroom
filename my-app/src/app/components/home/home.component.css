@@ -18,7 +18,7 @@ button
 h1{
     color:crimson;
     font-size: 70px;
-font-family: Bodoni MT Black;
+font-family: 'Assistant' MT Black;
 top: 40px;
 }
 #back1{
@@ -74,3 +74,17 @@ opacity:initial ;
 
 }
   
+input:focus .in{ background: none; }
+input { background: none;   box-shadow: none !important;
+}
+input.in:focus{
+    outline-width: 0ch;
+    background-color: transparent;
+    /* -moz-user-select: none; */
+}
+input {
+    -webkit-user-select: none;  /* Chrome all / Safari all */
+    -moz-user-select: none;     /* Firefox all */
+    -ms-user-select: none;      /* IE 10+ */
+    user-select: none;          /* Likely future */      
+  }

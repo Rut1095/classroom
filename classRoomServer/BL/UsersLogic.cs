@@ -68,8 +68,8 @@ namespace BL
                 }
             }
         }
-
-        public static ActiveUser SetActiveUser(int classId, int lessonId, int userId, String sessionId)
+        
+        public static ActiveUser SetActiveUser(int classId, int lessonId, int userId, String sessionId )
         {
             using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
             {
@@ -87,6 +87,7 @@ namespace BL
                                 userActiveDB.ClassLessonId = classlesson.Id;
                                 userActiveDB.ConnectTime = DateTime.Now.TimeOfDay;
                             }
+                                userActiveDB.LastConnectDateTime = DateTime.Now;
                             userActiveDB.sessionId = sessionId;
                             db.SaveChanges();
                             return ActiveUser.ConvertToDTO(userActiveDB);
@@ -99,6 +100,8 @@ namespace BL
                         u.ClassLessonId = classlesson.Id;
                         u.UserId = userId;
                         u.ConnectTime = DateTime.Now.TimeOfDay;
+                        u.LastConnectDateTime = DateTime.Now;
+
                         //u.sessionId=
                         DAL.ActiveUser activeUser = DTO.ActiveUser.ConvertToDAL(u);
                         db.ActiveUser.Add(activeUser);
@@ -146,6 +149,8 @@ namespace BL
 
                     foreach (var item in activeUsers)
                     {
+                        if(Convert.ToDateTime(item.LastConnectDateTime).AddMinutes(0.5) < DateTime.Now)
+                            continue;
                         DTO.ActiveUser a = ActiveUser.ConvertToDTO(item);
                         a.NameUser = db1.Users.FirstOrDefault(p => p.Id == item.UserId).name;
                         actives.Add(a);

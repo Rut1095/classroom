@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Lesson } from '../modals/lesson.modal';
@@ -10,7 +11,8 @@ import { classLessons } from '../modals/classLessons.modal';
 
   export class LessonsService {
     basicUrl="https://localhost:44333/lessons/"
-  
+    lesson :Lesson[]=[] ;
+
     constructor(public http:HttpClient) { }
   
     get(){

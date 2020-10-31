@@ -23,6 +23,7 @@ export class LessonslistComponent implements OnInit {
     private router: Router,
     private datapeerService: DatapeerService) { }
 
+
   lessons: Array<Lesson>;
   lessonList: Array<Lesson>;
   user: User;
@@ -32,6 +33,8 @@ export class LessonslistComponent implements OnInit {
   selectionLesson: any;
   lesson:classLessons= new classLessons();
   className:string[]=['','כיתה א'];
+  UserNameClass:string;
+
 
   peer;
   updateActiveUser() {
@@ -39,19 +42,8 @@ export class LessonslistComponent implements OnInit {
   }
   ngOnInit(): void {
 
+    this.initPeer();
 
-    this.peer = new Peer();
-    var peerId = "";
-    setTimeout(() => {
-  
-      peerId = this.peer.id;
-      console.log(peerId);
-      alert(peerId);
-
-      this.datapeerService.setPeer(this.peer);
-      //localStorage.setItem("userPeerId", peerId);
-
-    }, 8 * 1000);
 
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 
@@ -79,13 +71,55 @@ export class LessonslistComponent implements OnInit {
     this.classService.get().subscribe(res => {
       // console.log(res)
       this.classesList = res;
-      // console.log(this.classesList);
+       console.log(this.classesList);
+
+       
+        
+    this.classesList.forEach(element => {
+      console.log("this.user.ClassId="+this.user.ClassId + " element.Id=" +element.Id)
+      if(this.user.ClassId==element.Id){
+        console.log("element.Name="+element.Name)
+        this.UserNameClass = element.Name;
+
+      }
+      
+    });
     }, err => {
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
 
+    console.log(this.classesList);
 
+  }
+
+  initPeer():void{
+    
+
+    //this.peer = new Peer();
+    this.peer = new Peer('', {
+      host: 'localhost',
+      port: 9000,
+      path: '/cameraServer'
+    });
+
+    var peerId = "";
+
+      setTimeout(() => {
+        peerId = this.peer.id;
+  
+        if(peerId == undefined){
+          //alert("בעייה בטעינת מצלמה - נסה לטעון את הדף מחדש");
+          this.initPeer();
+        }else{
+          console.log(peerId);
+         // alert(peerId);
+    
+          this.datapeerService.setPeer(this.peer);
+          
+        }
+        
+      }, 1 * 1000);
   }
   showAddLesson() {
 

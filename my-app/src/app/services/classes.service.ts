@@ -18,6 +18,8 @@ import { classes } from '../modals/classes.modal';
     GetclassesByTeacherId(teacherId){
       return this.http.get<classes[]>(this.basicUrl+teacherId)
     }
-    
+    getClassLesson(idClassLesson){
+      return this.http.get(`${this.basicUrl}getClassLesson/${idClassLesson}`);
+    }
   }
  

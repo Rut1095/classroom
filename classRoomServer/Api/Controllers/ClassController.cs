@@ -37,5 +37,12 @@ namespace Api.Controllers
         {
             return BL.ClassLogic.GetclassesByTeacherId(teacherId);
         }
+
+        [Route("getClassLesson/{ClassLessonId}")]
+        [HttpGet]
+        public ClassLessons getClassLesson(int classLessonId)
+        {
+            return BL.ClassLogic.getClassLesson(classLessonId);
+        }
     }
 }

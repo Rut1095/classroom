@@ -47,7 +47,7 @@ input,select
     border-color: crimson;
     text-anchor: middle;
     color: blue;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Assistant';
     font-size: 21px;
 }
 .example-container .mat-form-field + .mat-form-field {
@@ -56,7 +56,14 @@ input,select
     border-style:solid; */
 
   }
+  mat-option {
 
+    text-align: center;
+     }
+     mat-select{
+         text-align: end;
+     }
+     input:focus { background: none; }
   /*
  
   .mat-form-field{

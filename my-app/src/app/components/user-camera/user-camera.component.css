@@ -1,0 +1,10 @@
+.vid{
+        width: 100%;
+}
+
+.mat-icon{
+        cursor: pointer;
+}
+.container { position: relative; }
+.container video { display: block; }
+.container .myIconButton { position: absolute; bottom:0; left:0; }

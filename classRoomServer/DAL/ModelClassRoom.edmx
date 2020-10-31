@@ -13,6 +13,9 @@
           <Property Name="ClassLessonId" Type="int" />
           <Property Name="ConnectTime" Type="time" Precision="7" />
           <Property Name="sessionId" Type="nvarchar" MaxLength="50" />
+          <Property Name="LastConnectDateTime" Type="datetime" />
+          <Property Name="showCamera" Type="bit" />
+          <Property Name="showMicrophone" Type="bit" />
         </EntityType>
         <EntityType Name="Classes">
           <Key>
@@ -130,6 +133,9 @@
           <Property Name="ClassLessonId" Type="Int32" />
           <Property Name="ConnectTime" Type="Time" Precision="7" />
           <Property Name="sessionId" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="LastConnectDateTime" Type="DateTime" Precision="3" />
+          <Property Name="showCamera" Type="Boolean" />
+          <Property Name="showMicrophone" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -189,6 +195,9 @@
           <EntitySetMapping Name="ActiveUser">
             <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ActiveUser">
               <MappingFragment StoreEntitySet="ActiveUser">
+                <ScalarProperty Name="showMicrophone" ColumnName="showMicrophone" />
+                <ScalarProperty Name="showCamera" ColumnName="showCamera" />
+                <ScalarProperty Name="LastConnectDateTime" ColumnName="LastConnectDateTime" />
                 <ScalarProperty Name="sessionId" ColumnName="sessionId" />
                 <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
                 <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />

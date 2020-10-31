@@ -53,6 +53,9 @@
     <EntitySetMapping Name="ActiveUser">
       <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.ActiveUser">
         <MappingFragment StoreEntitySet="ActiveUser">
+          <ScalarProperty Name="showMicrophone" ColumnName="showMicrophone" />
+          <ScalarProperty Name="showCamera" ColumnName="showCamera" />
+          <ScalarProperty Name="LastConnectDateTime" ColumnName="LastConnectDateTime" />
           <ScalarProperty Name="sessionId" ColumnName="sessionId" />
           <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
           <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />

@@ -1,54 +1,84 @@
-<p>teacher-lesson-list works!</p>
+<h1> שם משתמש: {{user.UserName}}</h1>
 
-<ul class="heroes"> 
-    <li *ngFor="let les of lessons">
+<div class="wrap_classes">
+
+
+<mat-accordion multi>
+  <mat-expansion-panel *ngFor="let cl of classess">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+       כיתה {{cl.Name}}
+      </mat-panel-title>
+      <!-- <mat-panel-description>
+        לחץ כדי לבחור
+      </mat-panel-description> -->
+    </mat-expansion-panel-header>
+    <mat-card *ngFor="let les of cl.Lessons" class="clName">
       <a routerLink="/classroom/lesson/{{les.Id}}">
-        <span class="badge">{{les.id}}</span> 
-        <span class="herme">{{les.Name}}</span>
-        
+        שיעור {{les.Name}} 
       </a>
-     
-    <button class="delete" title="delete hero"
-    >x</button>
-    </li>
+    </mat-card>
+    <!-- <ul class="heroes">
+      <li *ngFor="let les of cl.Lessons">
+        <a routerLink="/classroom/lesson/{{les.Id}}">
+          <span class="badge">{{les.id}}</span>
+          <span class="herme">{{les.Name}}</span>
+        </a>
 
-
-   <!-- add lesson only to teacher -->
-
-<button mat-mini-fab color="warn"  (click)="showAddLesson()" >
-  <mat-icon >library_add
-  </mat-icon>
-</button> 
-
-<!-- <button mat-raised-button (click)="addClassLesson()" *ngIf="lesson.lessonId && lesson.classId">library_add_check</button> -->
-
-<li *ngFor="let cl of classess">
-    <!-- <span class="badge">{{cl.id}}</span>  -->
-    <button style="width: 100px;height: 20px;" (click)="getLessonsByClass(cl.Id)"><span class="herme" >{{cl.Name}}</span></button>
-    </li>
-
-
-<br>
-<!-- ngIf="Pressed==1" -->
-  <mat-form-field appearance="fill" *ngIf="click1==true">
-      <mat-label >add lesson</mat-label>
-      <mat-select (selectionChange)="selectedLesson($event)">
-        <mat-option *ngFor="let less of lessonList" [value]="less.Id">
+        <button class="delete" title="delete hero">x</button>
+      </li>
+    </ul> -->
+  </mat-expansion-panel>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <mat-icon>library_add </mat-icon>
+      </mat-panel-title>
+      <mat-panel-description>
+        הוספה
+      </mat-panel-description>
+   
+    </mat-expansion-panel-header>
+    <mat-form-field appearance="fill" #chooseLesson>
+      <mat-label>בחר שיעור</mat-label >
+      <mat-select (selectionChange)="selectedLesson($event)" >
+        <mat-option *ngFor="let less of lessonList" [value]="less.Id" (click)="other=false">
           {{less.Name}}
         </mat-option>
-        <input type="text" placeholder="אחר">
+        <mat-option [value]="newLesson"  (click)="other=true"  (selectionChange)="newLesson"> {{newLesson ? newLesson: "אחר"}}</mat-option>
+        
       </mat-select>
+
     </mat-form-field>
 
-    <mat-form-field appearance="fill" *ngIf="click1==true">
+         <mat-form-field appearance="fill"  *ngIf="other==true">
+           
+      <mat-label style="color: cornsilk;" >שיעור חדש</mat-label>
+      <input matInput [(ngModel)]="newLesson"  type="text">
+    </mat-form-field>
+ 
+
+  <!-- <mat-form-field appearance="fill" *ngIf="">
+    <mat-label>שיעור חדש</mat-label>
+    <mat-select (selectionChange)="selectedLesson($event)">
+      <mat-option [value]="newLesson">
+        {{newLesson}}
+      </mat-option>
+      <mat-option>אחר</mat-option>
+    </mat-select>
+  </mat-form-field> -->
+
+    <mat-form-field appearance="fill">
       <mat-label>בחר כיתה</mat-label>
-      <mat-select  (selectionChange)="selectedClass($event)">
-        <mat-option  [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
+      <mat-select (selectionChange)="selectedClass($event)">
+        <mat-option [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
 
       </mat-select>
-    </mat-form-field >
+    </mat-form-field>
     <button mat-raised-button (click)="addClassLesson()" *ngIf="lesson.lessonId && lesson.classId"> אישור </button>
+  </mat-expansion-panel>
 
 
   
-  
+</mat-accordion>
+</div>
