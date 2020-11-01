@@ -10,8 +10,7 @@
   
   <!-- <mat-spinner></mat-spinner> -->
   <br>
-    <button  mat-raised-button color="primary" (click)="setUserActiveInLesson()" style="margin: 50px 250px;
-    height: 150px;width: 450px;background: darkgreen;" 
+    <button  mat-raised-button color="primary" (click)="setUserActiveInLesson()"   class="enter-button"
     >כניסה לשיעור<mat-icon>input</mat-icon></button>
     <!-- <button mat-raised-button color="primary"disabled *ngIf="user.Type==1" (click)="startNewLesson(id) " style="float: right;" >שיעור חדש <mat-icon>input</mat-icon></button> -->
   
@@ -19,7 +18,7 @@
 
   <!-- <mat-icon *ngIf="lessIsActive==true;" style="cursor: pointer;" (click)="chatClick=true">chat</mat-icon>*ngIf="chatClick==true" -->
   <app-chat  *ngIf="isOn==true"></app-chat>
-<!--
+<!--*ngIf="isOn==true"
 <mat-list class="list" *ngFor="let activeuser of activeUsers">*ngIf="user.Type==0"
   
   <mat-list-item  >

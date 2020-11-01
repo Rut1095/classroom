@@ -20,7 +20,7 @@ const routes: Routes = [
     component:ViewClassComponent,
     children:[
       {
-        path:"lesson/:id",
+        path:"lesson/:id/class/:classId",
         component:LessonComponent
       }
       

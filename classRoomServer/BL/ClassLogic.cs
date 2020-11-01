@@ -52,16 +52,29 @@ namespace BL
                         ).Distinct();
 
 
-                    foreach (var cl in clesson)
+                    foreach (var clss in clesson)
                     {
-                        classes.Add(DTO.Classes.convertToDTO(cl));
+                        var cl = DTO.Classes.convertToDTO(clss);
 
-                    }
-                    foreach (var item in classes)
-                    {
-                        item.Lessons.AddRange(LessonsLogic.GetLessonsByClassId(item.Id));
+                        var lessondOfClass = (
+                            from les in db.lessons
+                            join clsLes in db.ClassLessons on les.Id equals clsLes.lessonId
+                            where clsLes.teacherId == Id && cl.Id == clsLes.classId
+                            orderby les.name
+                            select les
+                            ).Distinct() ;
 
+                        foreach (var Lesson in lessondOfClass)
+                        {
+                            cl.Lessons.Add(new DTO.Lesson(Lesson));
+                        }
+
+                        classes.Add(cl);
                     }
+                    //foreach (var item in classes)
+                    //{
+                    //    item.Lessons.AddRange(LessonsLogic.GetLessonsByClassId(item.Id));
+                    //}
                     return classes;
                     //}
                 }
@@ -78,6 +91,16 @@ namespace BL
             using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
             {
                 var l = db.ClassLessons.FirstOrDefault(predicate => predicate.Id == ClassLessonId );
+                return DTO.ClassLessons.convertToDTO(l);
+            }
+        }
+
+
+        public static DTO.ClassLessons getClassLesson(int ClassId, int LessonId)
+        {
+            using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+            {
+                var l = db.ClassLessons.FirstOrDefault(predicate => predicate.classId == ClassId && predicate.lessonId == LessonId);
                 return DTO.ClassLessons.convertToDTO(l);
             }
         }

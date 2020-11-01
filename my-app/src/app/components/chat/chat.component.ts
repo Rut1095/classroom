@@ -79,6 +79,9 @@ export class ChatComponent implements OnInit {
     // this.mymessage += "שלום";
        //this.messagesStr += this.mymessage + "\n";
        this.messageArr.push({id:this.thisSend,name:this.user.UserName,message:this.newMsg});
+
+       
+        this.activeUsers =this.datapeerService.getActiveUsers();
       
         if(this.activeUsers == null) return;
      

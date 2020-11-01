@@ -106,3 +106,13 @@ span{
     font-size: 1.5vw;
     color: white;
 }
+
+
+.enter-button{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+    height: 150px;
+    background: darkgreen;
+}

@@ -101,7 +101,8 @@ chat{
 .divChatButton{
     
     position: fixed;
-    bottom: 0;
-    width: 100%;
+    bottom: 0;/*
+    width: 100%;*/
+    width: 70%;
 
 }

@@ -38,7 +38,7 @@ export class LessonslistComponent implements OnInit {
 
   peer;
   updateActiveUser() {
-
+    
   }
   ngOnInit(): void {
 
@@ -55,6 +55,9 @@ export class LessonslistComponent implements OnInit {
     this.lessonsService.getLessonsByClass(this.user.ClassId).subscribe(res => {
       console.log(res)
       this.lessons = res;
+      
+      this.datapeerService.setClassLessonActive(this.lessons);
+
     }, err => {
       console.log(err)
       alert("שגיאה בקריאה לשירות");

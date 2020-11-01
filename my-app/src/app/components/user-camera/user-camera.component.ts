@@ -48,13 +48,6 @@ export class UserCameraComponent implements OnInit {
     // alert("camera.ngOnInit");
     // this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id')));
 
-    //###########################
-    // if(this.datapeerService.subsVarCameraEventEmitter == undefined){
-    //   this.datapeerService.subsVarCameraEventEmitter = this.datapeerService.invokeCameraRereshUsers.subscribe((name:string) =>{
-    //     this.videoconnect();
-    //   });
-    // }
-     //###########################
 
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 
@@ -126,7 +119,8 @@ export class UserCameraComponent implements OnInit {
               au:ActiveUser;
               res.forEach(element => {
                 if(element.sessionId == call.peer){
-                  thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
+                  thisObject.pushActiveUser(thisObject,stream,element);
+                  //thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
                 }
               });
                 
@@ -141,6 +135,22 @@ export class UserCameraComponent implements OnInit {
         console.log('Failed to get local stream', err);
       });
     });
+
+    
+    //###########################
+    // if(this.datapeerService.subsVarCameraEventEmitter == undefined){
+    //   this.datapeerService.subsVarCameraEventEmitter = this.datapeerService.invokeCameraRereshUsers.subscribe((name:string) =>{
+    //     this.videoconnect();
+    //   });
+    // }
+     //###########################
+    //##########On remove actvive user event#################
+    if(this.datapeerService.subsVarCameraEventEmitter == undefined){
+      this.datapeerService.subsVarCameraEventEmitter = this.datapeerService.invokeRemoveUactiveUser.subscribe((name:string) =>{
+        this.removeActiveUser(this.datapeerService.userToRemove);
+      });
+    }
+     //###########################
 
     //connect all active users
     this.videoconnect();
@@ -188,7 +198,8 @@ export class UserCameraComponent implements OnInit {
                       this.taecherActive = true;
                     } else{
                       console.log('element.UserId='+element.UserId);
-                      thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
+                      //thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
+                      thisObject.pushActiveUser(thisObject,remoteStream,element);
                     }
                     // Show stream in some video/canvas element.
                   });
@@ -205,7 +216,8 @@ export class UserCameraComponent implements OnInit {
             
           console.log('same='+this.taecherActive);
             if (this.taecherActive)
-              thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:element});
+            this.pushActiveUser(thisObject,stream,element);
+              //thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:element});
             else
               this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
 
@@ -226,6 +238,27 @@ export class UserCameraComponent implements OnInit {
     //let a = this.cameraStreamArray.find(p => { return p.UserId == this.classLessonActive.teacherId });
    // if (a != undefined)
     //  this.ActiveUserScreen = a;
+  }
+
+  pushActiveUser(thisObject,stream,activU:ActiveUser){/*
+    var dontPush:boolean = false;
+    this.cameraStreamArray.forEach((usercam,index) => {
+      if(usercam.activeUser.UserId ==activU.UserId ){
+        dontPush=true;
+      }
+    });
+    if(!dontPush)*/
+      thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:activU});
+  }
+
+  removeActiveUser(autoremove:ActiveUser){
+    
+    this.activeUsers = this.datapeerService.getActiveUsers();
+    this.cameraStreamArray.forEach((usercam,index) => {
+      if(usercam.activeUser.UserId ==autoremove.UserId ){
+        this.cameraStreamArray.splice(index,1);
+      }
+    });
   }
 
   setActiveScreen(csa:MediaStream){

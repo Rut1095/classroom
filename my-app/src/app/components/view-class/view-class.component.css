@@ -24,3 +24,7 @@ body{
     margin: 0; max-height: 100%; overflow: hidden;
     
 }
+
+.sidnav-cont-mar{
+    margin-left: 0!important; margin-right: 290px;
+}

@@ -103,3 +103,6 @@ position: absolute;
   ::ng-deep .mat-select-value {
     font-size: 100%;
   }
+  ::ng-deep .add{
+    text-align: center !important;
+  }

@@ -12,6 +12,10 @@ export class DatapeerService {
 
   
   invokeCameraRereshUsers = new EventEmitter();
+  
+  invokeRemoveUactiveUser = new EventEmitter();
+
+  userToRemove:ActiveUser;
 
   subsVarEventEmitter:Subscription;
   subsVarCameraEventEmitter:Subscription;
@@ -37,6 +41,11 @@ setClassLessonActive(c){
 
    OnLessonRefreshUsers(){
      this.invokeCameraRereshUsers.emit();
+   }
+
+   OnRemoveActiveUser(userToRemove:ActiveUser){
+     this.userToRemove = userToRemove;
+     this.invokeRemoveUactiveUser.emit();
    }
   
   setActiveUsers(val){

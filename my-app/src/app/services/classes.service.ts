@@ -21,5 +21,9 @@ import { classes } from '../modals/classes.modal';
     getClassLesson(idClassLesson){
       return this.http.get(`${this.basicUrl}getClassLesson/${idClassLesson}`);
     }
+    
+    getClassLessonByIds(classId,lessonId){
+      return this.http.get(`${this.basicUrl}getClassLesson/${classId}/${lessonId}`);
+    }
   }
  

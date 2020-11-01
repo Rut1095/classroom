@@ -7,5 +7,6 @@ export class ActiveUser {
     sessionId: number;
     NameUser:string;
 
+    active: boolean;
     
 }

@@ -25,6 +25,7 @@ export class LessonComponent implements OnInit ,OnChanges {
 
   //@ViewChild('myvideo', { read: ElementRef, static:true}) myvideo: ElementRef;  
   @Input() id: String;
+  @Input() classId: String;
   user: User;
   sessionId: String;
   peer;
@@ -65,7 +66,7 @@ export class LessonComponent implements OnInit ,OnChanges {
     }
  
 
-    this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id')));
+    this.route.paramMap.subscribe(p => this.getLessons(p.has('id') && p.get('id'),p.has('classId') && p.get('classId') ));
  
     //this.peer = this.datapeerService.getPeer();//new Peer( localStorage.getItem("userPeerId")); //default - internet
     
@@ -98,7 +99,7 @@ export class LessonComponent implements OnInit ,OnChanges {
 
   }
 
-  getLessons(_id: String): void {
+  getLessons(_id: String, _classId: String): void {
     this.id = _id;
 
     if(this.lessonList==undefined){
@@ -107,6 +108,14 @@ export class LessonComponent implements OnInit ,OnChanges {
           console.log(res)
           this.lessonList = res;
           this.getLessonName(_id);
+
+    
+        this.classService.getClassLessonByIds(_classId, _id).subscribe((res:classLessons)=>{
+          console.log("theclassId:");
+          console.log(res);
+          this.datapeerService.setClassLessonActive(res);
+        });
+
         },err=>{
           console.log(err)
         });
@@ -161,11 +170,13 @@ export class LessonComponent implements OnInit ,OnChanges {
    // alert("setuserActive sessionId: " + this.sessionId);
     
    // alert("setuserActive sessionId: " + this.peer.id);
-    this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
+    var classId:Number;
+  
+    this.usersService.setUserActive(this.datapeerService.classLessonActive.classId, this.id, this.user.Id,this.sessionId).subscribe(res => {
 
       if (res) {
         localStorage.setItem("activeUser", JSON.stringify(res));
-        //alert(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId);
+        //alert(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId); 
         console.log(this.user.UserName + "נוכח בשיעור" + res.ClassLessonId);
         this.classService.getClassLesson(res.ClassLessonId).subscribe((res:classLessons)=>{
           this.clsLes=res;
@@ -196,14 +207,58 @@ export class LessonComponent implements OnInit ,OnChanges {
     },10 * 1000);
   }
 
+  syncActiveUsers(newActUsers: Array<ActiveUser>):void{
+   
+    //put all active false in old actives
+    this.activeUsers.forEach(au => {
+      au.active = false;
+    });
+
+    //check update and add users
+    newActUsers.forEach(newau => {
+      var isuserfound:Boolean = false;
+      this.activeUsers.forEach(oldau => {
+        if(newau.UserId == oldau.UserId ){
+          if(newau.sessionId != oldau.sessionId){
+            oldau.sessionId = newau.sessionId;
+          }
+          oldau.active=true;
+          isuserfound=true;
+        }
+      });
+
+      if(!isuserfound){
+        this.activeUsers.push(newau);
+        
+      }
+
+    });
+
+    //for on array after update user is active to check if need delete
+    this.activeUsers.forEach((au,index) => {
+      if(au.active == false){
+        this.datapeerService.OnRemoveActiveUser(au);
+        this.activeUsers.splice(index,1);
+      }
+    });
+
+    
+    this.datapeerService.setActiveUsers(this.activeUsers);
+    
+  }
+
   getActiveUsersAll():boolean{
     let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
     this.usersService.GetActivesUsers(userA).subscribe(res => {
-      if(this.activeUsers == undefined)
-            console.log(res);
-        this.activeUsers = res;
-        this.datapeerService.setActiveUsers(this.activeUsers);
+      if(this.activeUsers == undefined){
         
+            console.log(res);
+            this.activeUsers = res;
+            
+          this.datapeerService.setActiveUsers(this.activeUsers);
+      }else
+         this.syncActiveUsers(res)
+
           this.isOn = true;
         // this.videoconnect();
     }, err => {

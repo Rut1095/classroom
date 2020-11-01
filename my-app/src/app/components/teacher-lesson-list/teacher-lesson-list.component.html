@@ -14,7 +14,7 @@
       </mat-panel-description> -->
     </mat-expansion-panel-header>
     <mat-card *ngFor="let les of cl.Lessons" class="clName">
-      <a routerLink="/classroom/lesson/{{les.Id}}">
+      <a routerLink="/classroom/lesson/{{les.Id}}/class/{{cl.Id}}" (click)="selectLess(cl,les)">
         שיעור {{les.Name}} 
       </a>
     </mat-card>
@@ -39,7 +39,7 @@
       </mat-panel-description>
    
     </mat-expansion-panel-header>
-    <mat-form-field appearance="fill" #chooseLesson>
+    <mat-form-field appearance="fill" #chooseLesson class="add">
       <mat-label>בחר שיעור</mat-label >
       <mat-select (selectionChange)="selectedLesson($event)" >
         <mat-option *ngFor="let less of lessonList" [value]="less.Id" (click)="other=false">
@@ -68,7 +68,7 @@
     </mat-select>
   </mat-form-field> -->
 
-    <mat-form-field appearance="fill">
+    <mat-form-field appearance="fill" class="add">
       <mat-label>בחר כיתה</mat-label>
       <mat-select (selectionChange)="selectedClass($event)">
         <mat-option [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>

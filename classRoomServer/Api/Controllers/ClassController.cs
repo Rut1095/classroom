@@ -44,5 +44,11 @@ namespace Api.Controllers
         {
             return BL.ClassLogic.getClassLesson(classLessonId);
         }
+        [Route("getClassLesson/{ClassId}/{LessonId}")]
+        [HttpGet]
+        public ClassLessons getClassLessonByIds(int ClassId, int LessonId)
+        {
+            return BL.ClassLogic.getClassLesson(ClassId,LessonId);
+        }
     }
 }

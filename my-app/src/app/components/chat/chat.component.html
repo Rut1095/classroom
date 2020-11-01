@@ -1,10 +1,10 @@
  
 <!-- <p>chat works!</p>*ngIf="lessIsActive==true;" -->
 <div class="divChatButton">
-<button class="chatButton" mat-mini-fab color="primary" (click)="chatClick=true" *ngIf="chatClick==false">
+<button class="chatButton" mat-mini-fab color="primary" (click)="chatClick=true">
   <mat-icon class="chatIcon">chat</mat-icon>
 </button></div>
-<!-- <mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon> -->
+<!-- <mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon>  *ngIf="chatClick==false" -->
 
 <div *ngIf="chatClick==true;" id="chat" style="overflow-y: auto; width:20vw;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <header  style="cursor: pointer;" (click)="chatClick=false"><mat-icon style="float: left;cursor: pointer; ">chat</mat-icon>chat</header>

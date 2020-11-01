@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/modals/user.modal';
 import { classes } from 'src/app/modals/classes.modal';
 import { classLessons } from 'src/app/modals/classLessons.modal';
+import { DatapeerService } from 'src/app/services/datapeer.service';
 
 @Component({
   selector: 'app-teacher-lesson-list',
@@ -22,7 +23,8 @@ export class TeacherLessonListComponent implements OnInit {
 
   constructor(private lessonsService: LessonsService,
     private classService: classService,
-    private router: Router) { }
+    private router: Router,
+    private datapeerService: DatapeerService) { }
 
   lessons: Array<Lesson>;
   lessonList: Array<Lesson>;
@@ -39,11 +41,13 @@ className:string[]=['','כיתה א'];
 newLesson:string;
 other:boolean=false;
 
+peer;
   updateActiveUser() {
 
   }
   ngOnInit(): void {
 
+    this.initPeer();
 
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 
@@ -134,5 +138,45 @@ other:boolean=false;
     alert("3שגיאה בקריאה לשירות");
   });
   }
+
+  
+  initPeer():void{
+    
+
+    //this.peer = new Peer();
+    this.peer = new Peer('', {
+      host: 'localhost',
+      port: 9000,
+      path: '/cameraServer'
+    });
+
+    var peerId = "";
+
+      setTimeout(() => {
+        peerId = this.peer.id;
+  
+        if(peerId == undefined){
+          //alert("בעייה בטעינת מצלמה - נסה לטעון את הדף מחדש");
+          this.initPeer();
+        }else{
+          console.log(peerId);
+         // alert(peerId);
+    
+          this.datapeerService.setPeer(this.peer);
+          
+        }
+        
+      }, 1 * 1000);
+  }
  
+  selectLess(cl , les){
+    console.log("cl=" + cl);
+    
+    console.log( cl);
+
+    this.classService.getClassLessonByIds(cl.Id, les.Id).subscribe((res:classLessons)=>{
+      this.datapeerService.setClassLessonActive(res);
+    });
+
+  }
 }
