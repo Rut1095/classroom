@@ -1,64 +1,44 @@
 
-a
+/* a
 {
     text-align:center;
     color: white;
     margin: 50px;
-font-size: 30px
+    font-size: 30px
 }
-/*
-button
-{
-    text-align:center;
-    background-color: darkgray; 
-    padding:15px;
-    border-color: crimson; 
-    border-width: 5px;
-}*/
+
 h1{
     color:crimson;
     font-size: 70px;
 font-family: 'Assistant' MT Black;
 top: 40px;
 }
-#back1{
-    border-top-width: 40px;
-    border-top-style: double;
-    /* color: crimson; */    color: white;
 
-}
-#back2{
-    border-top-width: 40px;
-    border-top-style: double;
-    /* color: blue; */
-    color: white;
-
-}
 div
 {
     text-align: center;
 }
 
-/*
-input
-{
-    height: 30px;
-    width: 220px;
-    border-color: crimson;
-    text-anchor: middle;
-    color: blue;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 21px;
-    
-}*/
-
 body{
     color: whitesmoke;
-}
-mat-form-field mat-label input{
+} */
+ mat-label{
     color: cornsilk;
     border-color: cornsilk;
-    
+    text-align: center;
+}
+input{
+}
+ mat-form-field{
+    text-align: center;
+    border-color: white !important;
+    border-width: 3px;
+    color: cornsilk;
+    border-color: cornsilk;
+    text-align: center;
+}
+.material-icons{
+    color:white !important;
 }
 .form{
 border-color:cornsilk;
@@ -73,18 +53,19 @@ border: spacing 12px; ;
 opacity:initial ;
 
 }
+
   
-input:focus .in{ background: none; }
-input { background: none;   box-shadow: none !important;
-}
-input.in:focus{
-    outline-width: 0ch;
-    background-color: transparent;
-    /* -moz-user-select: none; */
-}
-input {
-    -webkit-user-select: none;  /* Chrome all / Safari all */
-    -moz-user-select: none;     /* Firefox all */
-    -ms-user-select: none;      /* IE 10+ */
-    user-select: none;          /* Likely future */      
+ ::ng-deep mat-card{
+    width: fit-content ;
+    margin: auto ;
   }
+ /* nav{
+      margin: auto;
+      text-align: center;
+  }
+   /////////     box-shadow: 15px 15px 1px #ffa580, 15px 15px 1px 2px black;
+*/
+ 
+  /* ...................     transition: 0.2s all ease-in-out;
+*/
+ 

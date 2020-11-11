@@ -109,6 +109,7 @@
       <LastGenOutput>ModelClassRoom.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="bin\Debug\DAL.dll.config" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="ModelClassRoom.edmx.diagram">
       <DependentUpon>ModelClassRoom.edmx</DependentUpon>
     </None>

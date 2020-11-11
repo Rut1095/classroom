@@ -19,6 +19,7 @@ export class DatapeerService {
 
   subsVarEventEmitter:Subscription;
   subsVarCameraEventEmitter:Subscription;
+  subsVarRefreshEventEmitter:Subscription;
   private peer;
   activeUsers: Array<ActiveUser>;
   classLessonActive:classLessons;
@@ -56,4 +57,5 @@ setClassLessonActive(c){
   getActiveUsers(){
     return this.activeUsers;
   }
+
 }

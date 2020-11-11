@@ -1,3 +1,4 @@
+
 import { Time } from '@angular/common';
 
 export class ActiveUser {
@@ -6,7 +7,9 @@ export class ActiveUser {
     ConnectTime: Time;
     sessionId: number;
     NameUser:string;
-
     active: boolean;
+    
+    showCamera: boolean;
+    showMicrophone: boolean;
     
 }

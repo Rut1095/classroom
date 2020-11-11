@@ -11,31 +11,13 @@ import { DatapeerService } from 'src/app/services/datapeer.service';
   styleUrls: ['./chat.component.css']
 })
 export class ChatComponent implements OnInit {
-
+peer;
+  
   chatClick:boolean=false;
-  peer;
   mymessage: String;
   messagesStr: String = "";
-  messageArr:any[]=[
-    {
-      id:"123456789",
-      name:"ruty",
-      message:"svdsga",
-
-    },
-    {
-      id:"123456784",
-      name:"hodaya",
-      message:"svansafQG",
-
-    },
-    {
-      id:"123456789",
-      name:"ruty",
-      message:"ksfcwanwvowJFPAOFKQOFJVQI3",
-
-    }   
-  ];
+  messageArr:any[]=[]
+  
   thisSend:string="123456789";
   newMsg:string= '';
   user: User;
@@ -54,8 +36,6 @@ export class ChatComponent implements OnInit {
   }
 
   initPeerChatConnection():void{
-        //chat
-        
        var msgArr = this.messageArr;
         this.peer.on('connection', function(conn) {
           //console.log(conn);
@@ -69,25 +49,13 @@ export class ChatComponent implements OnInit {
           });
         });  
   }
-
   sendMessage():void{
-
-   // this.user = JSON.parse(localStorage.getItem("userDetails"));
-    // this.activeUsers =this.datapeerService.getActiveUsers();
-
     var msg = this.newMsg;
-    // this.mymessage += "שלום";
-       //this.messagesStr += this.mymessage + "\n";
        this.messageArr.push({id:this.thisSend,name:this.user.UserName,message:this.newMsg});
-
-       
         this.activeUsers =this.datapeerService.getActiveUsers();
-      
         if(this.activeUsers == null) return;
-     
         this.activeUsers.forEach(element => {
           if(this.user.Id != element.UserId) {
-     
             //alert(element.sessionId);
             var conn = this.peer.connect(element.sessionId);
             // on open will be launch when you successfully connect to PeerServer

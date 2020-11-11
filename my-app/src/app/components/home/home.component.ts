@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
   user: User = new User()
   hide = true;
+  errorMessage:string=" ";
 
   constructor(private usersService: UsersService,private router:Router) { }
 
@@ -23,14 +24,12 @@ export class HomeComponent implements OnInit {
     this.usersService.login(this.user).subscribe(res=>{
       console.log(res)
       if(!res){
-       this.router.navigate(['/register']);
+        this.errorMessage="שם המשתמש או הסימא אינם נכונים";
+        this.user.UserName =" ";
+        this.user.Password =" ";
+          //  this.router.navigate(['/register']);
       }else{
-        // alert("s");
-        
-        localStorage.setItem("userDetails", JSON.stringify( res));
-       
-      
-        
+        localStorage.setItem("userDetails", JSON.stringify( res)); 
         this.router.navigate(['/classroom']);
       }
     },err=>{

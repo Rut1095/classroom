@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { classes } from '../modals/classes.modal';
+import { environment } from '../../environments/environment';
 
 
 @Injectable({
@@ -8,7 +9,7 @@ import { classes } from '../modals/classes.modal';
   })
 
   export class classService {
-    basicUrl="https://localhost:44333/classes/"
+    basicUrl=environment.apiEndpoint + "/classes/"
      classes :classes[]=[] ;
     constructor(public http:HttpClient) { }
   

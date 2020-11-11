@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  apiEndpoint: "https://10.0.0.5:44333",
+  serverName: "10.0.0.5"
 };
 
 /*

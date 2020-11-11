@@ -40,7 +40,6 @@ namespace BL
             try
             {
                 using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
-
                 {
                     //linq
                     var clesson = (
@@ -50,8 +49,6 @@ namespace BL
                         orderby cls.name
                         select cls
                         ).Distinct();
-
-
                     foreach (var clss in clesson)
                     {
                         var cl = DTO.Classes.convertToDTO(clss);
@@ -71,15 +68,8 @@ namespace BL
 
                         classes.Add(cl);
                     }
-                    //foreach (var item in classes)
-                    //{
-                    //    item.Lessons.AddRange(LessonsLogic.GetLessonsByClassId(item.Id));
-                    //}
                     return classes;
-                    //}
                 }
-
-
             }
             catch
             {

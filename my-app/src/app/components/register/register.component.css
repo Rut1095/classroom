@@ -1,4 +1,4 @@
-a
+/* a
 {
     text-align:center;
     color: blue;
@@ -53,9 +53,9 @@ input,select
 .example-container .mat-form-field + .mat-form-field {
     margin-left: 8px;
     /* width: 800px;
-    border-style:solid; */
+    border-style:solid; 
 
-  }
+  } */
   mat-option {
 
     text-align: center;
@@ -69,4 +69,54 @@ input,select
   .mat-form-field{
     background: red;
 }
-  */
+  
+  nav{
+    margin: auto;
+    text-align: center;
+}
+a
+{
+    text-align:center;
+    color: white;
+    margin: 50px;
+font-size: 30px
+}*/
+.form{
+    border-color:cornsilk;
+    border-width: 12px;
+    background-color:transparent;
+    border-style: solid;
+    width: 450px;
+    text-align: center;
+    margin-left: 30%;
+    border-radius: 12px;
+    border: spacing 12px; ;
+    opacity:initial ;
+    
+    }
+  /*    ::ng-deep mat-form-field mat-label input{
+        color: cornsilk !important;
+        border-color: cornsilk !important;
+        
+    }
+    body{
+        color: whitesmoke !important;
+    } */
+    
+    mat-label{
+        color: cornsilk;
+        border-color: cornsilk;
+        text-align: center;
+    }
+    
+     mat-form-field{
+        text-align: center;
+        border-color: white !important;
+        border-width: 3px;
+        color: cornsilk;
+        border-color: cornsilk;
+        text-align: center;
+    }
+    .material-icons{
+        color:white !important;
+    }

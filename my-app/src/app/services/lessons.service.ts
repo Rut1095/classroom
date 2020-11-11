@@ -4,13 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { Lesson } from '../modals/lesson.modal';
 import { classLessons } from '../modals/classLessons.modal';
 
+import { environment } from '../../environments/environment';
 
 @Injectable({
     providedIn: 'root'
   })
 
   export class LessonsService {
-    basicUrl="https://localhost:44333/lessons/"
+    basicUrl=environment.apiEndpoint + "/lessons/"
     lesson :Lesson[]=[] ;
 
     constructor(public http:HttpClient) { }

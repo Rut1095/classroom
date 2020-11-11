@@ -27,13 +27,19 @@ namespace Api.Controllers
         {
             return BL.UsersLogic.Register(user);
         }
-        [Route("activeUser/{ClassId}/{LessonId}/{UserId}/{sessionId}")]
+        [Route("activeUser/{ClassId}/{LessonId}/{UserId}/{sessionId}/{showCam}/{showMic}")]
         [HttpGet]
-        public ActiveUser SetActiveUser(int ClassId,int LessonId,int UserId,string sessionId)
+        public ActiveUser SetActiveUser(int ClassId,int LessonId,int UserId,string sessionId, bool showCam, bool showMic)
         {
-            return BL.UsersLogic.SetActiveUser(ClassId,LessonId,UserId, sessionId);
+            return BL.UsersLogic.SetActiveUser(ClassId,LessonId,UserId, sessionId, showCam, showMic);
         }
 
+        [Route("activeUser/{ClassId}/{LessonId}/{UserId}/{sessionId}")]
+        [HttpGet]
+        public ActiveUser SetActiveUser(int ClassId, int LessonId, int UserId, string sessionId)
+        {
+            return BL.UsersLogic.SetActiveUser(ClassId, LessonId, UserId, sessionId, null, null);
+        }
         //[Route("ActiveUser")]
         //[HttpPost]
         //public ActiveUser SetActiveUser(ActiveUser user)
@@ -54,14 +60,31 @@ namespace Api.Controllers
         //    return BL.UsersLogic.GetUsers(ClassLessonId);
         //}
 
-        [Route("{id}")]
-        [HttpPost]
-        public void SetlessonIsActive(string id)
+       
 
+        
+        [Route("{userId}/showCamera/{showCamera}")]
+        [HttpGet]
+        public void SetShowCamera(int userId, bool showCamera)
         {
-             BL.UsersLogic.StartNewLesson(id);
+            BL.UsersLogic.SetShowCamera(userId,showCamera);
         }
 
+        [Route("{userId}/showMicrophone/{showMicrophone}")]
+        [HttpGet]
+        public void SetMicrophone(int userId, bool showMicrophone)
+        
+       {
+            BL.UsersLogic.SetMicrophone(userId, showMicrophone);
+        }
+        //[Route("userId")]
+        //[HttpDelete]
+        //public Users deleteUnactiveUser(int userId)
+        //{
+        //  return  BL.UsersLogic.deleteUnactiveUser(userId);
+        //}
+
+
     }
-    
+
 }

@@ -1,10 +1,52 @@
 .vid{
         width: 100%;
+     /* box-shadow: -5px -5px 30px 5px #ffd740, 5px 5px 30px 5px #28a745; */
 }
 
 .mat-icon{
         cursor: pointer;
 }
 .container { position: relative; }
-.container video { display: block; }
+.container video { 
+        display: block; 
+       
+
+}
 .container .myIconButton { position: absolute; bottom:0; left:0; }
+.footer-video{
+        background-color: yellow;
+}
+.cameraButton{
+    position: absolute;
+    bottom: 5px;
+    left: 20px;
+}
+.microphoneButton{
+        position: absolute;
+        bottom: 5px;
+        left: 87px;    
+}
+.userLable{
+    position: absolute;
+    bottom: 15px;
+    right: 25px;
+    font-weight: bold;
+    box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 3px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) !important;
+    font-size:xx-large;
+
+}
+.exitButton{
+        margin: 1em auto;
+        display: block;    
+}
+.profilIcon{
+        position: absolute;
+        bottom: 15px;
+        right: 25px;
+        font-weight: bold;
+        box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 3px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) !important;
+height: 100px;
+width:100px;
+
+}
+

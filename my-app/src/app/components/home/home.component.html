@@ -1,39 +1,45 @@
-<!-- <div >
-  <div id="back1"></div><br>
-  <div id="back2"></div>
-<div>    -->
-   <h1> classroom </h1> 
+
    <br><br>
-<!--  </div>
- <input type="text" [(ngModel)]="user.UserName"> <a>הכנס את שמך</a>
-</div><div> -->
+]
+  <!-- <nav mat-tab-nav-bar>
+  <a  mat-tab-link label="Log In" routerLink="">התחברות </a>
+  <a mat-tab-link label="Sign Up" routerLink="/register" routerLinkActive="active"> הרשמה </a>
+</nav>style="color: cornsilk;" -->
+
  <div class="form" >
 
-  <br><br>
-  <mat-form-field appearance="outline" >
-    <mat-label style="color: cornsilk;" >הכנס שמך</mat-label>
-    <input matInput [(ngModel)]="user.UserName" class="in" type="text">
-  </mat-form-field> 
-   <br><br><br>
-  <!-- <input type="password" [(ngModel)]="user.Password"><a>הכנס סיסמא</a>  -->
-  
-  <mat-form-field appearance="outline" (keydown.enter)="logIn()" >
-    <mat-label style="color: cornsilk;" >הכנס סיסמא</mat-label>
-    <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
-    <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-    <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-    </button> 
-  </mat-form-field>
-  <br><br><br>
-<button mat-fab style="margin: 45px; " >
-  <i class="material-icons"  (click)="logIn()">keyboard_backspace</i>
-</button>
-<button mat-fab  style="margin: 45px; color: warn" routerLink="/register" routerLinkActive="active">
-  <i class="material-icons"  (click)="logIn()">account_circle</i>
-</button>
+        <br><br>
 
-<!-- <label>חדש במערכת לחץ כאן</label> -->
+        <mat-form-field appearance="outline" >
+                <mat-label  >הכנס שמך</mat-label>
+                <input matInput [(ngModel)]="user.UserName" class="in" type="text" autocomplete="off">
+        </mat-form-field> 
+
+        <br><br><br>
+        
+        <mat-form-field appearance="outline" (keydown.enter)="logIn()" >
+                <mat-label style="color: cornsilk;" >הכנס סיסמא</mat-label>
+                <input matInput [(ngModel)]="user.Password" [type]="hide ? 'password' : 'text'">
+                <button mat-icon-button matSuffix  (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                </button> 
+        </mat-form-field>
+
+        <br><br><br>
+
+      <button mat-fab style="margin: 45px; " >
+        <i class="material-icons"  (click)="logIn()">keyboard_backspace</i>
+      </button>
+
+      <button mat-fab  style="margin: 45px; color: warn" routerLink="/register" routerLinkActive="active">
+        <i class="material-icons"  (click)="logIn()">account_circle</i>
+      </button>
+
+      <mat-card *ngIf="errorMessage != ' '">{{errorMessage}}</mat-card>
+
+      <br>
 </div>
+
 
 
 <br>
@@ -44,9 +50,7 @@
 <br>
 <br>
 <br>  <br>
-<br>
 
-<br>
 
 
  

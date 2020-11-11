@@ -5,12 +5,12 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="2c64f4bee57e4d94813ec8238cf5d043" Name="Diagram1">
-        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Classes" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ClassLessons" Width="1.5" PointX="0.75" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Classes" Width="1.5" PointX="1.375" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ClassLessons" Width="1.5" PointX="0.5" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.lessons" Width="1.5" PointX="3.125" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Users" Width="1.5" PointX="5.375" PointY="2.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.UsersLessons" Width="1.5" PointX="5.375" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ActiveUser" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Users" Width="1.5" PointX="4" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.UsersLessons" Width="1.5" PointX="4.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ActiveUser" Width="1.5" PointX="2.25" PointY="2.375" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

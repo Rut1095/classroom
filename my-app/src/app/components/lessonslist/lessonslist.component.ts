@@ -9,6 +9,8 @@ import { User } from 'src/app/modals/user.modal';
 import { classes } from 'src/app/modals/classes.modal';
 import { classLessons } from 'src/app/modals/classLessons.modal';
 import { DatapeerService } from 'src/app/services/datapeer.service';
+import { Time } from '@angular/common';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-lessonslist',
@@ -35,7 +37,6 @@ export class LessonslistComponent implements OnInit {
   className:string[]=['','כיתה א'];
   UserNameClass:string;
 
-
   peer;
   updateActiveUser() {
     
@@ -57,11 +58,14 @@ export class LessonslistComponent implements OnInit {
       this.lessons = res;
       
       this.datapeerService.setClassLessonActive(this.lessons);
+      console.log("lesson list check" + this.lessons);
 
     }, err => {
       console.log(err)
       alert("שגיאה בקריאה לשירות");
     });
+
+  
 
     this.lessonsService.get().subscribe(res => {
       console.log(res)
@@ -69,7 +73,9 @@ export class LessonslistComponent implements OnInit {
     }, err => {
       console.log(err)
     });
-
+    // this.lessonList.forEach(element => {
+    //   if(this.datapeerService.classLessonActive.lessonId==l)
+    // });
 
     this.classService.get().subscribe(res => {
       // console.log(res)
@@ -98,12 +104,13 @@ export class LessonslistComponent implements OnInit {
 
   initPeer():void{
     
-
-    //this.peer = new Peer();
+    
+    /*this.peer = new Peer();*/
     this.peer = new Peer('', {
-      host: 'localhost',
+      host: environment.serverName,
       port: 9000,
-      path: '/cameraServer'
+      path: '/cameraServer',
+      ssl: true
     });
 
     var peerId = "";
@@ -112,11 +119,9 @@ export class LessonslistComponent implements OnInit {
         peerId = this.peer.id;
   
         if(peerId == undefined){
-          //alert("בעייה בטעינת מצלמה - נסה לטעון את הדף מחדש");
           this.initPeer();
         }else{
           console.log(peerId);
-         // alert(peerId);
     
           this.datapeerService.setPeer(this.peer);
           

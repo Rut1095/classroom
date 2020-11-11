@@ -1,16 +1,16 @@
  
-<!-- <p>chat works!</p>*ngIf="lessIsActive==true;" -->
+<!-- <p>chat works!</p>*ngIf="lessIsActive==true;color="primary"" -->
 <div class="divChatButton">
-<button class="chatButton" mat-mini-fab color="primary" (click)="chatClick=true">
-  <mat-icon class="chatIcon">chat</mat-icon>
+<button class="chatButton" color="warn" mat-mini-fab  (click)="chatClick=true">
+  <mat-icon class="chatIcon" >chat</mat-icon>
 </button></div>
 <!-- <mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon>  *ngIf="chatClick==false" -->
 
-<div *ngIf="chatClick==true;" id="chat" style="overflow-y: auto; width:20vw;" #scrollMe [scrollTop]="scrollMe.scrollHeight">
+<body *ngIf="chatClick==true;" id="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <header  style="cursor: pointer;" (click)="chatClick=false"><mat-icon style="float: left;cursor: pointer; ">chat</mat-icon>chat</header>
-      <mat-list class="list" *ngFor="let messege of messageArr">
+      <mat-list class="list" *ngFor="let messege of messageArr" style="width: fit-content;">
   
-        <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"  >
+        <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"   >
      
           <p> <b >{{ messege.name }}</b> <br> {{messege.message}}</p>
              
@@ -26,9 +26,9 @@
      
       <textarea  placeholder="write your message"  [(ngModel)]="newMsg" class="message-input"></textarea>
      
-      <button class="button" mat-raised-button  (click)="newMsg != ''?sendMessage():''" >
+      <button mat-mini-fab class="button"   (click)="newMsg != ''?sendMessage():''" >
       
-        <mat-icon class="iconSend">input</mat-icon>
+        <mat-icon class="iconSend" color="warn">input</mat-icon>
     
       </button>
-</div>
+</body>

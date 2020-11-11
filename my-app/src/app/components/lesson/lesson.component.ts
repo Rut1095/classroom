@@ -52,6 +52,8 @@ export class LessonComponent implements OnInit ,OnChanges {
  
   ngOnInit(): void
    {
+    
+     
     this.user = JSON.parse(localStorage.getItem("userDetails"));
 //alert( localStorage.getItem("userPeerId"));
     if(this.datapeerService.getPeer() == undefined){
@@ -89,7 +91,7 @@ export class LessonComponent implements OnInit ,OnChanges {
       alert("שגיאה בקריאה לשירות");
     });
 
-
+    
     //setTimeout(() => {
     //}, 15 * 1000); // 4 seconds
     //  this.getAllActiveUsersInLesson();  
@@ -162,6 +164,8 @@ export class LessonComponent implements OnInit ,OnChanges {
 
     if(this.peer == undefined){
       alert("בעייה בטעינת מצלמה - נסה להמתין או לטעון את הדף מחדש");
+      this.lessIsActive = false;
+
       return;
     }
 
@@ -172,7 +176,7 @@ export class LessonComponent implements OnInit ,OnChanges {
    // alert("setuserActive sessionId: " + this.peer.id);
     var classId:Number;
   
-    this.usersService.setUserActive(this.datapeerService.classLessonActive.classId, this.id, this.user.Id,this.sessionId).subscribe(res => {
+    this.usersService.setUserActiveWithCam(this.datapeerService.classLessonActive.classId, this.id, this.user.Id,this.sessionId,true,true).subscribe(res => {
 
       if (res) {
         localStorage.setItem("activeUser", JSON.stringify(res));
@@ -203,6 +207,7 @@ export class LessonComponent implements OnInit ,OnChanges {
     this.getActiveUsersAll();
     //run all 10 seconds
     this.time = setInterval(()=>{
+      if(!this.isOn) return;
       this.getActiveUsersAll();
     },10 * 1000);
   }
@@ -219,8 +224,13 @@ export class LessonComponent implements OnInit ,OnChanges {
       var isuserfound:Boolean = false;
       this.activeUsers.forEach(oldau => {
         if(newau.UserId == oldau.UserId ){
-          if(newau.sessionId != oldau.sessionId){
-            oldau.sessionId = newau.sessionId;
+          if(newau.sessionId != oldau.sessionId ||
+            oldau.showCamera != newau.showCamera ||
+            oldau.showMicrophone != newau.showMicrophone ){
+              oldau.sessionId = newau.sessionId;
+              oldau.showCamera = newau.showCamera;
+              oldau.showMicrophone = newau.showMicrophone;
+              
           }
           oldau.active=true;
           isuserfound=true;
@@ -248,33 +258,33 @@ export class LessonComponent implements OnInit ,OnChanges {
   }
 
   getActiveUsersAll():boolean{
-    let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
-    this.usersService.GetActivesUsers(userA).subscribe(res => {
-      if(this.activeUsers == undefined){
-        
-            console.log(res);
-            this.activeUsers = res;
+        let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
+        this.usersService.GetActivesUsers(userA).subscribe(res => {
+          if(this.activeUsers == undefined){
             
-          this.datapeerService.setActiveUsers(this.activeUsers);
-      }else
-         this.syncActiveUsers(res)
+                console.log(res);
+                this.activeUsers = res;
+                
+              this.datapeerService.setActiveUsers(this.activeUsers);
+          }else
+            this.syncActiveUsers(res)
 
-          this.isOn = true;
-        // this.videoconnect();
-    }, err => {
-      console.log(err)
-      alert("שגיאה בקריאה לשירות");
-      return false;
-    });
+              this.isOn = true;
+            // this.videoconnect();
+        }, err => {
+          console.log(err)
+          alert("שגיאה בקריאה לשירות");
+          return false;
+        });
 
-    //update last time this user active
-    this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
-    }, err => {
-      console.log(err)
-      alert("שגיאה בקריאה לשירות");
-    });
-    
-    return true;
+        //update last time this user active
+        this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
+        }, err => {
+          console.log(err)
+          alert("שגיאה בקריאה לשירות");
+        });
+        
+        return true;
   }
 
 

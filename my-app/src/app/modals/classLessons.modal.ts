@@ -1,3 +1,4 @@
+
 export class classLessons{
     Id:Number;
     classId:Number;

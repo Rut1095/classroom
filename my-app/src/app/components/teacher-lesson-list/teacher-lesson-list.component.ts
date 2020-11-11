@@ -9,6 +9,7 @@ import { User } from 'src/app/modals/user.modal';
 import { classes } from 'src/app/modals/classes.modal';
 import { classLessons } from 'src/app/modals/classLessons.modal';
 import { DatapeerService } from 'src/app/services/datapeer.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-teacher-lesson-list',
@@ -143,11 +144,12 @@ peer;
   initPeer():void{
     
 
-    //this.peer = new Peer();
-    this.peer = new Peer('', {
-      host: 'localhost',
+     /*this.peer = new Peer();*/
+   this.peer = new Peer('', {
+      host: environment.serverName,
       port: 9000,
-      path: '/cameraServer'
+      path: '/cameraServer',
+      ssl:true
     });
 
     var peerId = "";
@@ -169,7 +171,8 @@ peer;
       }, 1 * 1000);
   }
  
-  selectLess(cl , les){
+  selectLess(cl , les)
+  {
     console.log("cl=" + cl);
     
     console.log( cl);

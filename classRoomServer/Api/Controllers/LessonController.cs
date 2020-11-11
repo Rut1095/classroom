@@ -37,7 +37,13 @@ namespace Api.Controllers
             return BL.LessonsLogic.AddNewLessonTeacherClass(lessons);
         }
 
+        [Route("{id}")]
+        [HttpPost]
+        public void SetlessonIsActive(string id)
 
+        {
+            BL.UsersLogic.StartNewLesson(id);
+        }
         //[Route("teacher/{TeacherId}")]
         //[HttpGet]
         //public List<Lesson> GetTeacherLessons(int TeacherId)

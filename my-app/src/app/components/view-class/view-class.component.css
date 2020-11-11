@@ -28,3 +28,9 @@ body{
 .sidnav-cont-mar{
     margin-left: 0!important; margin-right: 290px;
 }
+mat-sidenav{
+    transform: none;
+    visibility: visible;
+    background: transparent;
+    position: fixed;
+}

@@ -1,17 +1,29 @@
 <!-- logo -->
-<p>קלאס<mat-icon>local_library</mat-icon></p>
-<h1 style="text-align: center;">שיעור {{currentLesson}}</h1>
+<!-- <p>קלאס<mat-icon>local_library</mat-icon></p> exitLesson()-->
+<button mat-fab  (click)="isOn=false" class="exitButton"  *ngIf="isOn==true"
+routerLink="/classroom"
+>
+    <mat-icon>close</mat-icon>
+</button>
 
-<app-user-camera *ngIf="isOn==true"></app-user-camera>
+<h1 style="text-align: center;font: outline;color: white;
+text-shadow: 3px 4px 2px #ffd740;margin-top: 5px;
+font-size: 60px;">שיעור {{currentLesson}}</h1>
+
+
+<!-- //loader -->
+
+<app-user-camera *ngIf="isOn==true" ></app-user-camera>
   
 
 <button mat-flat-button color="warn" *ngFor="let aUser of activeUsers" >
-  <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}</button>
+  <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}}</button>
   
-  <!-- <mat-spinner></mat-spinner> -->
+  <!-- <mat-spinner></mat-spinner>href="#" {{ aUser.sessionId }} -->
   <br>
-    <button  mat-raised-button color="primary" (click)="setUserActiveInLesson()"   class="enter-button"
-    >כניסה לשיעור<mat-icon>input</mat-icon></button>
+  <a class="play-btn"  (click)="setUserActiveInLesson()" *ngIf="lessIsActive == false"></a>
+     <!-- <button mat-fab  mat-raised-button color="primary"    class="enter-button"
+    >כניסה לשיעור<mat-icon>input</mat-icon></button>  -->
     <!-- <button mat-raised-button color="primary"disabled *ngIf="user.Type==1" (click)="startNewLesson(id) " style="float: right;" >שיעור חדש <mat-icon>input</mat-icon></button> -->
   
   <br><br>
@@ -121,4 +133,12 @@ for(useractive)
   
         </mat-select>
       </mat-form-field> -->
-      
+  
+      <!-- <div id="container">
+          
+        <p><a>{{currentLesson}}</a>
+        
+        </p>
+        
+      </div> -->
+

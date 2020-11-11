@@ -69,7 +69,7 @@ namespace BL
             }
         }
         
-        public static ActiveUser SetActiveUser(int classId, int lessonId, int userId, String sessionId )
+        public static ActiveUser SetActiveUser(int classId, int lessonId, int userId, String sessionId, bool? showCam, bool? showMic)
         {
             using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
             {
@@ -87,12 +87,12 @@ namespace BL
                                 userActiveDB.ClassLessonId = classlesson.Id;
                                 userActiveDB.ConnectTime = DateTime.Now.TimeOfDay;
                             }
-                                userActiveDB.LastConnectDateTime = DateTime.Now;
+                            userActiveDB.LastConnectDateTime = DateTime.Now;
                             userActiveDB.sessionId = sessionId;
+                            if (showCam != null) userActiveDB.showCamera = showCam;
+                            if (showMic != null) userActiveDB.showMicrophone = showMic;
                             db.SaveChanges();
                             return ActiveUser.ConvertToDTO(userActiveDB);
-
-
                         }
 
                         //when the user dont found in classlesson table then add ActiveUser
@@ -101,6 +101,8 @@ namespace BL
                         u.UserId = userId;
                         u.ConnectTime = DateTime.Now.TimeOfDay;
                         u.LastConnectDateTime = DateTime.Now;
+                            if (showCam != null) userActiveDB.showCamera = showCam;
+                            if (showMic != null) userActiveDB.showMicrophone = showMic;
 
                         //u.sessionId=
                         DAL.ActiveUser activeUser = DTO.ActiveUser.ConvertToDAL(u);
@@ -149,7 +151,7 @@ namespace BL
 
                     foreach (var item in activeUsers)
                     {
-                        if(Convert.ToDateTime(item.LastConnectDateTime).AddMinutes(0.5) < DateTime.Now)
+                        if(Convert.ToDateTime(item.LastConnectDateTime).AddMinutes(0.25) < DateTime.Now)
                             continue;
                         DTO.ActiveUser a = ActiveUser.ConvertToDTO(item);
                         a.NameUser = db1.Users.FirstOrDefault(p => p.Id == item.UserId).name;
@@ -176,5 +178,57 @@ namespace BL
             }
 
         }
+        public static void SetShowCamera(int userId, bool showCamera)
+        {
+            using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+            {
+                foreach (var user in db.ActiveUser)
+                {
+                    if (user.UserId == userId)
+                    {
+                        user.showCamera = showCamera;
+                        break;
+                    }
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        public static void SetMicrophone(int userId, bool showMicrophone)
+        {
+            using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+            {
+                foreach (var user in db.ActiveUser)
+                {
+                    if (user.UserId == userId)
+                    {
+                        user.showMicrophone = showMicrophone;
+                        break;
+                    }
+                }
+
+                db.SaveChanges();
+            }
+        }
+
+        //public static Users deleteUnactiveUser(int userId)
+        //{
+        //    using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+        //    {
+        //        foreach (var user in db.ActiveUser)
+        //        {
+        //            if (user.UserId == userId)
+        //            {
+        //                //delete user from activeuser
+        //                ////
+        //                return db.Users.FirstOrDefault(userName => userName.Id == userId);
+        //            }
+        //        }
+        //        db.SaveChanges();
+        //    }
+        //}
+
+
     }
 }

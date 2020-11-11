@@ -11,9 +11,10 @@
     /* text-align: start; */
     box-shadow:  1px 1px 2px #595252;
     position: relative;
-    width: 90%;
+    width:fit-content;
     height: max-content;
     word-break: break-all;
+    
     
 }
 .continu{
@@ -26,59 +27,69 @@ span{
     white-space: break-spaces;
 }
 .my-message{
-  
+  width: fit-content;
     background-color: #bfbdb6;
     border-top-right-radius: 0px;
-    background-color:green ;
+    background-color: #f44336;
+    /* background-color:green ; */
     color: white;
     /* right: 0;  */
-     margin-left: 8vw;
+     /* margin-left: 8vw; */
 }
 .other-message{
-     
+     width: fit-content;
     background-color: white;
   
     border-top-left-radius: 0px;
   
 }
 #chat{
-    width: 10vw;
-    height: 48vh;
-  position: absolute;
+    width: 300px;
+    height: 60vh;
+  position: fixed;
     bottom: 0;
+    background-color: white;
+    box-shadow: 0px 0px 6px 0px black;
+
 }
 .message-input{
     padding-top: 1vh;
     padding-left: 1vw;
     position: fixed;
-    bottom: 1vh;
+    bottom: 0vh;
     border-radius: 1vw;
+    width: 300px;
+
 
 }
 #chat header{
-    background-color: green;
+    background-color: #f44336;
+    /* background-color: green; */
     color: white;
     font-weight: bold;
-    width: 180%;
+    text-shadow: 0px 0px 2px;
+    /* width: 180%; */
     text-align: center;
-    padding-top: 1vh;
-    padding-bottom: 1vh;
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    box-shadow: 0 0 5px black;
+
 }
 .button{
-    position: fixed;
+position: fixed;
     bottom: 2px;
-    /* border-radius: 1vw; */
-    background: green;
-    /* box-shadow: 0px 0px 4px black; */
-    /* left: 34vw; */
+    /* background: green; */
+
+    background: #f44336;
     z-index: 1;
-    margin-left: 13vw;
+    /* margin-left: 13vw; */
     padding-top: 0.4vh;
     padding-bottom: 0.3vh;
+    left: 250px;
     margin-bottom: 0.7vh;
 }
 .iconSend{
-    font-size: 1.5vw;
+    font-size: 3vw;
     color: white;
 }
 chat{
@@ -89,6 +100,7 @@ chat{
     border-width: 10px;
     margin: 50px;
     width: 140px;
+    background-color: thistle;
 }
 ::ng-deep chatButton{
     position: fixed;
@@ -105,4 +117,10 @@ chat{
     width: 100%;*/
     width: 70%;
 
+}
+body{
+   /* background-color: thistle !important
+    ;*/
+    background-image: none;
+    background-color: white!important;
 }

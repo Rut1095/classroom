@@ -1,0 +1,13 @@
+@echo off
+:: Args are like:
+:: MobileApi
+:: C:\Users\chris\Dropbox\Code\2017\VbaMeasureHcp\src\HCPMobileApi
+:: MobileApi\bin\Debug\netcoreapp2.2\MobileApi.dll
+:: .vs\MobileApp\config\applicationhost.config
+setlocal
+set PATH=%PATH%;C:\Program Files\IIS Express
+set LAUNCHER_ARGS=exec %2\%3
+set LAUNCHER_PATH=C:\Program Files\dotnet\dotnet.exe
+iisexpress /site:%1 /config:"%2\%4"
+:: Comment out line below to check for errors
+exit

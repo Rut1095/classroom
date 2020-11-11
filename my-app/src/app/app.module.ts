@@ -29,6 +29,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { LoaderComponent } from './components/loader/loader.component';
 
 // import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -46,7 +47,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     LessonComponent,
     UserCameraComponent,
     TeacherLessonListComponent,
-    ChatComponent
+    ChatComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
