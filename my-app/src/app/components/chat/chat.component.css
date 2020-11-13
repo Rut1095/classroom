@@ -89,7 +89,7 @@ position: fixed;
     margin-bottom: 0.7vh;
 }
 .iconSend{
-    font-size: 3vw;
+    /* font-size: 3vw; */
     color: white;
 }
 chat{
@@ -123,4 +123,8 @@ body{
     ;*/
     background-image: none;
     background-color: white!important;
+}
+.userImg{
+    height: 20px;
+    width: 20px;
 }

@@ -63,5 +63,17 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="Document">
+      <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.Document">
+        <MappingFragment StoreEntitySet="Document">
+          <ScalarProperty Name="uploadUserId" ColumnName="uploadUserID" />
+          <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />
+          <ScalarProperty Name="filePath" ColumnName="filePath" />
+          <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+          <ScalarProperty Name="fileName" ColumnName="fileName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>

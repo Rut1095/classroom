@@ -1,0 +1,10 @@
+<h2>File Upload</h2>
+  <!-- <p>Here are some links to help you get started:</p> -->
+    <div class="card-container" style="margin-top: 80px;">
+
+    <input type="file" id="FUImage" name="FUImage" accept=".png, .jpg, .jpeg .pdf .docx" (change)="onChange($event.target.files)"> 
+    <br>
+    <input type="text" [(ngModel)]="fileName">
+    <br>
+    <button type="button" class="btn btn-danger pull-left" (click)="btnUpload()">שמירה</button> 
+  </div>

@@ -29,6 +29,17 @@
     <Property Name="lesseonIsActive" Type="bit" Nullable="false" />
     <Property Name="teacherId" Type="int" Nullable="false" />
   </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="fileName" Type="nchar" MaxLength="40" Nullable="false" />
+    <Property Name="creationTime" Type="datetime" Nullable="false" />
+    <Property Name="uploadUserID" Type="int" Nullable="false" />
+    <Property Name="filePath" Type="nchar" MaxLength="100" />
+    <Property Name="ClassLessonId" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="lessons">
     <Key>
       <PropertyRef Name="Id" />
@@ -60,6 +71,7 @@
     <EntitySet Name="ActiveUser" EntityType="Self.ActiveUser" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ClassLessons" EntityType="Self.ClassLessons" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="lessons" EntityType="Self.lessons" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UsersLessons" EntityType="Self.UsersLessons" Schema="dbo" store:Type="Tables" />

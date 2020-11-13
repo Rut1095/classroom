@@ -30,6 +30,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatCardModule} from '@angular/material/card';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { LoaderComponent } from './components/loader/loader.component';
+import { DocumentsListComponent } from './components/documents-list/documents-list.component';
+import { DocumentAddComponent } from './components/document-add/document-add.component';
+import {MatTableModule} from '@angular/material/table';
 
 // import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -48,7 +51,9 @@ import { LoaderComponent } from './components/loader/loader.component';
     UserCameraComponent,
     TeacherLessonListComponent,
     ChatComponent,
-    LoaderComponent
+    LoaderComponent,
+    DocumentsListComponent,
+    DocumentAddComponent
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import { LoaderComponent } from './components/loader/loader.component';
     MatSelectModule,
     MatExpansionModule,
     MatCardModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatTableModule
     // MatProgressSpinnerModule
     // FormControl,
     // Validators

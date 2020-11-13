@@ -176,10 +176,16 @@ peer;
     console.log("cl=" + cl);
     
     console.log( cl);
+    if(les==this.newLesson)
+    {
+      console.log("new leson" +this.newLesson);
+      return;
+    }
 
-    this.classService.getClassLessonByIds(cl.Id, les.Id).subscribe((res:classLessons)=>{
-      this.datapeerService.setClassLessonActive(res);
-    });
+    // this.classService.getClassLessonByIds(cl.Id, les.Id).subscribe((res:classLessons)=>{
+    //   this.datapeerService.setClassLessonActive(res);
+    // });
 
   }
+  
 }

@@ -11,6 +11,7 @@
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Users" Width="1.5" PointX="4" PointY="2.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.UsersLessons" Width="1.5" PointX="4.875" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.ActiveUser" Width="1.5" PointX="2.25" PointY="2.375" />
+        <EntityTypeShape EntityType="DigitlClassRoomUpdateModel.Document" Width="1.5" PointX="6" PointY="2.5" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

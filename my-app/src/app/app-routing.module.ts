@@ -7,6 +7,8 @@ import { HomeComponent } from './components/home/home.component';
 import { ViewUserComponent } from './components/view-user/view-user.component';
 import { LessonComponent } from './components/lesson/lesson.component';
 import { LessonslistComponent } from './components/lessonslist/lessonslist.component';
+import { DocumentsListComponent } from './components/documents-list/documents-list.component';
+import { DocumentAddComponent } from './components/document-add/document-add.component';
 
 
 
@@ -35,6 +37,14 @@ const routes: Routes = [
     component:ViewUserComponent
   },
   
+  {
+    path:"documents-list",
+    component:DocumentsListComponent
+  },
+  {
+    path:"document-add",
+    component:DocumentAddComponent
+  },
   {
     path:"",
     component:HomeComponent

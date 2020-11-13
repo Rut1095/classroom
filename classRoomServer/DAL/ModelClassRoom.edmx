@@ -34,6 +34,17 @@
           <Property Name="lesseonIsActive" Type="bit" Nullable="false" />
           <Property Name="teacherId" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fileName" Type="nchar" MaxLength="40" Nullable="false" />
+          <Property Name="creationTime" Type="datetime" Nullable="false" />
+          <Property Name="uploadUserID" Type="int" Nullable="false" />
+          <Property Name="filePath" Type="nchar" MaxLength="100" />
+          <Property Name="ClassLessonId" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="lessons">
           <Key>
             <PropertyRef Name="Id" />
@@ -65,6 +76,7 @@
           <EntitySet Name="ActiveUser" EntityType="Self.ActiveUser" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Classes" EntityType="Self.Classes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ClassLessons" EntityType="Self.ClassLessons" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Document" EntityType="Self.Document" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="lessons" EntityType="Self.lessons" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsersLessons" EntityType="Self.UsersLessons" Schema="dbo" store:Type="Tables" />
@@ -124,6 +136,7 @@
           <EntitySet Name="Users" EntityType="Self.Users" />
           <EntitySet Name="UsersLessons" EntityType="Self.UsersLessons" />
           <EntitySet Name="ActiveUser" EntityType="DigitlClassRoomUpdateModel.ActiveUser" />
+          <EntitySet Name="Document" EntityType="DigitlClassRoomUpdateModel.Document" />
         </EntityContainer>
         <EntityType Name="ActiveUser">
           <Key>
@@ -136,6 +149,17 @@
           <Property Name="LastConnectDateTime" Type="DateTime" Precision="3" />
           <Property Name="showCamera" Type="Boolean" />
           <Property Name="showMicrophone" Type="Boolean" />
+        </EntityType>
+        <EntityType Name="Document">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="fileName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+          <Property Name="creationTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="uploadUserId" Type="Int32" Nullable="false" />
+          <Property Name="filePath" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+          <Property Name="ClassLessonId" Type="Int32" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -202,6 +226,18 @@
                 <ScalarProperty Name="ConnectTime" ColumnName="ConnectTime" />
                 <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Document">
+            <EntityTypeMapping TypeName="DigitlClassRoomUpdateModel.Document">
+              <MappingFragment StoreEntitySet="Document">
+                <ScalarProperty Name="uploadUserId" ColumnName="uploadUserID" />
+                <ScalarProperty Name="ClassLessonId" ColumnName="ClassLessonId" />
+                <ScalarProperty Name="filePath" ColumnName="filePath" />
+                <ScalarProperty Name="creationTime" ColumnName="creationTime" />
+                <ScalarProperty Name="fileName" ColumnName="fileName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

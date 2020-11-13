@@ -9,15 +9,19 @@
 <body *ngIf="chatClick==true;" id="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
     <header  style="cursor: pointer;" (click)="chatClick=false"><mat-icon style="float: left;cursor: pointer; ">chat</mat-icon>chat</header>
       <mat-list class="list" *ngFor="let messege of messageArr" style="width: fit-content;">
-  
+
         <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"   >
-     
+        <mat-icon style="position: relative;">account_circle</mat-icon>
+
+          <!-- <img class="userImg" src="/assets/user.png" > -->
           <p> <b >{{ messege.name }}</b> <br> {{messege.message}}</p>
              
          </mat-list-item>
        
         <mat-list-item *ngIf="messege.id!=thisSend" class="other-message item" >
-        
+          <!-- <img src="src\app\components\chat\user.png" > -->
+          <mat-icon>account_box</mat-icon>
+
           <p> <b >{{ messege.name }}</b> <br>{{messege.message}}</p>
        
         </mat-list-item>

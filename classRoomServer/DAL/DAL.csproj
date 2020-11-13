@@ -75,6 +75,9 @@
     <Compile Include="ClassLessons.cs">
       <DependentUpon>ModelClassRoom.tt</DependentUpon>
     </Compile>
+    <Compile Include="Document.cs">
+      <DependentUpon>ModelClassRoom.tt</DependentUpon>
+    </Compile>
     <Compile Include="lessons.cs">
       <DependentUpon>ModelClassRoom.tt</DependentUpon>
     </Compile>

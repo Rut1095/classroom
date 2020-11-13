@@ -24,23 +24,23 @@
   </div> -->
   <!-- -image: url(../../../assets/back.jpg); -->
 
-<mat-sidenav-container style="direction: rtl;background:transparent
-">
+<mat-sidenav-container style="direction: rtl;background:transparent;overflow-y: hidden">
 
     <mat-sidenav-content  class="sidnav-cont-mar" style="direction: ltr;">
-        <div [style.height.px]="innerHeight" >
+        
+      <div [style.height.px]="innerHeight" style="overflow-y: hidden">
            <router-outlet></router-outlet>
-           
         </div>
+        
     </mat-sidenav-content>
     <mat-sidenav #sidenav   mode="side" opened  class="example-sidenav  side-nav-style">
        <!--<a mat-list-item [routerLink]="'/classroom'">בדיקה</a>
         <section style="width: 100px;"></section><mat-spinner></mat-spinner>
 --> 
         
-         <app-lessonslist *ngIf="this.user.Type==0"></app-lessonslist>
+         <app-lessonslist *ngIf="this.user.Type==0" style="overflow-y: hidden"></app-lessonslist>
 
-         <app-teacher-lesson-list  *ngIf="this.user.Type==1"></app-teacher-lesson-list>   
+         <app-teacher-lesson-list  *ngIf="this.user.Type==1" style="overflow-y: hidden"></app-teacher-lesson-list>   
 
 
      </mat-sidenav>

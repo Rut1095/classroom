@@ -373,11 +373,13 @@ hideOrShowMicrophone():void{
   //set user as unactive in lesson
 exitLesson():void
 {
-  /*this.ActiveUserScreen.cameraStream.getTracks().forEach(function(track)
+ 
+  this.ActiveUserScreen.cameraStream.getTracks().forEach(track => track.stop())
+ /* this.ActiveUserScreen.cameraStream.getTracks().forEach(function(track)
    {
      // track.enabled=false;
       track.stop();
-     
+
   // this.usersService.deleteUnactiveUser(this.user).subscribe();
 });*/
 }

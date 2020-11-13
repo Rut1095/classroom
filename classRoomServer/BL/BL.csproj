@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ClassLogic.cs" />
+    <Compile Include="DocumentsLogic.cs" />
     <Compile Include="LessonsLogic.cs" />
     <Compile Include="UsersLogic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

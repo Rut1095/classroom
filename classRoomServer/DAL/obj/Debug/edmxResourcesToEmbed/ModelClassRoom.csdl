@@ -51,6 +51,7 @@
     <EntitySet Name="Users" EntityType="Self.Users" />
     <EntitySet Name="UsersLessons" EntityType="Self.UsersLessons" />
     <EntitySet Name="ActiveUser" EntityType="DigitlClassRoomUpdateModel.ActiveUser" />
+    <EntitySet Name="Document" EntityType="DigitlClassRoomUpdateModel.Document" />
   </EntityContainer>
   <EntityType Name="ActiveUser">
     <Key>
@@ -63,5 +64,16 @@
     <Property Name="LastConnectDateTime" Type="DateTime" Precision="3" />
     <Property Name="showCamera" Type="Boolean" />
     <Property Name="showMicrophone" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Document">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="fileName" Type="String" Nullable="false" MaxLength="40" FixedLength="true" Unicode="true" />
+    <Property Name="creationTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="uploadUserId" Type="Int32" Nullable="false" />
+    <Property Name="filePath" Type="String" MaxLength="100" FixedLength="true" Unicode="true" />
+    <Property Name="ClassLessonId" Type="Int32" Nullable="false" />
   </EntityType>
 </Schema>

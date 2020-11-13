@@ -3,7 +3,7 @@
     // display: flex;
     // justify-content: center;
 } */
-.wrap_classes{
+ .wrap_classes{
   margin-top: 40px;
 }
 .clName{
@@ -20,6 +20,7 @@ margin-bottom: 10px;
   font-family: 'Assistant' !important;
   font-size: 16px;
 }
+/*........*/
 .heroes {
     margin: 0 0 2em 0;
     list-style-type: none;
@@ -78,9 +79,8 @@ button {
     padding: 5px 10px;
     border-radius: 4px;
     cursor: pointer;
-    cursor: hand;
-    /* font-family: Arial; */
-  }
+    cursor: hand; 
+   }
   
   button:hover {
     background-color: #cfd8dc;
@@ -96,7 +96,7 @@ button {
   
   .herme{
 position: absolute;
-  }
+  }*/ 
   ::ng-deep .mat-card mat-expansion-panel mat-expansion-panel-header{
     text-align: center;
   }
@@ -105,9 +105,70 @@ position: absolute;
   }
   ::ng-deep .add{
     text-align: center !important;
-  }
+  } 
 
 
 
   /*////////////*/
   
+
+  .wrap_classes{
+    margin-top: 40px;
+  }
+  .clName{
+    text-align: right;
+    margin-bottom: 10px;
+    text-align: right;
+    margin-bottom: 10px;
+    background: #ffd740;
+    width: 100%;
+    text-align: center;
+  }
+  .clName a{
+    text-decoration: none;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    text-shadow: 0px 0px 2px;
+    
+  }
+  ::ng-deep .mat-card{
+    box-shadow: 2px 2px 1px -1px rgba(0, 0, 0, 0.2), 3px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 1px 3px 0px rgba(0, 0, 0, 0.12) !important;
+  }
+  ::ng-deep .mat-expansion-panel, .mat-expansion-panel-header,.mat-panel-description,.mat-card{
+    font-family: 'Assistant' !important;
+    font-size: 16px;
+  }
+  .clName:hover{
+    background-color:#fbdf75;
+  }
+  .userName{
+    text-align: right;
+}
+::ng-deep .head{
+  text-align: center;
+  text-decoration-color: darkviolet;
+
+
+}
+mat-expansion-panel{margin-bottom: 0;
+border: 5px solid #518f81;
+box-shadow: 0 0 0 3px white;}
+
+mat-panel-title{
+  color: #387d6b;
+  font-size: x-large;
+  padding-left: 65px;
+  font-weight: bolder;
+  text-shadow: 0px 0px 3px
+}
+h1{
+  color: #ffd740;
+    font-size: xx-large;
+    text-align: center;
+    font-weight: bold;
+
+}
+mat-option{
+  text-align: end;
+}

@@ -57,7 +57,20 @@
       <input matInput [(ngModel)]="newLesson"  type="text">
     </mat-form-field>
  
+ <mat-form-field appearance="fill" class="add">
+      <mat-label>בחר כיתה</mat-label>
+      <mat-select (selectionChange)="selectedClass($event)">
+        <mat-option [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
 
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="addClassLesson()" [disabled]="!lesson.lessonId || !lesson.classId"> אישור </button>
+  </mat-expansion-panel>
+<!-- //*ngIf="lesson.lessonId && lesson.classId " -->
+
+  
+</mat-accordion>
+</div>
   <!-- <mat-form-field appearance="fill" *ngIf="">
     <mat-label>שיעור חדש</mat-label>
     <mat-select (selectionChange)="selectedLesson($event)">
@@ -68,17 +81,4 @@
     </mat-select>
   </mat-form-field> -->
 
-    <mat-form-field appearance="fill" class="add">
-      <mat-label>בחר כיתה</mat-label>
-      <mat-select (selectionChange)="selectedClass($event)">
-        <mat-option [value]="class.Id" *ngFor="let class of classesList">כיתה {{class.Name}}</mat-option>
-
-      </mat-select>
-    </mat-form-field>
-    <button mat-raised-button (click)="addClassLesson()" *ngIf="lesson.lessonId && lesson.classId"> אישור </button>
-  </mat-expansion-panel>
-
-
-  
-</mat-accordion>
-</div>
+   
