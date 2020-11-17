@@ -11,6 +11,7 @@ namespace DTO
         public int Id { get; set; }
         public String FileName { get; set; }
         public int UploadUserId { get; set; }
+        public String UploadUserName { get; set; }
         public String FilePath { get; set; }
         public int ClassLessonId { get; set; }
         public DateTime CreationTime { get; set; }

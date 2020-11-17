@@ -45,7 +45,8 @@
         <mat-option *ngFor="let less of lessonList" [value]="less.Id" (click)="other=false">
           {{less.Name}}
         </mat-option>
-        <mat-option [value]="newLesson"  (click)="other=true"  (selectionChange)="newLesson"> {{newLesson ? newLesson: "אחר"}}</mat-option>
+        <!-- <mat-option [value]="newLesson"  (click)="other=true"   (selectionChange)="newLesson"(selectionChange)="newLesson"> {{newLesson ? newLesson: "אחר"}}</mat-option> -->
+        <mat-option  [value]="99" (click)="other=true" >אחר</mat-option>
         
       </mat-select>
 

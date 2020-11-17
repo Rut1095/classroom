@@ -32,5 +32,12 @@ import { environment } from '../../environments/environment';
     {
       return this.http.post<classLessons>(this.basicUrl+"AddLessonClassTeacher",lesson );
     }
+
+    AddNewLesson(lesson:string)
+    {
+      var les:Lesson=new Lesson();
+      les.Name = lesson;
+      return this.http.post<Lesson>(this.basicUrl+"lesson/add",les);
+    }
   }
   

@@ -105,22 +105,7 @@ span{
     padding-bottom: 0.3vh;
     margin-bottom: 0.7vh;
 }
-.iconSend{
-    font-size: 1.5vw;
-    color: white;
-}
 
-
-.enter-button{
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    /* width: 60%;
-    height: 150px;
-    background: darkgreen; */
-    width: 150px;
-    height: 150px;
-}
 
 
 
@@ -339,7 +324,8 @@ a{
 }
 
 p:nth-child(1) a{
-  color:#FF1177;
+  /* color:#FF1177; */
+  color: #ffd740;
   font-family:Monoton;
 }
 p:nth-child(1) a:hover{
@@ -840,4 +826,91 @@ color:#ffffff;
 ::-webkit-scrollbar {
   width: 0px;
   background: transparent;
+}
+
+
+
+
+/* <!-- -----------side------------------- --> */
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+:after {
+  content: "";
+}
+
+
+
+nav {
+        position: fixed;
+        top: 10em;
+        left: 0em;
+  
+}
+
+nav ul {
+  text-align: center;
+}
+
+nav ul li {
+  position: relative;
+  width: 70px;
+  cursor: pointer;
+  background: #ffd740;
+  text-transform: uppercase;
+  transition: all 0.4s ease-out;
+}
+nav ul li:after ::shadow{
+  width: 80px;
+  height: 80px;
+
+
+}
+
+nav ul li:after {
+  position: absolute;
+  background: white;
+  /* color: crimson; */
+  color: #ffd740;
+
+
+  top: 0;
+  left: 70px;
+  width: 70px;
+  height: 100%;
+  opacity: 0.5;
+  transform: perspective(400px) rotateY(90deg);
+  transform-origin: 0 100%;
+  transition: all 0.4s ease-out;
+}
+
+nav ul li:nth-child(1):after {
+  content: "קבצים";
+  line-height: 88px;
+}
+
+
+nav ul li:hover {
+  transform: translateX(-70px);
+}
+
+nav ul li:hover:after {
+  opacity: 1;
+  transform: perspective(400px) rotateY(0deg) scale(1);
+}
+
+nav ul li > div {
+  display: inline-block;
+  padding: 25px 0;
+  background: transparent;
+}
+
+nav ul li div {
+  position: relative;
+}
+::-webkit-scrollbar {
+  display: none;
 }

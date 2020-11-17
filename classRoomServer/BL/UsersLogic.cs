@@ -17,9 +17,9 @@ namespace BL
         {
             using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
             {
-                var usersList = db.Users.Where(p => p.name == user.UserName && p.password == user.Password);
+                var usersList = db.Users.Where(p => p.name.Trim() == user.UserName && p.password.Trim() == user.Password);
 
-                if (usersList.Count() == 1)
+                if (usersList.Count() >= 1)
                     return new DTO.User(usersList.First());
                 else return null;
             }
@@ -101,8 +101,8 @@ namespace BL
                         u.UserId = userId;
                         u.ConnectTime = DateTime.Now.TimeOfDay;
                         u.LastConnectDateTime = DateTime.Now;
-                            if (showCam != null) userActiveDB.showCamera = showCam;
-                            if (showMic != null) userActiveDB.showMicrophone = showMic;
+                            if (showCam != null) u.showCamera = showCam;
+                            if (showMic != null) u.showMicrophone = showMic;
 
                         //u.sessionId=
                         DAL.ActiveUser activeUser = DTO.ActiveUser.ConvertToDAL(u);

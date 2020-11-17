@@ -5,6 +5,7 @@
 </div> -->
 
 <app-loader *ngIf="isLoader==true"></app-loader>
+
 <div class="container">
 
 
@@ -19,33 +20,30 @@
 
             </div>
 
-            <div class="footer-video">
-                <button mat-fab  (click)="hideOrShowCamera()" class="cameraButton" *ngIf="isLoader==false">
-                    <mat-icon (click)="camOn=false;hideOrShowCamera()" *ngIf="camOn==true" >videocam</mat-icon>
-                    <mat-icon (click)="camOn=true;hideOrShowCamera()" *ngIf="camOn==false">videocam_off</mat-icon>
-                </button>
+        
 
-                <button mat-fab  (click)="hideOrShowMicrophone()" class="microphoneButton" *ngIf="isLoader==false">
-                    <mat-icon (click)="vlmOn=false;hideOrShowMicrophone()" *ngIf="vlmOn==true">volume_up</mat-icon>
-                    <mat-icon (click)="vlmOn=true;hideOrShowMicrophone()" *ngIf="vlmOn==false"> volume_off</mat-icon>
-                </button>
+
 <!-- class="myIconButton" style="background-color: burlywood;" -->
-                <mat-label class="userLable"
+<button mat-raised-button color="primary" class="userLable" *ngIf="ActiveUserScreen != undefined">
+  <mat-icon>laptop_chromebook</mat-icon>
+  {{ActiveUserScreen.activeUser.NameUser}}</button>
+                <!-- <mat-label class="userLable"
                 
                     *ngIf="ActiveUserScreen != undefined">{{ActiveUserScreen.activeUser.NameUser}}</mat-label>
-            </div>
-        </div>
+        </div> -->
 
     </div>
     <div class="row">
-        <div class="col-md-3 wrap_video" *ngFor="let csa of cameraStreamArray">
+        <div class="col-md-4 wrap_video" *ngFor="let csa of cameraStreamArray">
             <!-- <mat-icon style="z-index: 10;">videocam</mat-icon> *ngIf="csa.activeUser.showCamera==true" -->
             <video #myvideo class="vid" autoplay  [srcObject]="csa.cameraStream"
                 (click)="setActiveScreen(csa)"></video>
            <!-- <div style="background-color: blue;width: 150px;height: 150px;" class="vid" *ngIf="csa.activeUser.showCamera==false ">
             </div>-->
             <br>
-            <mat-label class="userLable">{{csa.activeUser.NameUser}}</mat-label>
+            <button mat-raised-button color="primary" class="smallUserLable">
+              <mat-icon>laptop_chromebook</mat-icon>{{csa.activeUser.NameUser}}</button>
+            <!-- <mat-label class="smallUserLable">{{csa.activeUser.NameUser}}</mat-label> -->
             <!-- style="border: 1px solid green;float: right;height: 240px;width: 240px;"
         <mat-icon>laptop_chromebook</mat-icon>{{aUser.NameUser}} {{ aUser.sessionId }}-->
         </div>
@@ -55,3 +53,48 @@
 </div>
 
 <!--<br> <button mat-fab disabled> <mat-icon>close</mat-icon> <button> -->
+
+
+    <!-- -----------side------------------- -->
+    <nav>
+        <ul>
+          <li  routerLink="/classroom">
+            <div >
+                <mat-icon class="side-icons" 
+              >close</mat-icon>
+            </div>
+          </li>
+          <li (click)="ShareOn=(!ShareOn);showDesktop()">
+            <div >
+                <img class="shareScreenImg" src="/assets/website.png" >
+
+              <!--class="about-icon" <div class="head">
+                <div class="eyes"></div>
+                <div class="beard"></div>
+              </div> -->
+            </div>
+          </li>
+          <li (click)="camOn=!camOn;hideOrShowCamera()">
+            <div  >
+                <mat-icon  *ngIf="camOn==true" >videocam</mat-icon>
+                <mat-icon  *ngIf="camOn==false">videocam_off</mat-icon>
+              <!--class="work-icon"<div class="paper"></div>
+              <div class="lines"></div>
+              <div class="lines"></div>
+              <div class="lines"></div> -->
+            </div>
+          </li>
+          <li (click)="vlmOn=!vlmOn;hideOrShowMicrophone()">
+            <div >
+               
+                <mat-icon  *ngIf="vlmOn==true">volume_up</mat-icon>
+                <mat-icon  *ngIf="vlmOn==false"> volume_off</mat-icon>
+              <!--class="mail-icon" <div class="mail-base">
+                <div class="mail-top"></div>
+              </div> -->
+            </div>
+          </li>
+        </ul>
+      </nav>
+     
+     <!-- -----------side------------------- -->

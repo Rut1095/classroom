@@ -172,3 +172,6 @@ h1{
 mat-option{
   text-align: end;
 }
+::-webkit-scrollbar {
+  display: none;
+}

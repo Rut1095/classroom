@@ -4,13 +4,16 @@
 <button class="chatButton" color="warn" mat-mini-fab  (click)="chatClick=true">
   <mat-icon class="chatIcon" >chat</mat-icon>
 </button></div>
-<!-- <mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon>  *ngIf="chatClick==false" -->
+<!-- "<mat-icon   style="cursor: pointer;" (click)="chatClick=true" *ngIf="chatClick==false">chat</mat-icon>  *ngIf="chatClick==false" -->
 
-<body *ngIf="chatClick==true;" id="chat" #scrollMe [scrollTop]="scrollMe.scrollHeight">
-    <header  style="cursor: pointer;" (click)="chatClick=false"><mat-icon style="float: left;cursor: pointer; ">chat</mat-icon>chat</header>
-      <mat-list class="list" *ngFor="let messege of messageArr" style="width: fit-content;">
+<body *ngIf="chatClick==true;" id="chat" >
+    <header  style="cursor: pointer;" (click)="chatClick=false">
+      <mat-icon style="float: left;cursor: pointer;margin-left: 15px;" >chat</mat-icon>chat
+    </header>
+    <div class="chat-messages" #scmessages style="direction: rtl; height: xyz;" #scrollMe [scrollTop]="scrollMe.scrollHeight"> 
+      <mat-list class="list" *ngFor="let messege of messageArr">
 
-        <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"   >
+        <mat-list-item  *ngIf="messege.id==thisSend" class="my-message item"  style="width:fit-content;" >
         <mat-icon style="position: relative;">account_circle</mat-icon>
 
           <!-- <img class="userImg" src="/assets/user.png" > -->
@@ -18,7 +21,7 @@
              
          </mat-list-item>
        
-        <mat-list-item *ngIf="messege.id!=thisSend" class="other-message item" >
+        <mat-list-item *ngIf="messege.id!=thisSend" class="other-message item" style="width:fit-content;">
           <!-- <img src="src\app\components\chat\user.png" > -->
           <mat-icon>account_box</mat-icon>
 
@@ -27,12 +30,12 @@
         </mat-list-item>
      
       </mat-list>
-     
+    </div>
       <textarea  placeholder="write your message"  [(ngModel)]="newMsg" class="message-input"></textarea>
      
-      <button mat-mini-fab class="button"   (click)="newMsg != ''?sendMessage():''" >
+      <button mat-mini-fab class="button"   (click)="newMsg != ''?sendMessage():''; " >
       
-        <mat-icon class="iconSend" color="warn">input</mat-icon>
+        <mat-icon class="iconSend" >input</mat-icon>
     
       </button>
 </body>

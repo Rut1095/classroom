@@ -11,19 +11,25 @@ namespace BL
 {
     public class DocumentsLogic
     {
-        public static List<DTO.Document> GetDocuments()
+        public static List<DTO.Document> GetDocuments(int classId, int lessonId)
         {
             List<DTO.Document> documents = new List<DTO.Document>();
             try
-
             {
                 using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
                 {
-                    foreach (var doc in db.Document)
+                    var classlesson = db.ClassLessons.FirstOrDefault(l => l.classId == classId && l.lessonId == lessonId);
+                    if (classlesson != null)
                     {
-                        documents.Add(new DTO.Document(doc));
+                        foreach (var doc in db.Document)
+                        {
+                            if (classlesson.Id != doc.ClassLessonId) continue;
+                            DTO.Document docDto = new DTO.Document(doc);
+                            docDto.UploadUserName = db.Users.Where(a => a.Id == docDto.UploadUserId).FirstOrDefault().name;
+                            documents.Add(docDto);
+                        }
+                        return documents;
                     }
-                    return documents;
                 }
 
             }
@@ -31,6 +37,7 @@ namespace BL
             {
                 return new List<DTO.Document>();
             }
+            return new List<DTO.Document>();
         }
 
         public static DTO.Document AddDocument(DocumentAddRequest request)
@@ -58,11 +65,12 @@ namespace BL
                         if(doc.Id > 0)
                         {
                             File.WriteAllBytes(@"E:\projects\classroom\classRoomServer\Api\Docs\" + doc.Id + "." + ext, Convert.FromBase64String(request.FileBase64));
-                            doc.filePath = "https://10.0.0.5:44333/Docs/" + doc.Id + "." + ext;
+                            doc.filePath = "/Docs/" + doc.Id + "." + ext;
                             db.SaveChanges();
                         }
-                        return new DTO.Document(doc);
-
+                        var docDto =  new DTO.Document(doc);
+                        docDto.UploadUserName = db.Users.Where(a => a.Id == docDto.UploadUserId).FirstOrDefault().name;
+                        return docDto;
                     }
                     else
                         return null;
@@ -80,5 +88,15 @@ namespace BL
         }
 
 
+        public static bool RemoveDocument(int docId)
+        {
+            using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+            {
+                DAL.Document docToDelete = db.Document.FirstOrDefault(d => d.Id == docId);
+                db.Document.Remove(docToDelete);
+                db.SaveChanges();
+            }
+            return true;
+        }
     }
 }

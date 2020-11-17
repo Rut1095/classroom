@@ -1,5 +1,9 @@
 .list{
     height: max-content;
+   
+}
+.list .other-message{
+     direction: ltr;
 }
 .item{
    
@@ -30,7 +34,9 @@ span{
   width: fit-content;
     background-color: #bfbdb6;
     border-top-right-radius: 0px;
-    background-color: #f44336;
+    background-color: gray;
+
+    /* background-color: #f44336; */
     /* background-color:green ; */
     color: white;
     /* right: 0;  */
@@ -39,7 +45,7 @@ span{
 .other-message{
      width: fit-content;
     background-color: white;
-  
+    
     border-top-left-radius: 0px;
   
 }
@@ -50,6 +56,8 @@ span{
     bottom: 0;
     background-color: white;
     box-shadow: 0px 0px 6px 0px black;
+    left: 0.5em;
+
 
 }
 .message-input{
@@ -63,7 +71,8 @@ span{
 
 }
 #chat header{
-    background-color: #f44336;
+    background-color: darkblue;
+    /* background-color: #f44336; */
     /* background-color: green; */
     color: white;
     font-weight: bold;
@@ -80,7 +89,7 @@ position: fixed;
     bottom: 2px;
     /* background: green; */
 
-    background: #f44336;
+    background: darkblue;
     z-index: 1;
     /* margin-left: 13vw; */
     padding-top: 0.4vh;
@@ -107,6 +116,7 @@ chat{
     bottom: 0;
     width: 100%;
     left: 0;
+    margin-left: 15px;
 
 /* max-width: 2px; */
 }
@@ -128,3 +138,10 @@ body{
     height: 20px;
     width: 20px;
 }
+.chat-messages{
+    overflow-y: auto;
+    height: 45vh;
+}
+/* ::-webkit-scrollbar {
+    display: none;
+} */

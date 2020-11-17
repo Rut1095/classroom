@@ -10,11 +10,11 @@ namespace Api.Controllers
     public class DocumentController : ApiController
     {
 
-        [Route("")]
+        [Route("{classId}/{lessonId}")]
         [HttpGet]
-        public List<Document> GetAllDocument()
+        public List<Document> GetAllDocument(int classId, int lessonId)
         {
-            return BL.DocumentsLogic.GetDocuments();
+            return BL.DocumentsLogic.GetDocuments(classId, lessonId);
         }
 
 
@@ -22,10 +22,16 @@ namespace Api.Controllers
         [HttpPost]
         public Document AddDocument(DocumentAddRequest request)
         {
-         
             return  BL.DocumentsLogic.AddDocument(request);
-
         }
+
+        [Route("{docId}")]
+        [HttpDelete]
+        public bool RemoveDocument(int docId)
+        {
+            return BL.DocumentsLogic.RemoveDocument(docId);
+        }
+
 
     }
 }

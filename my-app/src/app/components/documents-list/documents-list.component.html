@@ -1,4 +1,5 @@
-<table mat-table [dataSource]="data" class="mat-elevation-z8">
+<div class="example-container">
+  <table mat-table [(dataSource)]="dataSource" class="mat-elevation-z8">
 
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
@@ -10,28 +11,37 @@
     </ng-container>
   
     <!-- Name Column -->
-    <ng-container matColumnDef="UploadUserId">
+    <ng-container matColumnDef="UploadUserName">
       <th mat-header-cell *matHeaderCellDef> משתמש </th>
-      <td mat-cell *matCellDef="let element"> {{element.UploadUserId}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.UploadUserName}} </td>
     </ng-container>
   
     <!-- Weight Column -->
     <ng-container matColumnDef="FilePath">
       <th mat-header-cell *matHeaderCellDef> נתיב </th>
       <td mat-cell *matCellDef="let element">
-          <a href="{{element.FilePath}}" target="_blank" >לחץ כאן</a>
+          <a style="color: darkslateblue !important;" href="{{element.FilePath}}" target="_blank" >לחץ כאן</a>
             
         </td>
     </ng-container>
+
+   
   
     <!-- Symbol Column -->
     <ng-container matColumnDef="CreationTime">
       <th mat-header-cell *matHeaderCellDef> זמן יצירה </th>
       <td mat-cell *matCellDef="let element"> {{element.CreationTime}} </td>
     </ng-container>
-  
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+   
+    
+    <ng-container matColumnDef="delete">
+      <th mat-header-cell *matHeaderCellDef> מחק </th>
+      <td mat-cell *matCellDef="let element" style="cursor: pointer;" (click)="deleteFile(element)">
+        <button  mat-icon-button><mat-icon>delete_forever</mat-icon> </button></td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   
-  
+</div>

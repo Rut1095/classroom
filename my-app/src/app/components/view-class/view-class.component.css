@@ -34,3 +34,6 @@ mat-sidenav{
     background: transparent;
     position: fixed;
 }
+::-webkit-scrollbar {
+    display: none;
+}

@@ -23,6 +23,10 @@ export class DatapeerService {
   private peer;
   activeUsers: Array<ActiveUser>;
   classLessonActive:classLessons;
+
+  classId:Number;
+  lessonId:Number;
+
   constructor() { }
 
   setPeer(val){

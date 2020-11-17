@@ -59,7 +59,8 @@ namespace BL
                 using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
                 {
                     var lessonsinClasses =
-                 db.ClassLessons.Where(p => p.classId == classId);
+                 db.ClassLessons.Where(p => p.classId == classId );
+
                     // p.name == user.UserName && p.password == user.Password);
 
                     // var lessonsinClasses = (from ls in db.lessons
@@ -108,6 +109,27 @@ namespace BL
                 return lessons;
             }
         }
+        public static DTO.Lesson AddNewLesson(string lesson )
+        {
+            try
+            {
+                using (DigitlClassRoomUpdateEntities db = new DigitlClassRoomUpdateEntities())
+                {
+                    var newLess = new DAL.lessons();
+                    newLess.name = lesson;
+                    db.lessons.Add(newLess);
+                    db.SaveChanges();
+                    DTO.Lesson less = new DTO.Lesson(newLess);
+                    return less;
+                }
+            }
+            catch
+            {
+                return null;
+            }
+           
+        }
+       
         //public static List<DTO.Lesson> GetLessonsByTeacherId(int Id)
         //{
         //    List<lessons> lessons = new List<lessons>();

@@ -34,8 +34,10 @@ export class UserCameraComponent implements OnInit {
   ActiveUserScreen: UserVideo;
   camOn:boolean = true;
   vlmOn:boolean=true;
+  ShareOn:boolean=false;
   userExitFromLesson:boolean=false;
   isLoader:boolean = false;
+  myStream:any;
 
   constructor(private route: ActivatedRoute,
     private usersService: UsersService,
@@ -90,17 +92,20 @@ export class UserCameraComponent implements OnInit {
     // });
 
     //wait for video call of another user and then answer the video call
-
     var getUserMedia = navigator.getUserMedia;
+
 
     //var myvideo = this.myvideo.nativeElement;
 
     let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
     var thisObject = this;
+
     // on get request from user to answer - answer(connect)
     this.peer.on('call', function (call) {
+      // debugger;
+      var stream = thisObject.myStream;
       console.log('i got call' + call);
-      getUserMedia({ video: true, audio: true }, function (stream) {
+    //  getUserMedia({ video: true, audio: true }, function (stream) {
         
         console.log('i got call 2');
         //debugger;
@@ -109,11 +114,6 @@ export class UserCameraComponent implements OnInit {
         // thisObject.cameraStreamArray.push(stream);
         call.on('stream', function (remoteStream) {
           // Show stream in some video/canvas element.
-          //myvideo.srcObject = remoteStream;
-          //myvideo.play();
-          //console.log(call);
-          //console.log(call.peer);
-          //thisObject.getAllActiveUsers();
 
             thisObject.usersService.GetActivesUsers(userA).subscribe(res => {
             
@@ -133,9 +133,9 @@ export class UserCameraComponent implements OnInit {
           });
 
         });
-      }, function (err) {
-        console.log('Failed to get local stream', err);
-      });
+      // }, function (err) {
+      //   console.log('Failed to get local stream', err);
+      // });
     });
 
     
@@ -172,93 +172,234 @@ export class UserCameraComponent implements OnInit {
   }
   
   //async videoconnect(): Promise<void> {
- videoconnect(): void {
+ videoconnect(isDesktop:boolean = false): void {
 
   this.cameraStreamArray.length = 0;
-    var getUserMedia = navigator.getUserMedia;
     var localpeer = this.peer;
     var curruserid = this.user.Id;
     //var video = this.myvideo.nativeElement;
     var myactiveusers = this.activeUsers;
-    
+    const md = navigator.mediaDevices as any;
+    var getUserMediaDisplay = md.getDisplayMedia;
+
     // var cameraStreamL = this.cameraStream;
     var thisObject = this;
-      myactiveusers.forEach(element => {
+    
+    if(!isDesktop)
+        this.callAllUsersAndShowCamera(myactiveusers,curruserid,localpeer,thisObject);
+    else
+        this.callAllUsersAndShowDesktop(myactiveusers,curruserid,localpeer,thisObject);
+      //??
+    //this.ActiveUserScreen = this.cameraStreamArray.find(p => p.UserId === this.user.Id);
+    console.log(this.ActiveUserScreen);
+       
 
-        console.log('curruserid='+curruserid + " element.UserId=" + element.UserId);
-        if (curruserid != element.UserId) {     
+    //let a = this.cameraStreamArray.find(p => { return p.UserId == this.classLessonActive.teacherId });
+  }
+
+  callAllUsersAndShowCamera(myactiveusers,curruserid,localpeer,thisObject){
+    var getUserMedia = navigator.getUserMedia ;
+    getUserMedia({ video: true, audio: true }, (stream) => {
+      
+      thisObject.myStream = stream;
+      // var stream =  md.getDisplayMedia({ video: true, audio: true }, (dstream) => {});
+      // md.getDisplayMedia({ video: true, audio: true }, (stream) => {
+             myactiveusers.forEach(element => {
+               console.log('curruserid='+curruserid + " element.UserId=" + element.UserId);
+               if (curruserid != element.UserId) {     
+
+                 thisObject.callUser(element,localpeer,thisObject,stream);
+               // thisObject.callUserSendDesktop(element, getUserMedia,localpeer,thisObject);
+               }
+               else {
+                 console.log('same');
+                 thisObject.viewLocalCam(element,localpeer,thisObject,stream);
+                 //var srtm = thisObject.startCapture(thisObject, element,getUserMediaDisplay);
+               }
+         });
+    }, (err) => {
+      console.log('Failed to get local stream', err);
+    });
+  }
+  
+  async callAllUsersAndShowDesktop(myactiveusers,curruserid,localpeer,thisObject){
+    
+    const md = navigator.mediaDevices as any;
+      // var stream =  md.getDisplayMedia({ video: true, audio: true }, (dstream) => {});
+   var stream=  await md.getDisplayMedia({ video: true, audio: true }, (stream) => {
+       
+    }, (err) => {
+      console.log('Failed to get local stream', err);
+    });
+    
+    thisObject.myStream = stream;
+    myactiveusers.forEach(element => {
+      console.log('curruserid='+curruserid + " element.UserId=" + element.UserId);
+      if (curruserid != element.UserId) {     
+
+        thisObject.callUser(element,localpeer,thisObject,stream);
+      // thisObject.callUserSendDesktop(element, getUserMedia,localpeer,thisObject);
+      }
+      else {
+        console.log('same');
+        thisObject.viewLocalCam(element,localpeer,thisObject,stream);
+        //var srtm = thisObject.startCapture(thisObject, element,getUserMediaDisplay);
+      }
+});
+  }
+
+  callUser(element:ActiveUser,localpeer,thisObject, stream){
           
-          getUserMedia({ video: true, audio: true }, (stream) => {
-     
-                  console.log('element.sessionId='+element.sessionId);
-                  var call = localpeer.call(element.sessionId, stream);
-                  if(call!=undefined){
-                            console.log('call='+call);
-                            call.on('stream', (remoteStream) => {
-                              //debugger;
-                              //cameraStreamL = remoteStream;
-                              //thisObject.cameraStream = remoteStream;
-                              if (element.UserId == this.classLessonActive.teacherId) {
-                                  console.log('teacherId='+element.UserId);
-                                  this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
-                                  this.taecherActive = true;
-                              } else{
-                                  console.log('element.UserId='+element.UserId);
-                                  //thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
-                                  thisObject.pushActiveUser(thisObject,remoteStream,element);
-                              }
-                              // Show stream in some video/canvas element.
-                            });
-                  }else{
-                      console.log('user '+element.NameUser + "cannt be connect");
-                  }
-              
-            }, (err) => {
-              console.log('Failed to get local stream', err);
-            });
-        }
-        else {
-          console.log('same');
-          getUserMedia({ video: true, audio: true }, (stream) => {
-            //debugger;
-            
-           // this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
-              console.log('same='+this.taecherActive);
-                if (this.taecherActive)
-                this.pushActiveUser(thisObject,stream,element);
-                  //thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:element});
-                else
-                  this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+         
+            console.log('element.sessionId='+element.sessionId);
+            var call = localpeer.call(element.sessionId, stream);
+            if(call!=undefined){
+                      console.log('call='+call);
+                      call.on('stream', (remoteStream) => {
+                        //debugger;
+                        //cameraStreamL = remoteStream;
+                        //thisObject.cameraStream = remoteStream;
+                        if (element.UserId == this.classLessonActive.teacherId) {
+                            console.log('teacherId='+element.UserId);
+                           // debugger;
+                            var saveCamUser = undefined;
+                            if(thisObject.ActiveUserScreen!=null && thisObject.ActiveUserScreen!=undefined ) 
+                                  saveCamUser = thisObject.ActiveUserScreen;
+                                
+                            thisObject.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+                            thisObject.taecherActive = true;
 
-                  
-            thisObject.isLoader=false;
-          }, (err) => {
-            console.log('Failed to get local stream', err);
-          });
-        }
+                            if(saveCamUser!=undefined)
+                               thisObject.pushActiveUser(thisObject,saveCamUser.cameraStream,saveCamUser.activeUser);
+
+
+                        } else{
+                            console.log('element.UserId='+element.UserId);
+                            //thisObject.cameraStreamArray.push({cameraStream:remoteStream, activeUser:element});
+                            thisObject.pushActiveUser(thisObject,remoteStream,element);
+                        }
+                        // Show stream in some video/canvas element.
+                      });
+            }else{
+                console.log('user '+element.NameUser + "cannt be connect");
+            }
+  }
+
+  
+  async callUserSendDesktop(element:ActiveUser, getUserMedia,localpeer,thisObject){
+          
+    const md = navigator.mediaDevices as any;
+    var getDisplayMedia = md.getDisplayMedia;
+    // debugger;
+    let stream = await md.getDisplayMedia({ video: true, audio: true }, (stream) => {
+       
+        
+      }, (err) => {
+        console.log('Failed to get local stream', err);
       });
 
+      console.log('element.sessionId='+element.sessionId);
+      var call =  localpeer.call(element.sessionId, stream);
+      if(call!=undefined){
+                console.log('call='+call);
+                call.on('stream', (remoteStream) => {
+                  if (element.UserId == this.classLessonActive.teacherId) {
+                      console.log('teacherId='+element.UserId);
+                      var saveCamUser = undefined;
+                      if(thisObject.ActiveUserScreen!=null && thisObject.ActiveUserScreen!=undefined ) 
+                            saveCamUser = thisObject.ActiveUserScreen;
+                          
+                      thisObject.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+                      thisObject.taecherActive = true;
 
-    //this.ActiveUserScreen = this.cameraStreamArray.find(p => p.UserId === this.user.Id);
-    console.log(this.ActiveUserScreen)
-    //let a = this.cameraStreamArray.find(p => { return p.UserId == this.classLessonActive.teacherId });
-   // if (a != undefined)
-    //  this.ActiveUserScreen = a;
+                      if(saveCamUser!=undefined)
+                         thisObject.pushActiveUser(thisObject,saveCamUser.cameraStream,saveCamUser.activeUser);
+
+                  } else{
+                      console.log('element.UserId='+element.UserId);
+                      thisObject.pushActiveUser(thisObject,remoteStream,element);
+                  }
+                  // Show stream in some video/canvas element.
+                });
+      }else{
+          console.log('user '+element.NameUser + "cannt be connect");
+      }
+}
+
+  viewLocalCam(element:ActiveUser,localpeer,thisObject,stream ){
+      //debugger;
+      
+     // this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+        console.log('same='+this.taecherActive);
+          if (thisObject.taecherActive)
+            thisObject.pushActiveUser(thisObject,stream,element);
+            //thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:element});
+          else
+             this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+   
+      thisObject.isLoader=false;
+  
   }
 
-  pushActiveUser(thisObject,stream,activU:ActiveUser){
+  
+  viewLocalCamWithCam(element:ActiveUser, getUserMedia,localpeer,thisObject ){
+    getUserMedia({ video: true, audio: true }, (stream) => {
+      //debugger;
+      
+     // this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+        console.log('same='+this.taecherActive);
+          if (this.taecherActive)
+          this.pushActiveUser(thisObject,stream,element);
+            //thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:element});
+          else
+             this.ActiveUserScreen = {cameraStream:stream, activeUser:element};
+   
+      thisObject.isLoader=false;
+    }, (err) => {
+      console.log('Failed to get local stream', err);
+    });
+  }
+  
+  showDesktop(){
+    this.videoconnect(this.ShareOn);
+  }
 
+  async startCapture(thisObject, activeUser:ActiveUser,getUserMediaDisplay):Promise<any> {
+    let captureStream = null;
+    
+    const md = navigator.mediaDevices as any;
+    var getDisplayMedia = md.getDisplayMedia;
+    try {
+      captureStream = await md.getDisplayMedia({ video: true}, (stream) => {
+      });
+     //this.ActiveUserScreen = {cameraStream:captureStream, activeUser:activeUser};
+     this.pushActiveUser(thisObject, captureStream, activeUser,true);
+    } catch(err) {
+      console.error("Error: " + err);
+    }
+    return captureStream;
+  }
+
+  pushActiveUser(thisObject,stream,activU:ActiveUser,pushAnyway:boolean = false){
+    //pushAnyway=true;
     var dontPush:boolean = false;
-    this.cameraStreamArray.forEach((usercam,index) => {
+    var index = 0;
+    thisObject.cameraStreamArray.forEach((usercam,index) => {
       if(usercam.activeUser.UserId ==activU.UserId ){
+        thisObject.cameraStreamArray[index] = {cameraStream:stream, activeUser:activU};
         dontPush=true;
       }
+      index++;
     });
-    if(!dontPush && this.ActiveUserScreen.activeUser.UserId == activU.UserId)  dontPush=true;
+    if(!dontPush && this.ActiveUserScreen !=null && this.ActiveUserScreen.activeUser.UserId == activU.UserId)  {
+      this.ActiveUserScreen = {cameraStream:stream, activeUser:activU};
+      dontPush=true;
+    }
 
-    if(!dontPush)
+    if(!dontPush || pushAnyway)
         thisObject.cameraStreamArray.push({cameraStream:stream, activeUser:activU});
   }
+
 
   removeActiveUser(autoremove:ActiveUser){
     
@@ -268,13 +409,14 @@ export class UserCameraComponent implements OnInit {
         this.cameraStreamArray.splice(index,1);
       }
     });
-    if(this.ActiveUserScreen.activeUser.UserId == autoremove.UserId && autoremove.UserId != this.user.Id){
+    if(this.ActiveUserScreen != null && this.ActiveUserScreen.activeUser!=null &&
+      this.ActiveUserScreen.activeUser.UserId == autoremove.UserId && autoremove.UserId != this.user.Id){
       this.ActiveUserScreen = this.cameraStreamArray.pop();
     }
   }
 
   onRefreshActiveUser(){
-    
+   
     this.activeUsers = this.datapeerService.getActiveUsers();
 
     this.cameraStreamArray.forEach(element => {
@@ -285,15 +427,21 @@ export class UserCameraComponent implements OnInit {
         }
     });
 
-    if(this.ActiveUserScreen.activeUser.UserId != this.user.Id){
+    if(this.ActiveUserScreen != null && this.ActiveUserScreen.activeUser != null
+       && this.ActiveUserScreen.activeUser.UserId != this.user.Id){
         this.refreshCamActiveUser(this.ActiveUserScreen);
          this.refreshEnableAudioAndVideo(this.ActiveUserScreen);
     }
   }
 
   refreshEnableAudioAndVideo(camUser: UserVideo){
+    if(camUser.cameraStream == null ||
+       camUser.cameraStream.getVideoTracks() == null
+       ) return;
     camUser.cameraStream.getVideoTracks()[0].enabled = camUser.activeUser.showCamera;
-    camUser.cameraStream.getAudioTracks()[0].enabled = camUser.activeUser.showMicrophone;
+    if(camUser.cameraStream.getAudioTracks() != null && camUser.cameraStream.getAudioTracks().length > 0){      
+      camUser.cameraStream.getAudioTracks()[0].enabled = camUser.activeUser.showMicrophone;
+    }
   }
 
   refreshCamActiveUser(camUser: UserVideo){
@@ -313,12 +461,14 @@ export class UserCameraComponent implements OnInit {
     // alert("active");
 
   }
+  
+  
 
   async getAllActiveUsers():Promise<Array<ActiveUser>>{
     let ret :Array<ActiveUser>;
     console.log("start getAllActiveUsers");
     let userA: ActiveUser = JSON.parse(localStorage.getItem("activeUser"));
-    debugger;
+    // debugger;
     await this.usersService.GetActivesUsers(userA).subscribe(res => {
       
         console.log(res);
@@ -367,7 +517,8 @@ hideOrShowMicrophone():void{
   if(this.ActiveUserScreen != undefined && this.ActiveUserScreen.activeUser.UserId == this.user.Id){
     // debugger;
     var vlmOn = this.vlmOn;
-    this.ActiveUserScreen.cameraStream.getAudioTracks()[0].enabled = this.vlmOn;
+    if(this.ActiveUserScreen.cameraStream.getAudioTracks() != null)
+      this.ActiveUserScreen.cameraStream.getAudioTracks()[0].enabled = this.vlmOn;
   }
 }
   //set user as unactive in lesson

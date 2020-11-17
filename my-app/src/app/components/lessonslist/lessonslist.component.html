@@ -21,7 +21,7 @@
         <mat-panel-title class="head">כיתה {{UserNameClass}}</mat-panel-title>
       </mat-expansion-panel-header>
       <mat-card *ngFor="let les of lessons" class="clName">
-        <a routerLink="/classroom/lesson/{{les.Id}}/class/{{this.user.ClassId}}">
+        <a  routerLink="/classroom/lesson/{{les.Id}}/class/{{this.user.ClassId}}">
           שיעור {{les.Name}}
         </a>
       </mat-card>

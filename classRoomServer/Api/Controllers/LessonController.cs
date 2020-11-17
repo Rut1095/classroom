@@ -8,14 +8,14 @@ namespace Api.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("lessons")]
     public class LessonController : ApiController
-    {
+    {/*
         [Route("new-lesson")]
         [HttpPost]
         public bool NewLesson(Lesson lesson)
         {
             return BL.LessonsLogic.AddNewLesson(lesson);
         }
-        
+        */
         [Route("{classId}")]
         [HttpGet]
         public List<Lesson> GetLessons(int classId)
@@ -43,6 +43,15 @@ namespace Api.Controllers
 
         {
             BL.UsersLogic.StartNewLesson(id);
+        }
+
+
+        [Route("lesson/add")]
+        [HttpPost]
+        public Lesson AddLesson(Lesson lesson)
+
+        {
+            return BL.LessonsLogic.AddNewLesson(lesson.Name);
         }
         //[Route("teacher/{TeacherId}")]
         //[HttpGet]

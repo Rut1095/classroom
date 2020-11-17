@@ -119,17 +119,36 @@ peer;
     this.lesson.classId=selectedData.value;
   }
   addClassLesson(): void {
+    if(this.other){
+      this.lessonsService.AddNewLesson(this.newLesson).subscribe( res=>{
+        console.log(res+ "newlesson");
+        this.lesson.lessonId = res.Id;
+        this.addExistsClassLesson();
+      });
+      //
+      //in subscribe
+      //1. this.lesson.lessonId = new
+    }else
+    this.addExistsClassLesson();
+
+  }
+
+  addExistsClassLesson():void{
     this.lesson.teacherId=this.user.Id;
     this.lesson.lesseonIsActive=false;
     this.lessonsService.AddLessonClassTeacher(this.lesson).subscribe(
       res=>{
         console.log(res);
-         if(res)
+        if(res)
       alert("שיעור"+this.lesson.lessonId+" חדש נוסף לכיתה"+this.lesson.classId)
-      }
-     
-    )
+      });
+    // this.selectedClass = null;
+    // this.selectedLesson = null
+    // this.selectionClass = null;
+    // this.selectionLesson = null;
+
   }
+
   getLessonsByClass(classId){
      this.lessonsService.getLessonsByClass(classId).subscribe(res => {
     console.log(res)

@@ -41,7 +41,8 @@ export class LessonComponent implements OnInit ,OnChanges {
   chatClick:boolean=false;
   currentLesson:string;
   peerIsActive:boolean  =false;
-
+  documents:boolean = false;
+  
   constructor(private route: ActivatedRoute,
     private usersService: UsersService,
     private router: Router,
@@ -50,11 +51,15 @@ export class LessonComponent implements OnInit ,OnChanges {
     private datapeerService: DatapeerService
   ) { }
  
+async  initUser(){
+
+  this.user = await JSON.parse(localStorage.getItem("userDetails"));
+  }
+
   ngOnInit(): void
    {
-    
+    this.initUser();
      
-    this.user = JSON.parse(localStorage.getItem("userDetails"));
 //alert( localStorage.getItem("userPeerId"));
     if(this.datapeerService.getPeer() == undefined){
       //activate event that wait for camere
@@ -109,7 +114,7 @@ export class LessonComponent implements OnInit ,OnChanges {
         this.lessonsService.get().subscribe(res=>{
           console.log(res)
           this.lessonList = res;
-          this.getLessonName(_id);
+          this.getLessonName(_id,_classId);
 
     
         this.classService.getClassLessonByIds(_classId, _id).subscribe((res:classLessons)=>{
@@ -123,7 +128,7 @@ export class LessonComponent implements OnInit ,OnChanges {
         });
 
     }else{
-      this.getLessonName(_id);
+      this.getLessonName(_id,_classId);
     }
 
   }
@@ -147,7 +152,7 @@ export class LessonComponent implements OnInit ,OnChanges {
   
   }
 
-  getLessonName(_id:String){
+  getLessonName(_id:String,_classId:String){
     
     var currentLesId= parseInt(_id.toString(),10);
     this.lessonList.forEach(element => {
@@ -155,6 +160,12 @@ export class LessonComponent implements OnInit ,OnChanges {
         this.currentLesson=element.Name;
       
     });
+    
+    this.datapeerService.lessonId = currentLesId;
+    this.datapeerService.classId = parseInt(_classId.toString(),10);
+    
+    this.isOn = false;
+    this.lessIsActive=false;
   }
 
  
@@ -277,8 +288,8 @@ export class LessonComponent implements OnInit ,OnChanges {
           return false;
         });
 
-        //update last time this user active
-        this.usersService.setUserActive(this.user.ClassId, this.id, this.user.Id,this.sessionId).subscribe(res => {
+        //update last time this user active  --this.user.ClassId
+        this.usersService.setUserActive(this.datapeerService.classLessonActive.classId, this.id, this.user.Id,this.sessionId).subscribe(res => {
         }, err => {
           console.log(err)
           alert("שגיאה בקריאה לשירות");

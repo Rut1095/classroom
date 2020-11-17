@@ -33,6 +33,7 @@ import { LoaderComponent } from './components/loader/loader.component';
 import { DocumentsListComponent } from './components/documents-list/documents-list.component';
 import { DocumentAddComponent } from './components/document-add/document-add.component';
 import {MatTableModule} from '@angular/material/table';
+import { DocumentsAttachmentComponent } from './components/documents-attachment/documents-attachment.component';
 
 // import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
@@ -53,7 +54,8 @@ import {MatTableModule} from '@angular/material/table';
     ChatComponent,
     LoaderComponent,
     DocumentsListComponent,
-    DocumentAddComponent
+    DocumentAddComponent,
+    DocumentsAttachmentComponent
   ],
   imports: [
     BrowserModule,

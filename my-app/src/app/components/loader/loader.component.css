@@ -30,8 +30,8 @@ div.container {
 }
 .container > div {
     margin-top: 50vh;
-	width: 6vw;
-	height: 6vw;
+	width: 5vw;
+	height: 5vw;
 	border-radius: 100%;
 	margin: 2vw;
 	background-image: linear-gradient(

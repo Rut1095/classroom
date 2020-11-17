@@ -18,10 +18,9 @@
             this.Name = lessonDal.name;
         }
 
-
         public DAL.lessons convertToDAL()
         {
-           return new DAL.lessons() { Id = Id, name = Name };
+           return new DAL.lessons() { Id = this.Id, name = Name };
         }
 
     }

@@ -142,6 +142,9 @@ h1{
     font-weight: bold;
 
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 
 /*///////////////////*/

@@ -2,3 +2,7 @@
     height: 85px;
     position: absolute;
 }
+::ng-deep button{
+    outline: none !important;
+
+}

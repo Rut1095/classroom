@@ -1,10 +1,28 @@
-<h2>File Upload</h2>
+<h2>העלאת קבצים</h2>
   <!-- <p>Here are some links to help you get started:</p> -->
-    <div class="card-container" style="margin-top: 80px;">
 
-    <input type="file" id="FUImage" name="FUImage" accept=".png, .jpg, .jpeg .pdf .docx" (change)="onChange($event.target.files)"> 
+    <div class="card-container" >
+  <button class="buttonAdd" mat-stroked-button color="warn" >
+      <div class="fileUpload btn btn-orange">
+        <span class="upl" id="upload">בחירת קובץ</span>
+        <input type="file" class="upload up" id="FUImage" name="FUImage" accept=".png, .jpg, .jpeg .pdf .docx .zip" (change)="onChange($event.target.files)"> 
+        
+      </div><!-- btn-orange -->
+      </button>
+    <!-- <br><br> -->
+    <button class="buttonText" mat-stroked-button color="warn">
+      <input class="filenameInput" placeholder="שם הקובץ" required [(ngModel)]="fileName"></button>
+
+    <!-- <mat-form-field appearance="fill" class="field-file-name"
+        [hideRequiredMarker]="hideRequiredControl.value"
+        [floatLabel]="floatLabelControl.value">
+      <input matInput placeholder="שם הקובץ" >
+    </mat-form-field> -->
+<!--
+ <button mat-stroked->button color="warn" >בחירת קובץ</button>-->
+
+    <!-- <input type="text" [(ngModel)]="fileName"> -->
     <br>
-    <input type="text" [(ngModel)]="fileName">
     <br>
-    <button type="button" class="btn btn-danger pull-left" (click)="btnUpload()">שמירה</button> 
+    <button mat-stroked-button color="warn" class="buttonAdd" type="button" [disabled]="!fileName" (click)="btnUpload()">שמירה</button> 
   </div>
